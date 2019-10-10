@@ -27,7 +27,7 @@ public class Dice {
 			diceType = Integer.parseInt(str[1]);
 		
 			for(int i = 0; i < numRolls; i++) {
-				rv += (rollDX(diceType) * multiplier);
+				rv += (rollDX(diceType, Math.random()) * multiplier);
 			}
 		}
 		else {
@@ -40,10 +40,11 @@ public class Dice {
 	/**
 	 * 
 	 * @param x num sides of "dice" to "roll"
+	 * @param d1 random # from 0 to 1
 	 * @return
 	 */
-	public static int rollDX(int x) {
-		double d1 = Math.random();
+	public static int rollDX(int x, double d1) {
+//		double d1 = Math.random();
 		if(d1 <= 0.0) {
 			d1 = 0.001;
 		}

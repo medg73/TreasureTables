@@ -23,6 +23,10 @@ public class TreasureTables {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+		System.setProperty("apple.laf.useScreenMenuBar", "true");
+		System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Treasure Generator");
+
+		
 		TTFrame frame = new TTFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);

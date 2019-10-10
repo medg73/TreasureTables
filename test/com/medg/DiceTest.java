@@ -59,7 +59,7 @@ public class DiceTest {
 		
 		int sum = 0;
 		for(int i = 0; i < 10000; i++) {
-			int res = Dice.rollDX(6);
+			int res = Dice.rollDX(6, Math.random());
 			assertTrue(res >= 1);
 			assertTrue(res <= 6);
 			sum += res;
@@ -72,5 +72,19 @@ public class DiceTest {
 		assertTrue(av >3.0 && av < 4.0);
 		
 	}
-
+	/**
+	 * 
+	 */
+	@Test
+	public final void testRollDXWithMinInput() {
+		int res = Dice.rollDX(6, 0.0);
+		assertEquals(res,1);
+	}
+	
+	@Test
+	public final void testRollDXWithMaxInput() {
+		int res = Dice.rollDX(6, 0.99999);
+		assertEquals(res,6);
+	}
+	
 }
