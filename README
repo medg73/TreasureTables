@@ -1,0 +1,5 @@
+TODO
+- split out the special item handling of each type to separate classes
+- fix maven jar packaging to make it execute
+- fix treasure tables to read from data file not be hardcoded
+- spell scroll generation and fix up the other special handling

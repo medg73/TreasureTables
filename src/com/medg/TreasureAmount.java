@@ -14,6 +14,11 @@ public class TreasureAmount {
 	private int multiplier; //usually either 1 or 1000
 	private String description; // for magic, gems, jewelry
 	private TreasureColumns column;
+	private MagicItemGenerator magicItemGenerator;
+
+	public void setMagicItemGenerator(MagicItemGenerator magicItemGenerator) {
+		this.magicItemGenerator = magicItemGenerator;
+	}
 	
 	private String[] ornamentalStones = {"Azurite", "Banded Agate", "Blue Quartz", "Eye Agate", "Hematite", "Lapis Lazuli", 
 			"Malachite",
@@ -28,19 +33,16 @@ public class TreasureAmount {
 			"Oriental Amethyst", 
 			"Oriental Emerald", "Oriental Topaz", "Ruby", "Sapphire", "Star Ruby", "Star Sapphire" };
 	
-	
-	/**
-	 * 
-	 * @param c chance, expressed as 0-1
-	 * @param q expressed as xdx, eg 2d6, or a single integer
-	 * @param m usually either 1 or 1000
-	 * @param d for magic, gems, jewelry
-	 */
+
+	public TreasureAmount(TreasureColumns col, double chance, String quantity, int multiplier, String description,
+						  MagicItemGenerator magicItemGenerator) {
+		this(col, chance, quantity, multiplier, description);
+		this.magicItemGenerator = magicItemGenerator;
+	}
+
 	public TreasureAmount(TreasureColumns col, double c, String q, int m, String d) {
 		this(c,q,m,d);
 		column = col;
-	
-	
 	}
 	
 	public TreasureAmount(double c, String q, int m, String d) {
@@ -49,28 +51,56 @@ public class TreasureAmount {
 		multiplier = m;
 		description = d;
 	}
-	
+
+
+
 	public String calcResult() {
 		double d1 = Math.random();
 		String rv = "none";
 		
 		if(chance > 0.0 && d1 < chance) {
-			int amount = Dice.rollAmount(quantity, multiplier);
-			rv = amount + " " + description;
-			if(column == TreasureColumns.Jewelry) {
-				String value = getJewelryValueAndDescription();
-				rv = rv + value;
-			}
-			else if(column == TreasureColumns.Gems) {
-				String value = getGemValueAndDescription();
-				rv += value;
+			if (column == TreasureColumns.Magic) {
+				rv = getMagicItems();
+			}  else {
+				int amount = new Dice().rollAmount(quantity, multiplier);
+				rv = amount + " " + description;
+				if (column == TreasureColumns.Jewelry) {
+					String value = getJewelryValueAndDescription();
+					rv = rv + value;
+				} else if (column == TreasureColumns.Gems) {
+					String value = getGemValueAndDescription();
+					rv += value;
+				}
 			}
 		}
-		
-		
+
 		return rv;
 	}
-	
+
+	public String getMagicItems() {
+		String[] magicTreasureQuantities = description.split(":");
+		int i = 0;
+		String rv = "";
+		while(i < magicTreasureQuantities.length) {
+			MagicTreasureType magicTreasureType = MagicTreasureType.valueOf(magicTreasureQuantities[i]);
+			int amount = new Dice().rollAmount(magicTreasureQuantities[i + 1], 1);
+
+			for (int j = 0; j < amount; j++) {
+				String magicItem = magicItemGenerator.getMagicItemOfType(magicTreasureType);
+				rv += magicItem;
+				if (j < amount - 1) {
+					rv += ", ";
+				}
+			}
+			if(i < magicTreasureQuantities.length - 2) {
+				rv += ", ";
+			}
+			i += 2;
+		}
+		return rv;
+	}
+
+
 	/**
 	 * @return
 	 */
@@ -82,7 +112,7 @@ public class TreasureAmount {
 		int[] baseValues = { 10, 50, 100, 500, 1000, 5000 };
 		
 
-		int roll1 = Dice.rollAmount("1d100", 1);
+		int roll1 = new Dice().rollAmount("1d100", 1);
 		if(roll1 <= 25) {
 			baseValueIndex = 0;
 			desc = getStoneName(ornamentalStones);
@@ -137,33 +167,33 @@ public class TreasureAmount {
 //		double d1 = Math.random();
 		
 		
-		int roll1 = Dice.rollAmount("1d100", 1);
+		int roll1 = new Dice().rollAmount("1d100", 1);
 		if(roll1 <= 10) {
-			baseValue = Dice.rollAmount("1d10", 100);
+			baseValue = new Dice().rollAmount("1d10", 100);
 			desc = "Ivory or wrought silver";
 		}
 		else if(roll1 <= 20) {
-			baseValue = Dice.rollAmount("2d6", 100);
+			baseValue = new Dice().rollAmount("2d6", 100);
 			desc = "Wrought silver and gold";
 		}
 		else if(roll1 <= 40) {
-			baseValue = Dice.rollAmount("3d6", 100);
+			baseValue = new Dice().rollAmount("3d6", 100);
 			desc =  "Wrought gold";
 		}
 		else if(roll1 <= 50) {
-			baseValue = Dice.rollAmount("5d6", 100);
+			baseValue = new Dice().rollAmount("5d6", 100);
 			desc = "Jade, coral, or wrought platinum";
 		}
 		else if(roll1 <= 70) {
-			baseValue = Dice.rollAmount("1d6", 1000);
+			baseValue = new Dice().rollAmount("1d6", 1000);
 			desc = "Silver with gems";
 		}
 		else if(roll1 <= 90) {
-			baseValue = Dice.rollAmount("2d4", 1000);
+			baseValue = new Dice().rollAmount("2d4", 1000);
 			desc = "Gold with gems";
 		}
 		else {
-			baseValue = Dice.rollAmount("2d6", 1000);
+			baseValue = new Dice().rollAmount("2d6", 1000);
 			desc = "Platinum with gems";
 		}
 		

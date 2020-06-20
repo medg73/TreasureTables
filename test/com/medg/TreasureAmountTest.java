@@ -4,6 +4,8 @@
 package com.medg;
 
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 import org.junit.After;
 import org.junit.Before;
@@ -46,6 +48,30 @@ public class TreasureAmountTest {
 		assertTrue(rv.equals("none"));
 //		System.err.println(rv);
 		
+	}
+
+	@Test
+	public void testGetMagicItems() {
+		TreasureAmount treasureAmount = new TreasureAmount(TreasureColumns.Magic, 1.0, "", 1,"POTION:3");
+		MagicItemGenerator magicItemGenerator = mock(MagicItemGenerator.class);
+		treasureAmount.setMagicItemGenerator(magicItemGenerator);
+		when(magicItemGenerator.getMagicItemOfType(MagicTreasureType.POTION)).thenReturn("some magic potion");
+
+		String treasureResult = treasureAmount.calcResult();
+		assertEquals("some magic potion, some magic potion, some magic potion", treasureResult);
+	}
+
+	@Test
+	public void testGetMagicItemsMultipleItemTypes() {
+		MagicItemGenerator magicItemGenerator = mock(MagicItemGenerator.class);
+		when(magicItemGenerator.getMagicItemOfType(MagicTreasureType.POTION)).thenReturn("some magic potion");
+		when(magicItemGenerator.getMagicItemOfType(MagicTreasureType.MISC)).thenReturn("some misc item");
+
+		TreasureAmount treasureAmount = new TreasureAmount(TreasureColumns.Magic, 1.0, "", 1,"POTION:1:MISC:1", magicItemGenerator);
+		treasureAmount.setMagicItemGenerator(magicItemGenerator);
+
+		String treasureResult = treasureAmount.calcResult();
+		assertEquals("some magic potion, some misc item", treasureResult);
 	}
 
 }

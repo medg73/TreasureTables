@@ -49,6 +49,10 @@ public class TreasureType {
 	
 	public static Map<String,TreasureType> loadTreasureTypes() {
 		Map<String,TreasureType> rv = new HashMap<String,TreasureType>();
+
+		MagicTreasureDB magicTreasureDB = new MagicTreasureDB();
+		magicTreasureDB.initialize();
+		MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, new Dice());
 		
 		TreasureType tta = new TreasureType("A");
 		tta.addTreasureAmount(TreasureColumns.Copper, new TreasureAmount(0.25, "1d6", 1000, ""));
@@ -58,7 +62,7 @@ public class TreasureType {
 		tta.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.25, "1d4", 100, ""));
 		tta.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.60, "4d10", 1, ""));
 		tta.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.50, "3d10", 1, ""));
-		tta.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.30, "3", 1, "Any 3"));
+		tta.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.30, "", 1, "ANY:3", magicItemGenerator));
 		rv.put("A", tta);
 		
 		TreasureType ttb = new TreasureType("B");
@@ -69,7 +73,7 @@ public class TreasureType {
 		ttb.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.0, "0", 100, ""));
 		ttb.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.30, "1d8", 1, ""));
 		ttb.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.20, "1d4", 1, ""));
-		ttb.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.10, "1", 1, "Sword, armor, or misc. weapon"));
+		ttb.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.10, "", 1, "SWORD_ARMOR_OR_MISC_WEAPON:1", magicItemGenerator));
 		rv.put("B", ttb);
 		
 		TreasureType ttc = new TreasureType("C");
@@ -80,7 +84,7 @@ public class TreasureType {
 		ttc.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.0, "0", 100, ""));
 		ttc.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.25, "1d6", 1, ""));
 		ttc.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.20, "1d3", 1, ""));
-		ttc.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.10, "2", 1, "Any 2"));
+		ttc.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic,0.10, "", 1, "ANY:2", magicItemGenerator));
 		rv.put("C", ttc);
 		
 		TreasureType ttd = new TreasureType("D");
@@ -91,7 +95,7 @@ public class TreasureType {
 		ttd.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.0, "0", 100, ""));
 		ttd.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.30, "1d10", 1, ""));
 		ttd.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.25, "1d6", 1, ""));
-		ttd.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.15, "3", 1, "Any 3 plus 1 potion"));
+		ttd.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.15, "", 1, "ANY:3:POTION:1", magicItemGenerator));
 		rv.put("D", ttd);
 		
 		TreasureType tte = new TreasureType("E");
@@ -102,7 +106,7 @@ public class TreasureType {
 		tte.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.0, "0", 100, ""));
 		tte.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.15, "1d12", 1, ""));
 		tte.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry,0.10, "1d8", 1, ""));
-		tte.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.25, "4", 1, "Any 3 plus 1 scroll"));
+		tte.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.25, "", 1, "ANY:3:SCROLL:1", magicItemGenerator));
 		rv.put("E", tte);
 		
 		TreasureType ttf = new TreasureType("F");
@@ -113,7 +117,7 @@ public class TreasureType {
 		ttf.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.35, "1d8", 100, ""));
 		ttf.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.20, "3d10", 1, ""));
 		ttf.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.10, "1d10", 1, ""));
-		ttf.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.30, "5", 1, "Any 3 except swords or misc weapons plus 1 potion and 1 scroll"));
+		ttf.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.30, "", 1, "ANY_NO_WEAPONS:3:POTION:1:SCROLL:1", magicItemGenerator));
 		rv.put("F", ttf);
 		
 		TreasureType ttg = new TreasureType("G");
@@ -124,7 +128,7 @@ public class TreasureType {
 		ttg.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.50, "1d20", 100, ""));
 		ttg.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.30, "5d4", 1, ""));
 		ttg.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.25, "1d10", 1, ""));
-		ttg.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.35, "5", 1, "Any 4 plus 1 scroll"));
+		ttg.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.35, "", 1, "ANY:4:SCROLL:1", magicItemGenerator));
 		rv.put("G", ttg);
 		
 		TreasureType tth = new TreasureType("H");
@@ -135,7 +139,7 @@ public class TreasureType {
 		tth.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.25, "5d10", 100, ""));
 		tth.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.50, "1d100", 1, ""));
 		tth.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.50, "10d4", 1, ""));
-		tth.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.15, "5", 1, "Any 4 plus 1 potion and 1 scroll"));
+		tth.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic,0.15, "", 1, "ANY:4:POTION:1:SCROLL:1", magicItemGenerator));
 		rv.put("H", tth);
 		
 		TreasureType tti = new TreasureType("I");
@@ -146,7 +150,7 @@ public class TreasureType {
 		tti.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.30, "3d6", 100, ""));
 		tti.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.55, "2d10", 1, ""));
 		tti.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.50, "1d12", 1, ""));
-		tti.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.15, "1", 1, "Any 1"));
+		tti.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.15, "", 1, "ANY:1", magicItemGenerator));
 		rv.put("I", tti);
 		
 		TreasureType ttj = new TreasureType("J");
@@ -157,7 +161,7 @@ public class TreasureType {
 		ttj.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.0, "0", 100, ""));
 		ttj.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.0, "0", 1, ""));
 		ttj.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.0, "0", 1, ""));
-		ttj.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.0, "0", 1, "Any 1"));
+		ttj.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.0, "1", 1, "", magicItemGenerator));
 		rv.put("J", ttj);
 		
 		TreasureType ttk = new TreasureType("K");
@@ -168,7 +172,7 @@ public class TreasureType {
 		ttk.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.0, "0", 100, ""));
 		ttk.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.0, "0", 1, ""));
 		ttk.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.0, "0", 1, ""));
-		ttk.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.0, "0", 1, "Any 1"));
+		ttk.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.0, "0", 1, "", magicItemGenerator));
 		rv.put("K", ttk);
 		
 		TreasureType ttl = new TreasureType("L");
@@ -179,7 +183,7 @@ public class TreasureType {
 		ttl.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.0, "0", 100, ""));
 		ttl.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.0, "0", 1, ""));
 		ttl.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.0, "0", 1, ""));
-		ttl.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.0, "0", 1, "Any 1"));
+		ttl.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.0, "0", 1, "", magicItemGenerator));
 		rv.put("L", ttl);
 		
 		TreasureType ttm = new TreasureType("M");
@@ -190,7 +194,7 @@ public class TreasureType {
 		ttm.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.0, "0", 100, ""));
 		ttm.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.0, "0", 1, ""));
 		ttm.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.0, "0", 1, ""));
-		ttm.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.0, "0", 1, "Any 1"));
+		ttm.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.0, "0", 1, "", magicItemGenerator));
 		rv.put("M", ttm);
 		
 		TreasureType ttn = new TreasureType("N");
@@ -201,7 +205,7 @@ public class TreasureType {
 		ttn.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(1.0, "1d6", 1, "per individual"));
 		ttn.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.0, "0", 1, ""));
 		ttn.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.0, "0", 1, ""));
-		ttn.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.0, "0", 1, "Any 1"));
+		ttn.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.0, "0", 1, "", magicItemGenerator));
 		rv.put("N", ttn);
 		
 		TreasureType tto = new TreasureType("O");
@@ -212,7 +216,7 @@ public class TreasureType {
 		tto.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.0, "1d6", 1, "per individual"));
 		tto.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.0, "0", 1, ""));
 		tto.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.0, "0", 1, ""));
-		tto.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.0, "0", 1, "Any 1"));
+		tto.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.0, "0", 1, "", magicItemGenerator));
 		rv.put("O", tto);
 		
 		TreasureType ttp = new TreasureType("P");
@@ -223,7 +227,7 @@ public class TreasureType {
 		ttp.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.0, "1d6", 1, "per individual"));
 		ttp.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.0, "0", 1, ""));
 		ttp.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.0, "0", 1, ""));
-		ttp.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.0, "0", 1, "Any 1"));
+		ttp.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.0, "0", 1, "", magicItemGenerator));
 		rv.put("P", ttp);
 		
 		TreasureType ttq = new TreasureType("Q");
@@ -234,7 +238,7 @@ public class TreasureType {
 		ttq.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.0, "1d6", 1, "per individual"));
 		ttq.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.50, "1d4", 1, ""));
 		ttq.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.0, "0", 1, ""));
-		ttq.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.0, "0", 1, "Any 1"));
+		ttq.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.0, "0", 1, "", magicItemGenerator));
 		rv.put("Q", ttq);
 		
 		TreasureType ttr = new TreasureType("R");
@@ -245,7 +249,7 @@ public class TreasureType {
 		ttr.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.50, "10d6", 100, ""));
 		ttr.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.55, "4d8", 1, ""));
 		ttr.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.45, "1d12", 1, ""));
-		ttr.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.0, "0", 1, "Any 1"));
+		ttr.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.0, "0", 1, "", magicItemGenerator));
 		rv.put("R", ttr);
 		
 		TreasureType tts = new TreasureType("S");
@@ -256,7 +260,7 @@ public class TreasureType {
 		tts.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.0, "10d6", 100, ""));
 		tts.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.0, "4d8", 1, ""));
 		tts.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.0, "1d12", 1, ""));
-		tts.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.40, "2d4", 1, "potions"));
+		tts.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.40, "", 1, "POTION:2d4", magicItemGenerator));
 		rv.put("S", tts);
 		
 		TreasureType ttt = new TreasureType("T");
@@ -267,7 +271,7 @@ public class TreasureType {
 		ttt.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.0, "10d6", 100, ""));
 		ttt.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.0, "4d8", 1, ""));
 		ttt.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.0, "1d12", 1, ""));
-		ttt.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.50, "1d4", 1, "scrolls"));
+		ttt.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.50, "", 1, "SCROLL:1d4", magicItemGenerator));
 		rv.put("T", ttt);
 		
 		TreasureType ttu = new TreasureType("U");
@@ -278,7 +282,7 @@ public class TreasureType {
 		ttu.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.0, "10d6", 100, ""));
 		ttu.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.90, "10d8", 1, ""));
 		ttu.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.80, "5d6", 1, ""));
-		ttu.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.70, "1", 1, "1 of each magic excluding potions and scrolls"));
+		ttu.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.70, "", 1, "RING:1:RSW:1:MISC:1:ARMOR:1:SWORD:1:MISC_WEAPON:1", magicItemGenerator));
 		rv.put("U", ttu);
 		
 		TreasureType ttv = new TreasureType("V");
@@ -289,7 +293,7 @@ public class TreasureType {
 		ttv.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.0, "10d6", 100, ""));
 		ttv.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.00, "10d8", 1, ""));
 		ttv.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.0, "5d6", 1, ""));
-		ttv.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.85, "2", 1, "2 of each magic excluding potions and scrolls"));
+		ttv.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic,0.85, "", 1, "RING:2:RSW:2:MISC:2:ARMOR:2:SWORD:2:MISC_WEAPON:2", magicItemGenerator));
 		rv.put("V", ttv);
 		
 		TreasureType ttw = new TreasureType("W");
@@ -300,7 +304,7 @@ public class TreasureType {
 		ttw.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.15, "1d8", 100, ""));
 		ttw.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.60, "10d8", 1, ""));
 		ttw.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.50, "5d8", 1, ""));
-		ttw.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.55, "1", 1, "map"));
+		ttw.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic,0.55, "", 1, "MAP:1", magicItemGenerator));
 		rv.put("W", ttw);
 		
 		TreasureType ttx = new TreasureType("X");
@@ -311,7 +315,7 @@ public class TreasureType {
 		ttx.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.0, "1d8", 100, ""));
 		ttx.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.0, "10d8", 1, ""));
 		ttx.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.0, "5d8", 1, ""));
-		ttx.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.60, "1", 1, "misc magic"));
+		ttx.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.60, "", 1, "MISC:1", magicItemGenerator));
 		rv.put("X", ttx);
 		
 		TreasureType tty = new TreasureType("Y");
@@ -322,7 +326,7 @@ public class TreasureType {
 		tty.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.0, "1d8", 100, ""));
 		tty.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.0, "10d8", 1, ""));
 		tty.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.0, "5d8", 1, ""));
-		tty.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.0, "1", 1, "misc magic"));
+		tty.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.0, "", 1, "", magicItemGenerator));
 		rv.put("Y", tty);
 		
 		TreasureType ttz = new TreasureType("Z");
@@ -333,7 +337,7 @@ public class TreasureType {
 		ttz.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.30, "1d6", 100, ""));
 		ttz.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 0.55, "10d6", 1, ""));
 		ttz.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 0.50, "5d6", 1, ""));
-		ttz.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(0.50, "3", 3, "Any 3 magic"));
+		ttz.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 0.50, "", 3, "ANY:3", magicItemGenerator));
 		rv.put("Z", ttz);
 	
 		TreasureType ttTest = new TreasureType("Test");
@@ -344,7 +348,7 @@ public class TreasureType {
 		ttTest.addTreasureAmount(TreasureColumns.Platinum, new TreasureAmount(0.0, "1d4", 100, ""));
 		ttTest.addTreasureAmount(TreasureColumns.Gems, new TreasureAmount(TreasureColumns.Gems, 1.0, "4d10", 1, ""));
 		ttTest.addTreasureAmount(TreasureColumns.Jewelry, new TreasureAmount(TreasureColumns.Jewelry, 1.0, "3d10", 1, ""));
-		ttTest.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(1.0, "3", 1, "Any 3"));
+		ttTest.addTreasureAmount(TreasureColumns.Magic, new TreasureAmount(TreasureColumns.Magic, 1.0, "", 1, "ANY:3", magicItemGenerator));
 		rv.put("Test", ttTest);
 		
 		

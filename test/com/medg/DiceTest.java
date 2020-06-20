@@ -36,12 +36,12 @@ public class DiceTest {
 	public final void testRollAmount() {
 //		fail("Not yet implemented"); // TODO
 		
-		assertTrue(Dice.rollAmount("5", 0) == 5);
-		assertTrue(Dice.rollAmount("1d1", 10) == 10);
+		assertTrue(new Dice().rollAmount("5", 0) == 5);
+		assertTrue(new Dice().rollAmount("1d1", 10) == 10);
 		
 		int sum = 0;
 		for(int i = 0; i < 1000; i++) {
-			int res = Dice.rollAmount("3d6", 1);
+			int res = new Dice().rollAmount("3d6", 1);
 			assertTrue(res >= 3 && res <= 18);
 			sum += res;
 		}
