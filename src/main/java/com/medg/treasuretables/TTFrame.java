@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.medg;
+package com.medg.treasuretables;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;

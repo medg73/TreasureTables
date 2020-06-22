@@ -1,12 +1,15 @@
 /**
  * 
  */
-package com.medg;
+package com.medg.treasuretables;
 
 import static org.junit.Assert.*;
 
 import java.util.Map;
 
+import com.medg.treasuretables.TreasureAmount;
+import com.medg.treasuretables.TreasureColumns;
+import com.medg.treasuretables.TreasureType;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +35,7 @@ public class TreasureTypeTest {
 	}
 
 	/**
-	 * Test method for {@link com.medg.TreasureType#genTreasure()}.
+	 * Test method for {@link TreasureType#genTreasure()}.
 	 */
 	@Test
 	public final void testGenTreasure() {
@@ -53,7 +56,7 @@ public class TreasureTypeTest {
 	}
 
 	/**
-	 * Test method for {@link com.medg.TreasureType#loadTreasureTypes()}
+	 * Test method for {@link TreasureType#loadTreasureTypes()}
 	 */
 	@Test
 	public final void testLoadTreasureTypes() {
@@ -77,7 +80,7 @@ public class TreasureTypeTest {
 		
 	}
 	
-	/** test method for {@link com.medg.TreasureType.getChances()}
+	/** test method for {@link TreasureType.getChances()}
 	 * 
 	 */
 	@Test

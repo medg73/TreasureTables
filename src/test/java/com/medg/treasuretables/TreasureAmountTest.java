@@ -1,12 +1,16 @@
 /**
  * 
  */
-package com.medg;
+package com.medg.treasuretables;
 
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
+import com.medg.treasuretables.MagicItemGenerator;
+import com.medg.treasuretables.MagicTreasureType;
+import com.medg.treasuretables.TreasureAmount;
+import com.medg.treasuretables.TreasureColumns;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +36,7 @@ public class TreasureAmountTest {
 	}
 
 	/**
-	 * Test method for {@link com.medg.TreasureAmount#rollAmount()}.
+	 * Test method for {@link TreasureAmount#rollAmount()}.
 	 */
 	@Test
 	public final void testCalcResult() {

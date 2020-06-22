@@ -1,5 +1,8 @@
-package com.medg;
+package com.medg.treasuretables;
 
+import com.medg.treasuretables.ItemEntry;
+import com.medg.treasuretables.MagicTreasureDB;
+import com.medg.treasuretables.MagicTreasureType;
 import org.junit.Before;
 import org.junit.Test;
 

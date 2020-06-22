@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.medg;
+package com.medg.treasuretables;
 
 /**
  * @author Matthew Grossman

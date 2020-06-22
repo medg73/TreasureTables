@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.medg;
+package com.medg.treasuretables;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package com.medg;
+package com.medg.treasuretables;
 
 import org.junit.Test;
 

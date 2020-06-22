@@ -1,4 +1,4 @@
-package com.medg;
+package com.medg.treasuretables;
 
 public class MagicItemGenerator {
 

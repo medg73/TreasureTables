@@ -1,10 +1,11 @@
 /**
  * 
  */
-package com.medg;
+package com.medg.treasuretables;
 
 import static org.junit.Assert.*;
 
+import com.medg.treasuretables.Dice;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -30,7 +31,7 @@ public class DiceTest {
 	}
 
 	/**
-	 * Test method for {@link com.medg.Dice#rollAmount(java.lang.String, int)}.
+	 * Test method for {@link Dice#rollAmount(java.lang.String, int)}.
 	 */
 	@Test
 	public final void testRollAmount() {
@@ -51,7 +52,7 @@ public class DiceTest {
 	}
 
 	/**
-	 * Test method for {@link com.medg.Dice#rollDX(int)}.
+	 * Test method for {@link Dice#rollDX(int)}.
 	 */
 	@Test
 	public final void testRollDX() {
