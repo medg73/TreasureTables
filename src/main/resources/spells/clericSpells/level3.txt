@@ -1,0 +1,12 @@
+Animate Dead
+Continual Light
+Create Food & Water
+Cure Blindness
+Cure Disease
+Dispel Magic
+Feight Death
+Glyph Of Warding
+Locate Object
+Prayer
+Remove Curse
+Speak With Dead

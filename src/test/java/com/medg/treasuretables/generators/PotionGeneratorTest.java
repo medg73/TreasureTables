@@ -7,6 +7,7 @@ import com.medg.treasuretables.MagicTreasureType;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -16,73 +17,50 @@ public class PotionGeneratorTest {
     public void testGetPotionOfAnimalControl() {
         Dice dice = mock(Dice.class);
         when(dice.rollD20()).thenReturn(8);
-        when(dice.rollPercent()).thenReturn(50);
-        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
-        when(magicTreasureDB.getMagicItemFromDB(50, MagicTreasureType.POTION)).thenReturn(new ItemEntry(1,1,"animal control"));
-        PotionGenerator potionGenerator = new PotionGenerator(magicTreasureDB, dice);
-        String text = potionGenerator.getItemText();
-        assertEquals("potion of avian control", text);
-
+        testGetPotionType(dice, "animal control", "potion of avian control");
     }
 
     @Test
     public void testGetPotionOfDragonControl() {
         Dice dice = mock(Dice.class);
         when(dice.rollD20()).thenReturn(8);
-        when(dice.rollPercent()).thenReturn(50);
-        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
-        when(magicTreasureDB.getMagicItemFromDB(50, MagicTreasureType.POTION)).thenReturn(new ItemEntry(1,1,"dragon control"));
-        PotionGenerator potionGenerator = new PotionGenerator(magicTreasureDB, dice);
-        String text = potionGenerator.getItemText();
-        assertEquals("potion of blue dragon control", text);
+        testGetPotionType(dice, "dragon control", "potion of blue dragon control");
     }
 
     @Test
     public void testGetPotionOfGiantControl() {
         Dice dice = mock(Dice.class);
         when(dice.rollD20()).thenReturn(8);
-        when(dice.rollPercent()).thenReturn(50);
-        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
-        when(magicTreasureDB.getMagicItemFromDB(50, MagicTreasureType.POTION)).thenReturn(new ItemEntry(1,1,"giant control"));
-        PotionGenerator potionGenerator = new PotionGenerator(magicTreasureDB, dice);
-        String text = potionGenerator.getItemText();
-        assertEquals("potion of stone giant control", text);
+        testGetPotionType(dice, "giant control", "potion of stone giant control");
     }
 
     @Test
     public void testGetPotionOfGiantStrength() {
         Dice dice = mock(Dice.class);
         when(dice.rollD20()).thenReturn(14);
-        when(dice.rollPercent()).thenReturn(50);
-        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
-        when(magicTreasureDB.getMagicItemFromDB(50, MagicTreasureType.POTION)).thenReturn(new ItemEntry(1,1,"giant strength"));
-        PotionGenerator potionGenerator = new PotionGenerator(magicTreasureDB, dice);
-        String text = potionGenerator.getItemText();
-        assertEquals("potion of frost giant strength", text);
+        testGetPotionType(dice, "giant strength", "potion of frost giant strength");
     }
 
     @Test
     public void testGetPotionOfHumanControl() {
         Dice dice = mock(Dice.class);
         when(dice.rollD20()).thenReturn(9);
-        when(dice.rollPercent()).thenReturn(50);
-        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
-        when(magicTreasureDB.getMagicItemFromDB(50, MagicTreasureType.POTION)).thenReturn(new ItemEntry(1,1,"human control"));
-        PotionGenerator potionGenerator = new PotionGenerator(magicTreasureDB, dice);
-        String text = potionGenerator.getItemText();
-        assertEquals("potion of half-orc control", text);
+        testGetPotionType(dice, "human control", "potion of half-orc control");
     }
 
     @Test
     public void testGetPotionOfUndeadControl() {
         Dice dice = mock(Dice.class);
         when(dice.rollD10()).thenReturn(9);
-        when(dice.rollPercent()).thenReturn(50);
+        testGetPotionType(dice, "undead control", "potion of vampire control");
+    }
+
+    private void testGetPotionType(Dice dice, String typeText, String expectedText) {
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
-        when(magicTreasureDB.getMagicItemFromDB(50, MagicTreasureType.POTION)).thenReturn(new ItemEntry(1,1,"undead control"));
+        when(magicTreasureDB.getMagicItemFromDB(anyInt(), any(MagicTreasureType.class))).thenReturn(new ItemEntry(1,1,typeText));
         PotionGenerator potionGenerator = new PotionGenerator(magicTreasureDB, dice);
         String text = potionGenerator.getItemText();
-        assertEquals("potion of vampire control", text);
+        assertEquals(expectedText, text);
     }
 
 }

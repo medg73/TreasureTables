@@ -23,8 +23,6 @@ public class MagicItemGenerator {
 
         switch(magicTreasureType) {
             case POTION:
-//                prefix = "potion of ";
-//                rv = prefix + magicTreasureDB.getMagicItemFromDB(dice.rollPercent(), magicTreasureType).description;
                 rv = potionGenerator.getItemText();
                 break;
             case SCROLL:

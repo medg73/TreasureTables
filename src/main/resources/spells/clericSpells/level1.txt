@@ -1,0 +1,12 @@
+Bless
+Command
+Create Water
+Cure Light Wounds
+Detect Evil
+Detect Magic
+Light
+Protection From Evil
+Purify Food & Drink
+Remove Fear
+Resist Cold
+Sanctuary

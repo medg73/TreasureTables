@@ -1,0 +1,12 @@
+Augury
+Chant
+Detect Charm
+Find Traps
+Hold Person
+Know Alignment
+Resist Fire
+Silence 15' Radius
+Slow Poison
+Snake Charm
+Speak With Animals
+Spiritual Hammer

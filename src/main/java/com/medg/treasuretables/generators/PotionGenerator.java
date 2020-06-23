@@ -8,8 +8,6 @@ import com.medg.treasuretables.MagicTreasureType;
 import java.util.Arrays;
 import java.util.List;
 
-// TODO - refactor
-
 public class PotionGenerator {
 
     private MagicTreasureDB magicTreasureDB;
@@ -53,6 +51,29 @@ public class PotionGenerator {
             new ItemEntry(9,9,"vampire"),
             new ItemEntry(10,10,"zombie"));
 
+    private List<ItemEntry> animalControlTypes = Arrays.asList(
+            new ItemEntry(1, 4, "mammal/marsupial"),
+            new ItemEntry(5, 8, "avian"),
+            new ItemEntry(9, 12, "reptile/amphibian"),
+            new ItemEntry(13,15, "fish"),
+            new ItemEntry(16, 17, "mammal/marsupial/avian"),
+            new ItemEntry(18,19,"reptile/amphibian/fish control"),
+            new ItemEntry(20,20,"all animal"));
+
+    private List<ItemEntry> dragonControlTypes = Arrays.asList(
+            new ItemEntry(1,2,"white"),
+            new ItemEntry(3,4,"black"),
+            new ItemEntry(5,7,"green"),
+            new ItemEntry(8,9,"blue"),
+            new ItemEntry(10,10,"red"),
+            new ItemEntry(11,12,"brass"),
+            new ItemEntry(13,14,"copper"),
+            new ItemEntry(15,15,"bronze"),
+            new ItemEntry(16,16,"silver"),
+            new ItemEntry(17,17,"gold"),
+            new ItemEntry(18,19,"evil"),
+            new ItemEntry(20,20,"good"));
+
     public PotionGenerator(MagicTreasureDB magicTreasureDB, Dice dice) {
         this.magicTreasureDB = magicTreasureDB;
         this.dice = dice;
@@ -79,31 +100,31 @@ public class PotionGenerator {
         return "potion of " + text;
     }
 
+    private String getSubtypeText(int roll, List<ItemEntry> types) {
+        String subtype = "error";
+        for(ItemEntry itemEntry : types) {
+            if(roll <= itemEntry.maxRange) {
+                subtype = itemEntry.description;
+                break;
+            }
+        }
+        return subtype;
+    }
+
     private String undeadControlText() {
         String text;
         String undeadType = "error";
         int typeRoll = dice.rollD10();
-        for(ItemEntry itemEntry : undeadControlTypes) {
-            if(typeRoll <= itemEntry.maxRange) {
-                undeadType = itemEntry.description;
-                break;
-            }
-        }
+        undeadType = getSubtypeText(typeRoll, undeadControlTypes);
         text = String.format("%s control", undeadType);
         return text;
     }
-
 
     private String humanControlText() {
         String text;
         String humanType = "error";
         int typeRoll = dice.rollD20();
-        for(ItemEntry itemEntry : humanControlTypes) {
-            if(typeRoll <= itemEntry.maxRange) {
-                humanType = itemEntry.description;
-                break;
-            }
-        }
+        humanType = getSubtypeText(typeRoll, humanControlTypes);
         text = String.format("%s control", humanType);
         return text;
     }
@@ -112,50 +133,24 @@ public class PotionGenerator {
         String text;
         String giantType = "error";
         int typeRoll = dice.rollD20();
-        for(ItemEntry itemEntry : giantStrengthTypes) {
-            if(typeRoll <= itemEntry.maxRange) {
-                giantType = itemEntry.description;
-                break;
-            }
-        }
+        giantType = getSubtypeText(typeRoll, giantStrengthTypes);
         text = String.format("%s giant strength", giantType);
         return text;
     }
-
 
     private String giantControlText() {
         String text;
         String giantType = "error";
         int typeRoll = dice.rollD20();
-        for(ItemEntry itemEntry : giantControlTypes) {
-            if(typeRoll <= itemEntry.maxRange) {
-                giantType = itemEntry.description;
-                break;
-            }
-        }
+        giantType = getSubtypeText(typeRoll, giantControlTypes);
         text = String.format("%s giant control", giantType);
         return text;
     }
 
-
     private String animalControlText() {
-        String text;
         int typeRoll = dice.rollD20();
-        if(typeRoll <= 4) {
-            text = "mammal/marsupial control";
-        } else if(typeRoll <= 8) {
-            text = "avian control";
-        } else if(typeRoll <= 12) {
-            text = "reptile/amphibian control";
-        } else if(typeRoll <= 15) {
-            text = "fish control";
-        } else if(typeRoll <= 17) {
-            text = "mammal/marsupial/avian control";
-        } else if(typeRoll <= 19) {
-            text = "reptile/amphibian/fish control";
-        } else {
-            text = "all animal control";
-        }
+        String subtype = getSubtypeText(typeRoll, animalControlTypes);
+        String text = String.format("%s control", subtype);
         return text;
     }
 
@@ -163,52 +158,7 @@ public class PotionGenerator {
         String text;
         String dragonType = "";
         int typeRoll = dice.rollD20();
-        switch(typeRoll) {
-            case 1:
-            case 2:
-                dragonType = "white";
-                break;
-            case 3:
-            case 4:
-                dragonType = "black";
-                break;
-            case 5:
-            case 6:
-            case 7:
-                dragonType = "green";
-                break;
-            case 8:
-            case 9:
-                dragonType = "blue";
-                break;
-            case 10:
-                dragonType = "red";
-                break;
-            case 11:
-            case 12:
-                dragonType = "brass";
-                break;
-            case 13:
-            case 14:
-                dragonType = "copper";
-                break;
-            case 15:
-                dragonType = "bronze";
-                break;
-            case 16:
-                dragonType = "silver";
-                break;
-            case 17:
-                dragonType = "gold";
-                break;
-            case 18:
-            case 19:
-                dragonType = "evil";
-                break;
-            case 20:
-                dragonType = "good";
-                break;
-        }
+        dragonType = getSubtypeText(typeRoll, dragonControlTypes);
         text = String.format("%s dragon control", dragonType);
         return  text;
     }
