@@ -54,4 +54,12 @@ public class Dice {
 	public int rollPercent() {
 		return this.rollAmount("1d100", 1);
 	}
+
+	public int rollD20() {
+		return this.rollAmount("1d20", 1);
+	}
+
+	public int rollD10() {
+		return this.rollAmount("1d10", 1);
+	}
 }

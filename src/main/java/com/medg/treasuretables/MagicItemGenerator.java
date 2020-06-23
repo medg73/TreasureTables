@@ -1,13 +1,18 @@
 package com.medg.treasuretables;
 
+import com.medg.treasuretables.generators.PotionGenerator;
+
 public class MagicItemGenerator {
 
     private MagicTreasureDB magicTreasureDB;
     private Dice dice;
+    private PotionGenerator potionGenerator;
+
 
     public MagicItemGenerator(MagicTreasureDB magicTreasureDB, Dice dice) {
         this.magicTreasureDB = magicTreasureDB;
         this.dice = dice;
+        potionGenerator = new PotionGenerator(magicTreasureDB, dice);
     }
 
     public String getMagicItemOfType(MagicTreasureType magicTreasureType) {
@@ -18,8 +23,9 @@ public class MagicItemGenerator {
 
         switch(magicTreasureType) {
             case POTION:
-                prefix = "potion of ";
-                rv = prefix + magicTreasureDB.getMagicItemFromDB(dice.rollPercent(), magicTreasureType).description;
+//                prefix = "potion of ";
+//                rv = prefix + magicTreasureDB.getMagicItemFromDB(dice.rollPercent(), magicTreasureType).description;
+                rv = potionGenerator.getItemText();
                 break;
             case SCROLL:
                 prefix = "scroll of ";
