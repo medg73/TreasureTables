@@ -6,7 +6,6 @@ import com.medg.treasuretables.SpellCasterClass;
 import com.medg.treasuretables.data.MagicTreasureDB;
 import com.medg.treasuretables.MagicTreasureType;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -32,13 +31,13 @@ public class ScrollGenerator {
             new ItemEntry(41,98,"all lycanthropes"),
             new ItemEntry(99,100,"all shape changers"));
 
-    public ScrollGenerator(MagicTreasureDB magicTreasureDB, Dice dice, SpellGenerator spellGenerator) {
+    ScrollGenerator(MagicTreasureDB magicTreasureDB, Dice dice, SpellGenerator spellGenerator) {
         this.dice = dice;
         this.magicTreasureDB = magicTreasureDB;
         this.spellGenerator = spellGenerator;
     }
 
-    public String getItemText() {
+    String getItemText() {
         ItemEntry itemEntry = magicTreasureDB.getMagicItemFromDB(dice.rollPercent(), MagicTreasureType.SCROLL);
         String text = itemEntry.description;
 

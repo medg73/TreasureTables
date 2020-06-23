@@ -3,6 +3,8 @@
  */
 package com.medg.treasuretables;
 
+import com.medg.treasuretables.generators.MagicItemGenerator;
+
 /**
  * @author Matthew Grossman
  * @version Jan 24, 2013

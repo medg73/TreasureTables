@@ -74,12 +74,12 @@ public class PotionGenerator {
             new ItemEntry(18,19,"evil"),
             new ItemEntry(20,20,"good"));
 
-    public PotionGenerator(MagicTreasureDB magicTreasureDB, Dice dice) {
+    PotionGenerator(MagicTreasureDB magicTreasureDB, Dice dice) {
         this.magicTreasureDB = magicTreasureDB;
         this.dice = dice;
     }
 
-    public String getItemText() {
+    String getItemText() {
         ItemEntry itemEntry = magicTreasureDB.getMagicItemFromDB(dice.rollPercent(), MagicTreasureType.POTION);
 
         String text = itemEntry.description;

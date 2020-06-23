@@ -4,7 +4,7 @@
 package com.medg.treasuretables;
 
 import com.medg.treasuretables.data.MagicTreasureDB;
-import com.medg.treasuretables.data.SpellDB;
+import com.medg.treasuretables.generators.MagicItemGenerator;
 
 import java.util.HashMap;
 import java.util.Map;

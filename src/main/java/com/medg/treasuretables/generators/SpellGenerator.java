@@ -11,12 +11,12 @@ public class SpellGenerator {
     private Dice dice;
     private MagicTreasureDB magicTreasureDB;
 
-    public SpellGenerator(Dice dice, MagicTreasureDB magicTreasureDB) {
+    SpellGenerator(Dice dice, MagicTreasureDB magicTreasureDB) {
         this.dice = dice;
         this.magicTreasureDB = magicTreasureDB;
     }
 
-    public String getRandomSpell(SpellCasterClass spellCasterClass, int level) {
+    String getRandomSpell(SpellCasterClass spellCasterClass, int level) {
         List<String> spells = magicTreasureDB.getSpellsByLevelAndClass(spellCasterClass, level);
         int spell = dice.rollAmount("1d"+spells.size(), 1);
         return spells.get(spell - 1);

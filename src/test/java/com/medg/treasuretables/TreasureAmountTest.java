@@ -7,10 +7,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-import com.medg.treasuretables.MagicItemGenerator;
-import com.medg.treasuretables.MagicTreasureType;
-import com.medg.treasuretables.TreasureAmount;
-import com.medg.treasuretables.TreasureColumns;
+import com.medg.treasuretables.generators.MagicItemGenerator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

@@ -1,5 +1,8 @@
-package com.medg.treasuretables;
+package com.medg.treasuretables.generators;
 
+import com.medg.treasuretables.Dice;
+import com.medg.treasuretables.ItemEntry;
+import com.medg.treasuretables.MagicTreasureType;
 import com.medg.treasuretables.data.MagicTreasureDB;
 import com.medg.treasuretables.data.SpellDB;
 import com.medg.treasuretables.generators.PotionGenerator;
