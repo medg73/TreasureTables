@@ -2,9 +2,11 @@ package com.medg.treasuretables.generators;
 
 import com.medg.treasuretables.Dice;
 import com.medg.treasuretables.ItemEntry;
-import com.medg.treasuretables.MagicTreasureDB;
+import com.medg.treasuretables.SpellCasterClass;
+import com.medg.treasuretables.data.MagicTreasureDB;
 import com.medg.treasuretables.MagicTreasureType;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -12,6 +14,7 @@ public class ScrollGenerator {
 
     Dice dice;
     MagicTreasureDB magicTreasureDB;
+    SpellGenerator spellGenerator;
 
     private List<ItemEntry> protectionFromElementalsTypes = Arrays.asList(
             new ItemEntry(1, 15, "air"),
@@ -29,22 +32,79 @@ public class ScrollGenerator {
             new ItemEntry(41,98,"all lycanthropes"),
             new ItemEntry(99,100,"all shape changers"));
 
-    public ScrollGenerator(MagicTreasureDB magicTreasureDB, Dice dice) {
+    public ScrollGenerator(MagicTreasureDB magicTreasureDB, Dice dice, SpellGenerator spellGenerator) {
         this.dice = dice;
         this.magicTreasureDB = magicTreasureDB;
+        this.spellGenerator = spellGenerator;
     }
 
     public String getItemText() {
         ItemEntry itemEntry = magicTreasureDB.getMagicItemFromDB(dice.rollPercent(), MagicTreasureType.SCROLL);
         String text = itemEntry.description;
 
-        if(text.equals("protection from elementals")) {
+        if(text.equalsIgnoreCase("protection from elementals")) {
             text = protectionFromElementalsText();
-        } else if(text.equals("protection from lycanthropes")) {
+        } else if(text.equalsIgnoreCase("protection from lycanthropes")) {
             text = protectionFromLycanthropesText();
+        } else if(text.matches("spell \\d:\\d-\\d:\\d-\\d")) {
+            text = spellScrollText(text);
+        } else {
+            text = "scroll of " + text;
         }
 
         return text;
+    }
+
+    private SpellCasterClass getScrollSpellcasterClass() {
+        SpellCasterClass spellCasterClass;
+        int firstRoll = dice.rollPercent();
+        int secondRoll = dice.rollPercent();
+        if(firstRoll <= 70) {
+            if(secondRoll <= 10) {
+                spellCasterClass = SpellCasterClass.ILLUSIONIST;
+            } else {
+                spellCasterClass = SpellCasterClass.MAGIC_USER;
+            }
+        } else {
+            if(secondRoll <= 25) {
+                spellCasterClass = SpellCasterClass.DRUID;
+            } else {
+                spellCasterClass = SpellCasterClass.CLERIC;
+            }
+        }
+
+        return spellCasterClass;
+    }
+
+    private String spellScrollText(String scrollDescription) {
+        String spellRange = scrollDescription.split(" ")[1];
+        String[] spellData = spellRange.split(":");
+
+        int numSpells = Integer.parseInt(spellData[0]);
+        String muRange = spellData[1];
+        String otherRange = spellData[2];
+
+        String range = otherRange;
+        SpellCasterClass spellCasterClass = getScrollSpellcasterClass();
+        if(spellCasterClass == SpellCasterClass.MAGIC_USER) {
+            range = muRange;
+        }
+        int min = Integer.parseInt(range.split("-")[0]);
+        int max = Integer.parseInt(range.split("-")[1]);
+
+        StringBuilder sb = new StringBuilder();
+        sb.append(spellCasterClass.getName()).append(" scroll with spells: ");
+        for(int i = 0; i < numSpells; i++) {
+            int level = dice.getNumInLinearRange(min, max);
+            String spell = spellGenerator.getRandomSpell(spellCasterClass, level);
+            sb.append(spell).append(" (").append(level).append(")");
+            if(i < numSpells - 1) {
+                sb.append(", ");
+            }
+        }
+
+        return sb.toString();
+
     }
 
     private String protectionFromLycanthropesText() {

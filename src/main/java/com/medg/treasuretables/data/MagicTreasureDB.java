@@ -1,7 +1,11 @@
 /**
  * 
  */
-package com.medg.treasuretables;
+package com.medg.treasuretables.data;
+
+import com.medg.treasuretables.ItemEntry;
+import com.medg.treasuretables.MagicTreasureType;
+import com.medg.treasuretables.SpellCasterClass;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,7 +20,8 @@ import java.util.*;
  */
 public class MagicTreasureDB {
 
-	Map<MagicTreasureType, List<ItemEntry>> magicTreasureTypeMap;
+	private Map<MagicTreasureType, List<ItemEntry>> magicTreasureTypeMap;
+	private SpellDB spellDB;
 
 	public void initialize() {
 
@@ -36,9 +41,12 @@ public class MagicTreasureDB {
 		magicTreasureTypeMap.put(MagicTreasureType.SWORD, loadDataFile("magicTreasureTables/swords.csv"));
 		magicTreasureTypeMap.put(MagicTreasureType.ANY, loadDataFile("magicTreasureTables/magicItems.csv"));
 		magicTreasureTypeMap.put(MagicTreasureType.MAP, loadDataFile("magicTreasureTables/map.csv"));
+
+		this.spellDB = new SpellDB();
+		this.spellDB.initialize();
 	}
 
-	public List<ItemEntry> loadDataFile(String filename) {
+	private List<ItemEntry> loadDataFile(String filename) {
 		List<ItemEntry> dbEntries = new ArrayList<>();
 		try {
 			InputStream inputStream = getClass().getClassLoader().getResourceAsStream(filename);
@@ -67,6 +75,11 @@ public class MagicTreasureDB {
 		}
 
 		throw new RuntimeException("getMagicItemFromDB: Can't find magic item of type " + magicTreasureType + " roll: " + roll);
+	}
+
+	public List<String> getSpellsByLevelAndClass(SpellCasterClass spellCasterClass, int level) {
+		List<String> spellList = this.spellDB.getSpellsByLevelAndClass(spellCasterClass, level);
+		return spellList;
 	}
 	
 	

@@ -1,0 +1,24 @@
+Blink
+Clairaudience
+Clairvoyance
+Dispel Magic
+Explosive Runes
+Feign Death
+Fireball
+Flame Arrow
+Fly
+Gust Of Wind
+Haste
+Hold Person
+Infravision
+Invisibility 10' Radius
+Leomund's Tiny Hut
+Lightning Bold
+Monster Summoning 1
+Phantasmal Force
+Protection From Evil 10' Radius
+Protection From Normal Missiles
+Slow
+Suggestion
+Tongues
+Water Breathing

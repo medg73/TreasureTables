@@ -44,10 +44,17 @@ public class Dice {
 				rv += (rollDX(diceType, Math.random()) * multiplier);
 			}
 		}
-		else {
+		else { // WTF?
 			rv = Integer.parseInt(quantity);
 		}
 
+		return rv;
+	}
+
+	public int getNumInLinearRange(int min, int max) {
+		int diceType = max - min + 1;
+		int roll = this.rollAmount("1d"+diceType, 1);
+		int rv = roll + min - 1;
 		return rv;
 	}
 

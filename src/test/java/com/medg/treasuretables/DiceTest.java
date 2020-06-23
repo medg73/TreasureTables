@@ -87,5 +87,10 @@ public class DiceTest {
 		int res = Dice.rollDX(6, 0.99999);
 		assertEquals(res,6);
 	}
+
+	@Test
+	public void testGetNumInRange() {
+
+	}
 	
 }

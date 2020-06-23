@@ -2,7 +2,7 @@ package com.medg.treasuretables.generators;
 
 import com.medg.treasuretables.Dice;
 import com.medg.treasuretables.ItemEntry;
-import com.medg.treasuretables.MagicTreasureDB;
+import com.medg.treasuretables.data.MagicTreasureDB;
 import com.medg.treasuretables.MagicTreasureType;
 
 import java.util.Arrays;

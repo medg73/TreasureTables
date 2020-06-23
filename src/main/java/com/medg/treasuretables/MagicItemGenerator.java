@@ -1,18 +1,26 @@
 package com.medg.treasuretables;
 
+import com.medg.treasuretables.data.MagicTreasureDB;
+import com.medg.treasuretables.data.SpellDB;
 import com.medg.treasuretables.generators.PotionGenerator;
+import com.medg.treasuretables.generators.ScrollGenerator;
+import com.medg.treasuretables.generators.SpellGenerator;
 
 public class MagicItemGenerator {
 
     private MagicTreasureDB magicTreasureDB;
     private Dice dice;
     private PotionGenerator potionGenerator;
+    private ScrollGenerator scrollGenerator;
+    private SpellGenerator spellGenerator;
 
 
     public MagicItemGenerator(MagicTreasureDB magicTreasureDB, Dice dice) {
         this.magicTreasureDB = magicTreasureDB;
         this.dice = dice;
         potionGenerator = new PotionGenerator(magicTreasureDB, dice);
+        spellGenerator = new SpellGenerator(dice, magicTreasureDB);
+        scrollGenerator = new ScrollGenerator(magicTreasureDB, dice, spellGenerator);
     }
 
     public String getMagicItemOfType(MagicTreasureType magicTreasureType) {
@@ -26,8 +34,7 @@ public class MagicItemGenerator {
                 rv = potionGenerator.getItemText();
                 break;
             case SCROLL:
-                prefix = "scroll of ";
-                rv = prefix + magicTreasureDB.getMagicItemFromDB(dice.rollPercent(), magicTreasureType).description;
+                rv = scrollGenerator.getItemText();
                 break;
             case RING:
                 prefix = "ring of ";

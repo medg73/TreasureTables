@@ -1,19 +1,19 @@
-1,10,1 spell 1-4
-11,16,1 spell 1-6
-17,19,1 spell 2-9 or 2-7*
-20,24,2 spells 1-4
-25,27,2 spells 1-8 or 1-6*
-28,32,3 spells 1-4
-33,35,3 spells 2-9 or 2-7*
-36,39,4 spells 1-4
-40,42,4 spells 1-8 or 1-6*
-43,46,5 spells 1-6
-47,49,5 spells 1-8 or 1-6*
-50,52,6 spells 1-6
-53,54,6 spells 3-8 or 3-6*
-55,57,7 spells 1-8
-58,59,7 spells 2-9
-60,60,7 spells 4-9 or 4-7*
+1,10,spell 1:1-4:1-4
+11,16,spell 1:1-6:1-6
+17,19,spell 1:2-9:2-7
+20,24,spell 2:1-4:1-4
+25,27,spell 2:1-8:1-6
+28,32,spell 3:1-4:1-4
+33,35,spell 3:2-9:2-7
+36,39,spell 4:1-4:1-4
+40,42,spell 4:1-8:1-6
+43,46,spell 5:1-6:1-6
+47,49,spell 5:1-8:1-6
+50,52,spell 6:1-6:1-6
+53,54,spell 6:3-8:3-6
+55,57,spell 7:1-8:1-8
+58,59,spell 7:2-9:2-9
+60,60,spell 7:4-9:4-7
 61,62,Protection from Demons
 63,64,Protection from Devils
 65,70,Protection from Elementals
