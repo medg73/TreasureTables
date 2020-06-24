@@ -66,13 +66,13 @@ public class MagicItemGeneratorTest {
 
     @Test
     public void testGetMagicItemOfTypeArmorShield() {
-        ItemEntry itemEntry = new ItemEntry(1,100,"shield +1");
+        ItemEntry itemEntry = new ItemEntry(1,100,"Shield +1");
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
         when(magicTreasureDB.getMagicItemFromDB(anyInt(), eq(MagicTreasureType.ARMOR))).thenReturn(itemEntry);
         Dice dice = mock(Dice.class);
         when(dice.rollPercent()).thenReturn(50).thenReturn(99);
         MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice);
-        assertEquals("shield +1", magicItemGenerator.getMagicItemOfType(MagicTreasureType.ARMOR));
+        assertEquals("Shield +1", magicItemGenerator.getMagicItemOfType(MagicTreasureType.ARMOR));
     }
 
     @Test

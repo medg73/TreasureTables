@@ -46,7 +46,7 @@ public class MagicItemGenerator {
             case ARMOR:
                 String armorSize = getMagicArmorSize();
                 String armorText = magicTreasureDB.getMagicItemFromDB(dice.rollPercent(), magicTreasureType).description;
-                if(armorText.contains("shield")) {
+                if(armorText.toLowerCase().contains("shield")) {
                     rv = armorText;
                 } else {
                     rv = armorSize + " " + armorText;

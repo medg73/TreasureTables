@@ -1,5 +1,7 @@
 TODO
 - split out the special item handling of each type to separate classes
-- fix maven jar packaging to make it execute
+- fix maven jar packaging to make it execute - DONE
 - fix treasure tables to read from data file not be hardcoded
-- spell scroll generation and fix up the other special handling
+- build a single jar file with a reasonable name
+- cleanup use of Dice -use single instance
+- get rid of static methods
