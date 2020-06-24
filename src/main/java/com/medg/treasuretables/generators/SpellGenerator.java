@@ -16,6 +16,27 @@ public class SpellGenerator {
         this.magicTreasureDB = magicTreasureDB;
     }
 
+    SpellCasterClass getSpellcasterClass() {
+        SpellCasterClass spellCasterClass;
+        int firstRoll = dice.rollPercent();
+        int secondRoll = dice.rollPercent();
+        if(firstRoll <= 70) {
+            if(secondRoll <= 10) {
+                spellCasterClass = SpellCasterClass.ILLUSIONIST;
+            } else {
+                spellCasterClass = SpellCasterClass.MAGIC_USER;
+            }
+        } else {
+            if(secondRoll <= 25) {
+                spellCasterClass = SpellCasterClass.DRUID;
+            } else {
+                spellCasterClass = SpellCasterClass.CLERIC;
+            }
+        }
+
+        return spellCasterClass;
+    }
+
     String getRandomSpell(SpellCasterClass spellCasterClass, int level) {
         try {
             List<String> spells = magicTreasureDB.getSpellsByLevelAndClass(spellCasterClass, level);

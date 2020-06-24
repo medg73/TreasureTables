@@ -68,4 +68,16 @@ public class Dice {
 	public int rollD10() {
 		return this.getAmount("1d10", 1);
 	}
+
+	public int roll1D4() {
+		return this.getAmount("1d4", 1);
+	}
+
+	public int roll1D6() {
+		return this.getAmount("1d6", 1);
+	}
+
+	public int roll1D8() {
+		return this.getAmount("1d8", 1);
+	}
 }
