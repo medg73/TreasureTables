@@ -17,7 +17,7 @@ public class MagicItemGeneratorTest {
         ItemEntry itemEntry = new ItemEntry(1,100,"healing");
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
         when(magicTreasureDB.getMagicItemFromDB(anyInt(), eq(MagicTreasureType.POTION))).thenReturn(itemEntry);
-        Dice dice = new Dice();
+        Dice dice = new Dice(new RandomNumberGenerator());
         MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice);
         assertEquals("potion of healing", magicItemGenerator.getMagicItemOfType(MagicTreasureType.POTION));
     }
@@ -27,7 +27,7 @@ public class MagicItemGeneratorTest {
         ItemEntry itemEntry = new ItemEntry(1,100,"protection from evil");
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
         when(magicTreasureDB.getMagicItemFromDB(anyInt(), eq(MagicTreasureType.SCROLL))).thenReturn(itemEntry);
-        Dice dice = new Dice();
+        Dice dice = new Dice(new RandomNumberGenerator());
         MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice);
         assertEquals("scroll of protection from evil", magicItemGenerator.getMagicItemOfType(MagicTreasureType.SCROLL));
     }
@@ -37,7 +37,7 @@ public class MagicItemGeneratorTest {
         ItemEntry itemEntry = new ItemEntry(1,100,"invisibility");
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
         when(magicTreasureDB.getMagicItemFromDB(anyInt(), eq(MagicTreasureType.RING))).thenReturn(itemEntry);
-        Dice dice = new Dice();
+        Dice dice = new Dice(new RandomNumberGenerator());
         MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice);
         assertEquals("ring of invisibility", magicItemGenerator.getMagicItemOfType(MagicTreasureType.RING));
     }

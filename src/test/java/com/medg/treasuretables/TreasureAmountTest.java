@@ -18,42 +18,28 @@ import org.junit.Test;
  */
 public class TreasureAmountTest {
 
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@Before
-	public void setUp() throws Exception {
-	}
-
-	/**
-	 * @throws java.lang.Exception
-	 */
-	@After
-	public void tearDown() throws Exception {
-	}
-
-	/**
-	 * Test method for {@link TreasureAmount#rollAmount()}.
-	 */
 	@Test
 	public final void testCalcResult() {
-//		fail("Not yet implemented"); // TODO
+
+		RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+		Dice dice = new Dice(randomNumberGenerator);
 		
-		TreasureAmount ta = new TreasureAmount(1.0, "1d6", 1, "description test");
+		TreasureAmount ta = new TreasureAmount(dice, 1.0, "1d6", 1, "description test");
 		String rv = ta.calcResult();
 		assertTrue(rv.matches("[1-6] description test"));
-//		System.err.println(rv);
-		
-		ta = new TreasureAmount(0.0, "1d6", 1, "description test");
+
+		ta = new TreasureAmount(dice, 0.0, "1d6", 1, "description test");
 		rv = ta.calcResult();
 		assertTrue(rv.equals("none"));
-//		System.err.println(rv);
-		
 	}
 
 	@Test
 	public void testGetMagicItems() {
-		TreasureAmount treasureAmount = new TreasureAmount(TreasureColumns.Magic, 1.0, "", 1,"POTION:3");
+
+		RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+		Dice dice = new Dice(randomNumberGenerator);
+
+		TreasureAmount treasureAmount = new TreasureAmount(dice, TreasureColumns.Magic, 1.0, "", 1,"POTION:3");
 		MagicItemGenerator magicItemGenerator = mock(MagicItemGenerator.class);
 		treasureAmount.setMagicItemGenerator(magicItemGenerator);
 		when(magicItemGenerator.getMagicItemOfType(MagicTreasureType.POTION)).thenReturn("some magic potion");
@@ -64,11 +50,15 @@ public class TreasureAmountTest {
 
 	@Test
 	public void testGetMagicItemsMultipleItemTypes() {
+
+		RandomNumberGenerator randomNumberGenerator = new RandomNumberGenerator();
+		Dice dice = new Dice(randomNumberGenerator);
+
 		MagicItemGenerator magicItemGenerator = mock(MagicItemGenerator.class);
 		when(magicItemGenerator.getMagicItemOfType(MagicTreasureType.POTION)).thenReturn("some magic potion");
 		when(magicItemGenerator.getMagicItemOfType(MagicTreasureType.MISC)).thenReturn("some misc item");
 
-		TreasureAmount treasureAmount = new TreasureAmount(TreasureColumns.Magic, 1.0, "", 1,"POTION:1:MISC:1", magicItemGenerator);
+		TreasureAmount treasureAmount = new TreasureAmount(dice, TreasureColumns.Magic, 1.0, "", 1,"POTION:1:MISC:1", magicItemGenerator);
 		treasureAmount.setMagicItemGenerator(magicItemGenerator);
 
 		String treasureResult = treasureAmount.calcResult();

@@ -9,14 +9,13 @@ package com.medg.treasuretables;
  */
 public class Dice {
 
-	/**
-	 * 
-	 * @param x num sides of "dice" to "roll"
-	 * @param d1 random # from 0 to 1
-	 * @return
-	 */
-	public static int rollDX(int x, double d1) {
-//		double d1 = Math.random();
+	private RandomNumberGenerator randomNumberGenerator;
+
+	public Dice(RandomNumberGenerator randomNumberGenerator) {
+		this.randomNumberGenerator = randomNumberGenerator;
+	}
+
+	int doubleToInt(int x, double d1) {
 		if(d1 <= 0.0) {
 			d1 = 0.001;
 		}
@@ -30,7 +29,7 @@ public class Dice {
 	 * @param multiplier
 	 * @return
 	 */
-	public int rollAmount(String quantity, int multiplier) {
+	public int getAmount(String quantity, int multiplier) {
 		int numRolls;
 		int diceType;
 		int rv = 0;
@@ -41,10 +40,10 @@ public class Dice {
 			diceType = Integer.parseInt(str[1]);
 
 			for(int i = 0; i < numRolls; i++) {
-				rv += (rollDX(diceType, Math.random()) * multiplier);
+				rv += (doubleToInt(diceType, randomNumberGenerator.getNum()) * multiplier);
 			}
 		}
-		else { // WTF?
+		else {
 			rv = Integer.parseInt(quantity);
 		}
 
@@ -53,20 +52,20 @@ public class Dice {
 
 	public int getNumInLinearRange(int min, int max) {
 		int diceType = max - min + 1;
-		int roll = this.rollAmount("1d"+diceType, 1);
+		int roll = this.getAmount("1d"+diceType, 1);
 		int rv = roll + min - 1;
 		return rv;
 	}
 
 	public int rollPercent() {
-		return this.rollAmount("1d100", 1);
+		return this.getAmount("1d100", 1);
 	}
 
 	public int rollD20() {
-		return this.rollAmount("1d20", 1);
+		return this.getAmount("1d20", 1);
 	}
 
 	public int rollD10() {
-		return this.rollAmount("1d10", 1);
+		return this.getAmount("1d10", 1);
 	}
 }

@@ -20,7 +20,7 @@ public class SpellGeneratorTest {
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
         List<String> spellList = Arrays.asList("Cure Light Wounds", "Dispel Evil", "Protection From Evil");
         Dice dice = mock(Dice.class);
-        when(dice.rollAmount(eq("1d3"),eq(1))).thenReturn(2);
+        when(dice.getAmount(eq("1d3"),eq(1))).thenReturn(2);
         int level = 1;
         SpellCasterClass spellCasterClass = SpellCasterClass.CLERIC;
         when(magicTreasureDB.getSpellsByLevelAndClass(spellCasterClass, level)).thenReturn(spellList);

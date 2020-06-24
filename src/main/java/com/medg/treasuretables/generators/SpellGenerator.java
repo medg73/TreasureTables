@@ -19,7 +19,7 @@ public class SpellGenerator {
     String getRandomSpell(SpellCasterClass spellCasterClass, int level) {
         try {
             List<String> spells = magicTreasureDB.getSpellsByLevelAndClass(spellCasterClass, level);
-            int spell = dice.rollAmount("1d" + spells.size(), 1);
+            int spell = dice.getAmount("1d" + spells.size(), 1);
             return spells.get(spell - 1);
         } catch(Exception e) {
             System.err.println("getRandomSpell called with class " + spellCasterClass.getName() + " level " + level);

@@ -1,7 +1,9 @@
 /**
  * 
  */
-package com.medg.treasuretables;
+package com.medg.treasuretables.ui;
+
+import com.medg.treasuretables.TreasureTypeContainer;
 
 import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
