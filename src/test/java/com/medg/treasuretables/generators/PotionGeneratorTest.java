@@ -17,42 +17,42 @@ public class PotionGeneratorTest {
     public void testGetPotionOfAnimalControl() {
         Dice dice = mock(Dice.class);
         when(dice.rollD20()).thenReturn(8);
-        testGetPotionType(dice, "animal control", "potion of avian control");
+        testGetPotionType(dice, "Animal Control*", "potion of avian control");
     }
 
     @Test
     public void testGetPotionOfDragonControl() {
         Dice dice = mock(Dice.class);
         when(dice.rollD20()).thenReturn(8);
-        testGetPotionType(dice, "dragon control", "potion of blue dragon control");
+        testGetPotionType(dice, "Dragon Control*", "potion of blue dragon control");
     }
 
     @Test
     public void testGetPotionOfGiantControl() {
         Dice dice = mock(Dice.class);
         when(dice.rollD20()).thenReturn(8);
-        testGetPotionType(dice, "giant control", "potion of stone giant control");
+        testGetPotionType(dice, "Giant Control*", "potion of stone giant control");
     }
 
     @Test
     public void testGetPotionOfGiantStrength() {
         Dice dice = mock(Dice.class);
         when(dice.rollD20()).thenReturn(14);
-        testGetPotionType(dice, "giant strength", "potion of frost giant strength");
+        testGetPotionType(dice, "Giant Strength*(F)", "potion of frost giant strength (F)");
     }
 
     @Test
     public void testGetPotionOfHumanControl() {
         Dice dice = mock(Dice.class);
         when(dice.rollD20()).thenReturn(9);
-        testGetPotionType(dice, "human control", "potion of half-orc control");
+        testGetPotionType(dice, "Human Control*", "potion of half-orc control");
     }
 
     @Test
     public void testGetPotionOfUndeadControl() {
         Dice dice = mock(Dice.class);
         when(dice.rollD10()).thenReturn(9);
-        testGetPotionType(dice, "undead control", "potion of vampire control");
+        testGetPotionType(dice, "Undead Control*", "potion of vampire control");
     }
 
     private void testGetPotionType(Dice dice, String typeText, String expectedText) {

@@ -83,17 +83,17 @@ public class PotionGenerator {
         ItemEntry itemEntry = magicTreasureDB.getMagicItemFromDB(dice.rollPercent(), MagicTreasureType.POTION);
 
         String text = itemEntry.description;
-        if(text.equals("animal control")) {
+        if(text.equals("Animal Control*")) {
             text = animalControlText();
-        } else if(text.equals("dragon control")) {
+        } else if(text.equals("Dragon Control*")) {
             text = dragonControlText();
-        } else if(text.equals("giant control")) {
+        } else if(text.equals("Giant Control*")) {
             text = giantControlText();
-        } else if(text.equals("giant strength")) {
+        } else if(text.equals("Giant Strength*(F)")) {
             text = giantStrengthText();
-        } else if(text.equals("human control")) {
+        } else if(text.equals("Human Control*")) {
             text = humanControlText();
-        } else if(text.equals("undead control")) {
+        } else if(text.equals("Undead Control*")) {
             text = undeadControlText();
         }
 
@@ -134,7 +134,7 @@ public class PotionGenerator {
         String giantType = "error";
         int typeRoll = dice.rollD20();
         giantType = getSubtypeText(typeRoll, giantStrengthTypes);
-        text = String.format("%s giant strength", giantType);
+        text = String.format("%s giant strength (F)", giantType);
         return text;
     }
 

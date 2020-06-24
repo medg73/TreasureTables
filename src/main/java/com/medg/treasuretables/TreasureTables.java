@@ -2,10 +2,6 @@
  * 
  */
 package com.medg.treasuretables;
-
-//import java.util.HashMap;
-//import java.util.Map;
-
 import javax.swing.JFrame;
 
 
@@ -21,18 +17,15 @@ public class TreasureTables {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
 		System.setProperty("apple.laf.useScreenMenuBar", "true");
 		System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Treasure Generator");
 
+		TreasureTypeContainer treasureTypeContainer = new TreasureTypeContainer();
 		
-		TTFrame frame = new TTFrame();
+		TTFrame frame = new TTFrame(treasureTypeContainer);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		
-		
-		
 	}
 
 
