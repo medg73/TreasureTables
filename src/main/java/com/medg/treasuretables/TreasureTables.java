@@ -2,6 +2,9 @@
  * 
  */
 package com.medg.treasuretables;
+import com.medg.treasuretables.data.MagicTreasureDB;
+import com.medg.treasuretables.generators.MagicItemGenerator;
+
 import javax.swing.JFrame;
 
 
@@ -11,8 +14,6 @@ import javax.swing.JFrame;
  */
 public class TreasureTables {
 
-	
-	
 	/**
 	 * @param args
 	 */
@@ -21,14 +22,14 @@ public class TreasureTables {
 		System.setProperty("apple.laf.useScreenMenuBar", "true");
 		System.setProperty("com.apple.mrj.application.apple.menu.about.name", "Treasure Generator");
 
-		TreasureTypeContainer treasureTypeContainer = new TreasureTypeContainer();
+		MagicTreasureDB magicTreasureDB = new MagicTreasureDB();
+		magicTreasureDB.initialize();
+		MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, new Dice());
+
+		TreasureTypeContainer treasureTypeContainer = new TreasureTypeContainer(magicItemGenerator);
 		
 		TTFrame frame = new TTFrame(treasureTypeContainer);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
 	}
-
-
-	
-	
 }

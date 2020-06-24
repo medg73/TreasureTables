@@ -54,31 +54,6 @@ public class TreasureTypeTest {
 		String rv = tta.genTreasure();
 		System.err.println(rv);
 	}
-
-	/**
-	 * Test method for {@link TreasureType#loadTreasureTypes()}
-	 */
-	@Test
-	public final void testLoadTreasureTypes() {
-//		fail("NYI");
-		
-		Map<String,TreasureType> treasureTypes = TreasureType.loadTreasureTypes();
-		String rv = treasureTypes.get("Test").genTreasure();
-		assertTrue(rv != null);
-		
-		System.err.println(rv);
-		
-		rv = treasureTypes.get("A").genTreasure();
-		assertTrue(rv != null);
-		System.err.println(rv);
-	
-		for(String s : treasureTypes.keySet()) {
-			System.err.println("Treasure type " + s + ":");
-			System.err.println(treasureTypes.get(s).genTreasure());
-		}
-		
-		
-	}
 	
 	/** test method for {@link TreasureType.getChances()}
 	 * 
