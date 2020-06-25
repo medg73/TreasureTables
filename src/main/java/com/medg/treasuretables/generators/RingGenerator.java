@@ -9,7 +9,7 @@ import com.medg.treasuretables.data.MagicTreasureDB;
 import java.util.Arrays;
 import java.util.List;
 
-public class RingGenerator {
+public class RingGenerator extends Generator {
 
     private MagicTreasureDB magicTreasureDB;
     private Dice dice;
@@ -32,6 +32,23 @@ public class RingGenerator {
             new ItemEntry(92, 97, "+4 AC, +2 saving throws"),
             new ItemEntry(98,100, "+6 AC, +1 saving throws"));
 
+    private List<ItemEntry> telekinesisTypes = Arrays.asList(
+            new ItemEntry(1, 25, "20#"),
+            new ItemEntry(26, 50, "50#"),
+            new ItemEntry(51, 89, "100#"),
+            new ItemEntry(90, 99, "200#"),
+            new ItemEntry(100, 100, "400#"));
+
+    private List<ItemEntry> wizardryTypes = Arrays.asList(
+            new ItemEntry(1,50, "1st level spells"),
+            new ItemEntry(51, 75, "2nd level spells"),
+            new ItemEntry(76, 82, "3rd level spells"),
+            new ItemEntry(83, 88, "1st and 2nd level spells"),
+            new ItemEntry(89, 92, "4th level spells"),
+            new ItemEntry(93, 95, "5th level spells"),
+            new ItemEntry(96, 99, "1st through 3rd level spells"),
+            new ItemEntry(100, 100, "4th and 5th level spells"));
+
     public RingGenerator(MagicTreasureDB magicTreasureDB, Dice dice, SpellGenerator spellGenerator) {
         this.magicTreasureDB = magicTreasureDB;
         this.dice = dice;
@@ -53,9 +70,34 @@ public class RingGenerator {
             text = multipleWishesText();
         } else if(text.equalsIgnoreCase("spell storing")) {
             text = spellStoringText();
+        } else if(text.equalsIgnoreCase("telekinesis++")) {
+            text = telekinesisText();
+        } else if(text.equalsIgnoreCase("three wishes++")) {
+            text = threeWishesText();
+        } else if(text.equalsIgnoreCase("wizardry++ (m)")) {
+            text = wizardryText();
         }
 
         return "ring of " + text;
+    }
+
+    private String wizardryText() {
+        String subtype = getSubtypeText(dice.rollPercent(), wizardryTypes);
+        return "wizardry (M): doubles " + subtype;
+    }
+
+    private String threeWishesText() {
+        int roll = dice.rollPercent();
+        if(roll <= 25) {
+            return "three Limited Wishes";
+        } else {
+            return "three Wishes";
+        }
+    }
+
+    private String telekinesisText() {
+        String subtype = getSubtypeText(dice.rollPercent(), telekinesisTypes);
+        return "telekinesis " + subtype;
     }
 
     private String spellStoringText() {
@@ -109,16 +151,5 @@ public class RingGenerator {
     private String contrarinessText() {
         String subtype = getSubtypeText(dice.rollPercent(), contrarinessTypes);
         return "contrariness (" + subtype + ")";
-    }
-
-    private String getSubtypeText(int roll, List<ItemEntry> types) {
-        String subtype = "error";
-        for(ItemEntry itemEntry : types) {
-            if(roll <= itemEntry.maxRange) {
-                subtype = itemEntry.description;
-                break;
-            }
-        }
-        return subtype;
     }
 }

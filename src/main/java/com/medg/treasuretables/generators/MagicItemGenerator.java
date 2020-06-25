@@ -16,6 +16,7 @@ public class MagicItemGenerator {
     private PotionGenerator potionGenerator;
     private ScrollGenerator scrollGenerator;
     private SpellGenerator spellGenerator;
+    private RingGenerator ringGenerator;
 
 
     public MagicItemGenerator(MagicTreasureDB magicTreasureDB, Dice dice) {
@@ -24,6 +25,7 @@ public class MagicItemGenerator {
         potionGenerator = new PotionGenerator(magicTreasureDB, dice);
         spellGenerator = new SpellGenerator(dice, magicTreasureDB);
         scrollGenerator = new ScrollGenerator(magicTreasureDB, dice, spellGenerator);
+        ringGenerator = new RingGenerator(magicTreasureDB, dice, spellGenerator);
     }
 
     public String getMagicItemOfType(MagicTreasureType magicTreasureType) {
@@ -40,8 +42,7 @@ public class MagicItemGenerator {
                 rv = scrollGenerator.getItemText();
                 break;
             case RING:
-                prefix = "ring of ";
-                rv = prefix + magicTreasureDB.getMagicItemFromDB(dice.rollPercent(), magicTreasureType).description;
+                rv = ringGenerator.getItemText();
                 break;
             case ARMOR:
                 String armorSize = getMagicArmorSize();

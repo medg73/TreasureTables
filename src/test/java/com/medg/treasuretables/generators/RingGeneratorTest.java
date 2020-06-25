@@ -126,4 +126,61 @@ public class RingGeneratorTest {
         assertEquals(expectedText, ringGenerator.getItemText());
 
     }
+
+    @Test
+    public void testGetItemTextRingOfTelekinesis() {
+        SpellGenerator spellGenerator = mock(SpellGenerator.class);
+        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+        when(magicTreasureDB.getMagicItemFromDB(5, MagicTreasureType.RING)).thenReturn(new ItemEntry(1, 1, "Telekinesis++"));
+
+        List<String> telekinesisTypes = Arrays.asList("20#", "50#", "100#", "200#", "400#");
+        List<Integer> rolls = Arrays.asList(25, 26, 51, 90, 100);
+
+        for(int i = 0; i < telekinesisTypes.size(); i++) {
+            Dice dice = mock(Dice.class);
+            when(dice.rollPercent()).thenReturn(5).thenReturn(rolls.get(i));
+            RingGenerator ringGenerator = new RingGenerator(magicTreasureDB, dice, spellGenerator);
+            String expectedText = "ring of telekinesis " + telekinesisTypes.get(i);
+            assertEquals(expectedText, ringGenerator.getItemText());
+        }
+    }
+
+    @Test
+    public void testGetItemTextRingOfThreeWishes() {
+        SpellGenerator spellGenerator = mock(SpellGenerator.class);
+        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+        when(magicTreasureDB.getMagicItemFromDB(5, MagicTreasureType.RING)).thenReturn(new ItemEntry(1, 1, "Three Wishes++"));
+
+        List<String> ringTypes = Arrays.asList("Limited Wishes", "Wishes");
+        List<Integer> rolls = Arrays.asList(25, 26);
+
+        for(int i = 0; i < ringTypes.size(); i++) {
+            Dice dice = mock(Dice.class);
+            when(dice.rollPercent()).thenReturn(5).thenReturn(rolls.get(i));
+            RingGenerator ringGenerator = new RingGenerator(magicTreasureDB, dice, spellGenerator);
+            String expectedText = "ring of three " + ringTypes.get(i);
+            assertEquals(expectedText, ringGenerator.getItemText());
+        }
+    }
+
+    @Test
+    public void testGetItemTextRingOfWizardry() {
+        SpellGenerator spellGenerator = mock(SpellGenerator.class);
+        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+        when(magicTreasureDB.getMagicItemFromDB(5, MagicTreasureType.RING)).thenReturn(new ItemEntry(1, 1, "Wizardry++ (M)"));
+
+        List<String> ringTypes = Arrays.asList("1st level spells", "2nd level spells", "3rd level spells",
+                "1st and 2nd level spells", "4th level spells", "5th level spells",
+                "1st through 3rd level spells", "4th and 5th level spells");
+        List<Integer> rolls = Arrays.asList(50, 75, 82, 88, 92, 95, 99, 100);
+
+        for(int i = 0; i < ringTypes.size(); i++) {
+            Dice dice = mock(Dice.class);
+            when(dice.rollPercent()).thenReturn(5).thenReturn(rolls.get(i));
+            RingGenerator ringGenerator = new RingGenerator(magicTreasureDB, dice, spellGenerator);
+            String expectedText = "ring of wizardry (M): doubles " + ringTypes.get(i);
+            assertEquals(expectedText, ringGenerator.getItemText());
+        }
+    }
+
 }

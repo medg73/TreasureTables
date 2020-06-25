@@ -35,6 +35,7 @@ public class ScrollGeneratorTest {
         when(dice.getNumInLinearRange(2,9)).thenReturn(2).thenReturn(3).thenReturn(4);
         String scrollText = "spell 3:2-9:2-7";
         SpellGenerator spellGenerator = mock(SpellGenerator.class);
+        when(spellGenerator.getSpellcasterClass()).thenReturn(SpellCasterClass.MAGIC_USER);
         when(spellGenerator.getRandomSpell(SpellCasterClass.MAGIC_USER, 2)).thenReturn("Invisibility");
         when(spellGenerator.getRandomSpell(SpellCasterClass.MAGIC_USER, 3)).thenReturn("Fireball");
         when(spellGenerator.getRandomSpell(SpellCasterClass.MAGIC_USER, 4)).thenReturn("Ice Storm");
@@ -52,6 +53,7 @@ public class ScrollGeneratorTest {
         when(dice.getNumInLinearRange(2,7)).thenReturn(2).thenReturn(3).thenReturn(7);
         String scrollText = "spell 3:2-9:2-7";
         SpellGenerator spellGenerator = mock(SpellGenerator.class);
+        when(spellGenerator.getSpellcasterClass()).thenReturn(SpellCasterClass.CLERIC);
         when(spellGenerator.getRandomSpell(SpellCasterClass.CLERIC, 2)).thenReturn("Augury");
         when(spellGenerator.getRandomSpell(SpellCasterClass.CLERIC, 3)).thenReturn("Cure Disease");
         when(spellGenerator.getRandomSpell(SpellCasterClass.CLERIC, 7)).thenReturn("Gate");
@@ -69,6 +71,7 @@ public class ScrollGeneratorTest {
         when(dice.getNumInLinearRange(1,4)).thenReturn(2);
         String scrollText = "spell 1:1-4:1-4";
         SpellGenerator spellGenerator = mock(SpellGenerator.class);
+        when(spellGenerator.getSpellcasterClass()).thenReturn(SpellCasterClass.ILLUSIONIST);
         when(spellGenerator.getRandomSpell(SpellCasterClass.ILLUSIONIST, 2)).thenReturn("Blindness");
 
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
@@ -80,10 +83,11 @@ public class ScrollGeneratorTest {
     @Test
     public void testGetDruidSpellScroll() {
         Dice dice = mock(Dice.class);
-        when(dice.rollPercent()).thenReturn(75).thenReturn(75).thenReturn(5);
+        when(dice.rollPercent()).thenReturn(75);
         when(dice.getNumInLinearRange(2,7)).thenReturn(2).thenReturn(3).thenReturn(7);
         String scrollText = "spell 3:2-9:2-7";
         SpellGenerator spellGenerator = mock(SpellGenerator.class);
+        when(spellGenerator.getSpellcasterClass()).thenReturn(SpellCasterClass.DRUID);
         when(spellGenerator.getRandomSpell(SpellCasterClass.DRUID, 2)).thenReturn("Barkskin");
         when(spellGenerator.getRandomSpell(SpellCasterClass.DRUID, 3)).thenReturn("Call Lightning");
         when(spellGenerator.getRandomSpell(SpellCasterClass.DRUID, 7)).thenReturn("Animate Rock");

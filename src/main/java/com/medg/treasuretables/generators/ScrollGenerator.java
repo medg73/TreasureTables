@@ -9,7 +9,7 @@ import com.medg.treasuretables.MagicTreasureType;
 import java.util.Arrays;
 import java.util.List;
 
-public class ScrollGenerator {
+public class ScrollGenerator extends Generator {
 
     Dice dice;
     MagicTreasureDB magicTreasureDB;
@@ -54,27 +54,6 @@ public class ScrollGenerator {
         return text;
     }
 
-    private SpellCasterClass getScrollSpellcasterClass() {
-        SpellCasterClass spellCasterClass;
-        int firstRoll = dice.rollPercent();
-        int secondRoll = dice.rollPercent();
-        if(firstRoll <= 70) {
-            if(secondRoll <= 10) {
-                spellCasterClass = SpellCasterClass.ILLUSIONIST;
-            } else {
-                spellCasterClass = SpellCasterClass.MAGIC_USER;
-            }
-        } else {
-            if(secondRoll <= 25) {
-                spellCasterClass = SpellCasterClass.DRUID;
-            } else {
-                spellCasterClass = SpellCasterClass.CLERIC;
-            }
-        }
-
-        return spellCasterClass;
-    }
-
     private String spellScrollText(String scrollDescription) {
         String spellRange = scrollDescription.split(" ")[1];
         String[] spellData = spellRange.split(":");
@@ -84,7 +63,7 @@ public class ScrollGenerator {
         String otherRange = spellData[2];
 
         String range = otherRange;
-        SpellCasterClass spellCasterClass = getScrollSpellcasterClass();
+        SpellCasterClass spellCasterClass = spellGenerator.getSpellcasterClass();
         if(spellCasterClass == SpellCasterClass.MAGIC_USER) {
             range = muRange;
         }
@@ -120,14 +99,4 @@ public class ScrollGenerator {
         return text;
     }
 
-    private String getSubtypeText(int roll, List<ItemEntry> types) {
-        String subtype = "error";
-        for(ItemEntry itemEntry : types) {
-            if(roll <= itemEntry.maxRange) {
-                subtype = itemEntry.description;
-                break;
-            }
-        }
-        return subtype;
-    }
 }
