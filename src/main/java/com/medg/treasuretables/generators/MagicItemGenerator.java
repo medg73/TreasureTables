@@ -4,10 +4,6 @@ import com.medg.treasuretables.Dice;
 import com.medg.treasuretables.ItemEntry;
 import com.medg.treasuretables.MagicTreasureType;
 import com.medg.treasuretables.data.MagicTreasureDB;
-import com.medg.treasuretables.data.SpellDB;
-import com.medg.treasuretables.generators.PotionGenerator;
-import com.medg.treasuretables.generators.ScrollGenerator;
-import com.medg.treasuretables.generators.SpellGenerator;
 
 public class MagicItemGenerator {
 
@@ -18,16 +14,18 @@ public class MagicItemGenerator {
     private SpellGenerator spellGenerator;
     private RingGenerator ringGenerator;
     private RSWGenerator rswGenerator;
+    private MiscGenerator miscGenerator;
 
 
     public MagicItemGenerator(MagicTreasureDB magicTreasureDB, Dice dice) {
         this.magicTreasureDB = magicTreasureDB;
         this.dice = dice;
         potionGenerator = new PotionGenerator(magicTreasureDB, dice);
-        spellGenerator = new SpellGenerator(dice, magicTreasureDB);
+        spellGenerator = new SpellGenerator(magicTreasureDB, dice);
         scrollGenerator = new ScrollGenerator(magicTreasureDB, dice, spellGenerator);
         ringGenerator = new RingGenerator(magicTreasureDB, dice, spellGenerator);
         rswGenerator = new RSWGenerator(magicTreasureDB, dice, spellGenerator);
+        miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator);
 
     }
 
@@ -70,6 +68,9 @@ public class MagicItemGenerator {
             case MISC3:
             case MISC4:
             case MISC5:
+                String text = magicTreasureDB.getMagicItemFromDB(dice.rollPercent(), magicTreasureType).description;
+                rv = miscGenerator.getMiscItemText(text);
+                break;
             case MISC_WEAPON:
             case MAP:
                 rv = magicTreasureDB.getMagicItemFromDB(dice.rollPercent(), magicTreasureType).description;

@@ -25,7 +25,7 @@ public class SpellGeneratorTest {
         SpellCasterClass spellCasterClass = SpellCasterClass.CLERIC;
         when(magicTreasureDB.getSpellsByLevelAndClass(spellCasterClass, level)).thenReturn(spellList);
 
-        SpellGenerator spellGenerator = new SpellGenerator(dice, magicTreasureDB);
+        SpellGenerator spellGenerator = new SpellGenerator(magicTreasureDB, dice);
         String spell = spellGenerator.getRandomSpell(spellCasterClass, level);
         assertEquals("Dispel Evil", spell);
     }

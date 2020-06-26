@@ -2,6 +2,8 @@ TODO
 - split out the special item handling of each type to separate classes
 - fix maven jar packaging to make it execute - DONE
 - fix treasure tables to read from data file not be hardcoded
-- build a single jar file with a reasonable name
-- cleanup use of Dice -use single instance
-- get rid of static methods
+- build a macos app
+- cleanup use of Dice -use single instance - DONE
+- get rid of static methods - DONE
+- handle misc items - need a better way of handling these items
+- split off to AD&D1 to allow for other treasure tables

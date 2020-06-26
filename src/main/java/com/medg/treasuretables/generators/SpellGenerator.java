@@ -11,7 +11,7 @@ public class SpellGenerator {
     private Dice dice;
     private MagicTreasureDB magicTreasureDB;
 
-    SpellGenerator(Dice dice, MagicTreasureDB magicTreasureDB) {
+    SpellGenerator(MagicTreasureDB magicTreasureDB, Dice dice) {
         this.dice = dice;
         this.magicTreasureDB = magicTreasureDB;
     }

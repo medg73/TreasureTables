@@ -1,6 +1,8 @@
 package com.medg.treasuretables.generators;
 
+import com.medg.treasuretables.Dice;
 import com.medg.treasuretables.ItemEntry;
+import com.medg.treasuretables.data.MagicTreasureDB;
 
 import java.util.List;
 
