@@ -17,6 +17,7 @@ public class MagicItemGenerator {
     private ScrollGenerator scrollGenerator;
     private SpellGenerator spellGenerator;
     private RingGenerator ringGenerator;
+    private RSWGenerator rswGenerator;
 
 
     public MagicItemGenerator(MagicTreasureDB magicTreasureDB, Dice dice) {
@@ -26,6 +27,8 @@ public class MagicItemGenerator {
         spellGenerator = new SpellGenerator(dice, magicTreasureDB);
         scrollGenerator = new ScrollGenerator(magicTreasureDB, dice, spellGenerator);
         ringGenerator = new RingGenerator(magicTreasureDB, dice, spellGenerator);
+        rswGenerator = new RSWGenerator(magicTreasureDB, dice, spellGenerator);
+
     }
 
     public String getMagicItemOfType(MagicTreasureType magicTreasureType) {
@@ -60,6 +63,8 @@ public class MagicItemGenerator {
                 break;
 
             case RSW:
+                rv = rswGenerator.getItemText();
+                break;
             case MISC1:
             case MISC2:
             case MISC3:
