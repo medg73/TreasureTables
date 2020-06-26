@@ -1,0 +1,12 @@
+Barkskin
+Charm Person or Mammal
+Create Water
+Cure Light Wounds
+Feign Death
+Fire Trap
+Heat Metal
+Locate Plants
+Obscurement
+Produce Flame
+Trip
+Warp Wood
