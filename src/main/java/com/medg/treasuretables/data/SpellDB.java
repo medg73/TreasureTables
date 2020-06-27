@@ -17,25 +17,25 @@ public class SpellDB {
     void initialize() {
         clericSpellsByLevel = new HashMap<>();
         for(int i = 1; i <= 7; i++) {
-            String filename = String.format("spells/clericSpells/level%d.txt", i);
+            String filename = String.format("add1/spells/clericSpells/level%d.txt", i);
             List<String> spells = loadDataFile(filename);
             clericSpellsByLevel.put(i, spells);
         }
         druidSpellsByLevel = new HashMap<>();
         for(int i = 1; i <= 7; i++) {
-            String filename = String.format("spells/druidSpells/level%d.txt", i);
+            String filename = String.format("add1/spells/druidSpells/level%d.txt", i);
             List<String> spells = loadDataFile(filename);
             druidSpellsByLevel.put(i, spells);
         }
         muSpellsByLevel = new HashMap<>();
         for(int i = 1; i <= 9; i++) {
-            String filename = String.format("spells/muSpells/level%d.txt", i);
+            String filename = String.format("add1/spells/muSpells/level%d.txt", i);
             List<String> spells = loadDataFile(filename);
             muSpellsByLevel.put(i, spells);
         }
         illusionistSpellsByLevel = new HashMap<>();
         for(int i = 1; i <= 7; i++) {
-            String filename = String.format("spells/illusionistSpells/level%d.txt", i);
+            String filename = String.format("add1/spells/illusionistSpells/level%d.txt", i);
             List<String> spells = loadDataFile(filename);
             illusionistSpellsByLevel.put(i, spells);
         }

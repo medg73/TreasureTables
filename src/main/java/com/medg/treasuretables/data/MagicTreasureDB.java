@@ -9,9 +9,6 @@ import com.medg.treasuretables.SpellCasterClass;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.nio.file.*;
 import java.util.*;
 
 /**
@@ -27,20 +24,20 @@ public class MagicTreasureDB {
 
 		magicTreasureTypeMap = new HashMap<>();
 
-		magicTreasureTypeMap.put(MagicTreasureType.POTION, loadDataFile("magicTreasureTables/potions.csv"));
-		magicTreasureTypeMap.put(MagicTreasureType.ARMOR, loadDataFile("magicTreasureTables/armorAndShield.csv"));
-		magicTreasureTypeMap.put(MagicTreasureType.MISC1, loadDataFile("magicTreasureTables/miscMagic1.csv"));
-		magicTreasureTypeMap.put(MagicTreasureType.MISC2, loadDataFile("magicTreasureTables/miscMagic2.csv"));
-		magicTreasureTypeMap.put(MagicTreasureType.MISC3, loadDataFile("magicTreasureTables/miscMagic3.csv"));
-		magicTreasureTypeMap.put(MagicTreasureType.MISC4, loadDataFile("magicTreasureTables/miscMagic4.csv"));
-		magicTreasureTypeMap.put(MagicTreasureType.MISC5, loadDataFile("magicTreasureTables/miscMagic5.csv"));
-		magicTreasureTypeMap.put(MagicTreasureType.MISC_WEAPON, loadDataFile("magicTreasureTables/miscWeapon.csv"));
-		magicTreasureTypeMap.put(MagicTreasureType.RING, loadDataFile("magicTreasureTables/rings.csv"));
-		magicTreasureTypeMap.put(MagicTreasureType.RSW, loadDataFile("magicTreasureTables/rsw.csv"));
-		magicTreasureTypeMap.put(MagicTreasureType.SCROLL, loadDataFile("magicTreasureTables/scrolls.csv"));
-		magicTreasureTypeMap.put(MagicTreasureType.SWORD, loadDataFile("magicTreasureTables/swords.csv"));
-		magicTreasureTypeMap.put(MagicTreasureType.ANY, loadDataFile("magicTreasureTables/magicItems.csv"));
-		magicTreasureTypeMap.put(MagicTreasureType.MAP, loadDataFile("magicTreasureTables/map.csv"));
+		magicTreasureTypeMap.put(MagicTreasureType.POTION, loadDataFile("add1/magicTreasureTables/potions.csv"));
+		magicTreasureTypeMap.put(MagicTreasureType.ARMOR, loadDataFile("add1/magicTreasureTables/armorAndShield.csv"));
+		magicTreasureTypeMap.put(MagicTreasureType.MISC1, loadDataFile("add1/magicTreasureTables/miscMagic1.csv"));
+		magicTreasureTypeMap.put(MagicTreasureType.MISC2, loadDataFile("add1/magicTreasureTables/miscMagic2.csv"));
+		magicTreasureTypeMap.put(MagicTreasureType.MISC3, loadDataFile("add1/magicTreasureTables/miscMagic3.csv"));
+		magicTreasureTypeMap.put(MagicTreasureType.MISC4, loadDataFile("add1/magicTreasureTables/miscMagic4.csv"));
+		magicTreasureTypeMap.put(MagicTreasureType.MISC5, loadDataFile("add1/magicTreasureTables/miscMagic5.csv"));
+		magicTreasureTypeMap.put(MagicTreasureType.MISC_WEAPON, loadDataFile("add1/magicTreasureTables/miscWeapon.csv"));
+		magicTreasureTypeMap.put(MagicTreasureType.RING, loadDataFile("add1/magicTreasureTables/rings.csv"));
+		magicTreasureTypeMap.put(MagicTreasureType.RSW, loadDataFile("add1/magicTreasureTables/rsw.csv"));
+		magicTreasureTypeMap.put(MagicTreasureType.SCROLL, loadDataFile("add1/magicTreasureTables/scrolls.csv"));
+		magicTreasureTypeMap.put(MagicTreasureType.SWORD, loadDataFile("add1/magicTreasureTables/swords.csv"));
+		magicTreasureTypeMap.put(MagicTreasureType.ANY, loadDataFile("add1/magicTreasureTables/magicItems.csv"));
+		magicTreasureTypeMap.put(MagicTreasureType.MAP, loadDataFile("add1/magicTreasureTables/map.csv"));
 
 		this.spellDB = new SpellDB();
 		this.spellDB.initialize();
