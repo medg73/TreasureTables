@@ -15,12 +15,14 @@ public class MagicItemGenerator {
     private RingGenerator ringGenerator;
     private RSWGenerator rswGenerator;
     private MiscGenerator miscGenerator;
+    private PotionColorGenerator potionColorGenerator;
 
 
     public MagicItemGenerator(MagicTreasureDB magicTreasureDB, Dice dice) {
         this.magicTreasureDB = magicTreasureDB;
         this.dice = dice;
-        potionGenerator = new PotionGenerator(magicTreasureDB, dice);
+        potionColorGenerator = new PotionColorGenerator(dice);
+        potionGenerator = new PotionGenerator(magicTreasureDB, dice, potionColorGenerator);
         spellGenerator = new SpellGenerator(magicTreasureDB, dice);
         scrollGenerator = new ScrollGenerator(magicTreasureDB, dice, spellGenerator);
         ringGenerator = new RingGenerator(magicTreasureDB, dice, spellGenerator);
@@ -116,6 +118,10 @@ public class MagicItemGenerator {
                 throw new RuntimeException("unknown magic item type " + magicTreasureType);
         }
         return rv;
+    }
+
+    public PotionGenerator getPotionGenerator() {
+        return potionGenerator;
     }
 
     private String getMagicArmorSize() {

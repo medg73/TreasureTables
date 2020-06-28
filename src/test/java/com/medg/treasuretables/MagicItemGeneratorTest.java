@@ -2,6 +2,7 @@ package com.medg.treasuretables;
 
 import com.medg.treasuretables.data.MagicTreasureDB;
 import com.medg.treasuretables.generators.MagicItemGenerator;
+import com.medg.treasuretables.generators.PotionColorGenerator;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -18,8 +19,11 @@ public class MagicItemGeneratorTest {
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
         when(magicTreasureDB.getMagicItemFromDB(anyInt(), eq(MagicTreasureType.POTION))).thenReturn(itemEntry);
         Dice dice = new Dice(new RandomNumberGenerator());
+        PotionColorGenerator potionColorGenerator = mock(PotionColorGenerator.class);
+        when(potionColorGenerator.getPotionColor()).thenReturn("cloudy yellow");
         MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice);
-        assertEquals("potion of healing", magicItemGenerator.getMagicItemOfType(MagicTreasureType.POTION));
+        magicItemGenerator.getPotionGenerator().setPotionColorGenerator(potionColorGenerator);
+        assertEquals("potion of healing (cloudy yellow)", magicItemGenerator.getMagicItemOfType(MagicTreasureType.POTION));
     }
 
     @Test
@@ -87,9 +91,11 @@ public class MagicItemGeneratorTest {
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
         when(magicTreasureDB.getMagicItemFromDB(firstRoll, MagicTreasureType.ANY)).thenReturn(anyEntry);
         when(magicTreasureDB.getMagicItemFromDB(secondRoll, MagicTreasureType.POTION)).thenReturn(potionEntry);
-
+        PotionColorGenerator potionColorGenerator = mock(PotionColorGenerator.class);
+        when(potionColorGenerator.getPotionColor()).thenReturn("cloudy yellow");
         MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice);
-        assertEquals("potion of healing", magicItemGenerator.getMagicItemOfType(MagicTreasureType.ANY));
+        magicItemGenerator.getPotionGenerator().setPotionColorGenerator(potionColorGenerator);
+        assertEquals("potion of healing (cloudy yellow)", magicItemGenerator.getMagicItemOfType(MagicTreasureType.ANY));
     }
 
     @Test
@@ -146,9 +152,11 @@ public class MagicItemGeneratorTest {
         when(magicTreasureDB.getMagicItemFromDB(firstRoll, MagicTreasureType.ANY)).thenReturn(swordEntry);
         when(magicTreasureDB.getMagicItemFromDB(secondRoll, MagicTreasureType.ANY)).thenReturn(potionEntry);
         when(magicTreasureDB.getMagicItemFromDB(thirdRoll, MagicTreasureType.POTION)).thenReturn(potionSubTableEntry);
-
+        PotionColorGenerator potionColorGenerator = mock(PotionColorGenerator.class);
+        when(potionColorGenerator.getPotionColor()).thenReturn("cloudy yellow");
         MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice);
-        assertEquals("potion of healing", magicItemGenerator.getMagicItemOfType(MagicTreasureType.ANY_NO_WEAPONS));
+        magicItemGenerator.getPotionGenerator().setPotionColorGenerator(potionColorGenerator);
+        assertEquals("potion of healing (cloudy yellow)", magicItemGenerator.getMagicItemOfType(MagicTreasureType.ANY_NO_WEAPONS));
 
     }
 
