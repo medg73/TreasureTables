@@ -1,0 +1,12 @@
+1,11,detect "elevator"/shifting rooms/walls in a 1" radius
+12,22,detect sloping passages in a 1" radius
+23,33,detect traps of large size in a 1" radius
+34,44,detect evil/good in a 1" radius
+45,55,detect precious metals kind and amount in a 2" radius
+56,66,detect gems kind and number in a 1/2" radius
+67,77,detect magic in a 1" radius
+78,82,detect secret doors in a 1/2" radius
+83,87,detect invisible objects in a 1" radius
+88,92,locate object in a 12" radius
+93,98,roll twice
+99,100,extraordinary

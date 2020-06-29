@@ -51,10 +51,11 @@ public class MagicItemGeneratorTest {
         ItemEntry itemEntry = new ItemEntry(1,100,"+1");
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
         when(magicTreasureDB.getMagicItemFromDB(anyInt(), eq(MagicTreasureType.SWORD))).thenReturn(itemEntry);
+        when(magicTreasureDB.getSwordIntelligence(anyInt())).thenReturn("none:none:none");
         Dice dice = mock(Dice.class);
         when(dice.rollPercent()).thenReturn(50).thenReturn(99);
         MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice);
-        assertEquals("longsword +1", magicItemGenerator.getMagicItemOfType(MagicTreasureType.SWORD));
+        assertEquals("longsword +1 (NSA)", magicItemGenerator.getMagicItemOfType(MagicTreasureType.SWORD));
     }
 
     @Test
@@ -131,9 +132,10 @@ public class MagicItemGeneratorTest {
         when(magicTreasureDB.getMagicItemFromDB(firstRoll, MagicTreasureType.ANY)).thenReturn(miscEntry);
         when(magicTreasureDB.getMagicItemFromDB(secondRoll, MagicTreasureType.ANY)).thenReturn(swordEntry);
         when(magicTreasureDB.getMagicItemFromDB(thirdRoll, MagicTreasureType.SWORD)).thenReturn(swordTableEntry);
+        when(magicTreasureDB.getSwordIntelligence(anyInt())).thenReturn("none:none:none");
 
         MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice);
-        assertEquals("bastard sword +1", magicItemGenerator.getMagicItemOfType(MagicTreasureType.SWORD_ARMOR_OR_MISC_WEAPON));
+        assertEquals("bastard sword +1 (NSA)", magicItemGenerator.getMagicItemOfType(MagicTreasureType.SWORD_ARMOR_OR_MISC_WEAPON));
     }
 
     @Test

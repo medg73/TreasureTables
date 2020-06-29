@@ -16,6 +16,7 @@ public class MagicItemGenerator {
     private RSWGenerator rswGenerator;
     private MiscGenerator miscGenerator;
     private PotionColorGenerator potionColorGenerator;
+    private SwordGenerator swordGenerator;
 
 
     public MagicItemGenerator(MagicTreasureDB magicTreasureDB, Dice dice) {
@@ -28,6 +29,7 @@ public class MagicItemGenerator {
         ringGenerator = new RingGenerator(magicTreasureDB, dice, spellGenerator);
         rswGenerator = new RSWGenerator(magicTreasureDB, dice, spellGenerator);
         miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator);
+        swordGenerator = new SwordGenerator(magicTreasureDB, dice);
 
     }
 
@@ -57,9 +59,7 @@ public class MagicItemGenerator {
                 }
                 break;
             case SWORD:
-                String swordType = getMagicSwordType();
-                String swordBonus = magicTreasureDB.getMagicItemFromDB(dice.rollPercent(), magicTreasureType).description;
-                rv = swordType + " " + swordBonus;
+                rv = swordGenerator.getMagicSword();
                 break;
 
             case RSW:
@@ -133,18 +133,5 @@ public class MagicItemGenerator {
         } else if(roll <= 95) {
             return "dwarf-sized";
         } else return "gnome or halfling sized";
-    }
-
-    private String getMagicSwordType() {
-        int roll = dice.rollPercent();
-        if(roll <= 70) {
-            return "longsword";
-        } else if(roll <= 90) {
-            return "broadsword";
-        } else if(roll <= 95) {
-            return "shortsword";
-        } else if(roll <= 99) {
-            return "bastard sword";
-        } else return "two-handed sword";
     }
 }

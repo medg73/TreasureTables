@@ -40,6 +40,44 @@ public class MiscGenerator extends Generator {
         } else if(text.equalsIgnoreCase("bag of tricks")) {
             rv = text + " " + getBagOfTricksType();
         }
+        // beaker of plentiful potions *
+        // bracers of defense *
+        // bucknard's everful purse *
+        // candle of invocation *
+        // carpet of flying *
+        // chime of opening (charges)
+        // cloak of displacement (size) *
+        // cloak of elvenkind (size) *
+        // cloak of protection *
+        // crystal ball *
+        // deck of many things (size) *
+        // efreeti bottle *
+        // eyes of petrification
+        // figurines of wondrous power
+        // girdle of feminitiy/masculinity
+        // girdle of giant strength
+        // horn of valhalla
+        // incense of meditation
+        // incense of obsession
+        // ioun stones
+        // instrument of the bards
+        // iron flask
+        // javelin of lightning
+        // javelin of piercing
+        // keoghtom's ointment
+        // manual of golems
+        // ESP medallion
+        // mirror of life trapping
+        // necklace of missiles
+        // necklace of prayer beads
+        // pearl of power
+        // pearl of wisdom
+        // periapt of proof against poison
+        // pipes of the sewers
+        // quaal's feather token
+        // robe of the archmagi
+        // robe of useful items
+
 
         return rv;
     }
