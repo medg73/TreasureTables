@@ -14,16 +14,21 @@ public class TreasureTypeContainer {
     private Map<String, TreasureType> treasureTypes;
     private Dice dice;
     private TreasureTableLoader treasureTableLoader;
+    private MagicItemGenerator magicItemGenerator;
 
     public TreasureTypeContainer(MagicItemGenerator magicItemGenerator, Dice dice, TreasureTableLoader treasureTableLoader) {
         this.dice = dice;
         this.treasureTableLoader = treasureTableLoader;
         this.treasureTypes = loadTreasureTypes(magicItemGenerator);
-
+        this.magicItemGenerator = magicItemGenerator;
     }
 
     public String generateTreasure(String treasureType) {
         return treasureTypes.get(treasureType).genTreasure();
+    }
+
+    public String generateMagicItem(MagicTreasureType magicTreasureType) {
+        return magicItemGenerator.getMagicItemOfType(magicTreasureType);
     }
 
     public Set<String> getAllTreasureTypeNames() {
