@@ -13,16 +13,16 @@ public class MiscGenerator extends Generator {
     private Dice dice;
     private SpellGenerator spellGenerator;
 
-    private List<ItemEntry> bagOfHoldingCapacity = Arrays.asList(
-            new ItemEntry(1,30,"250#"),
-            new ItemEntry(31, 70, "500#"),
-            new ItemEntry(71, 90, "1000#"),
-            new ItemEntry(91, 100, "1500#"));
-
-    private List<ItemEntry> bagOfTricksTypes = Arrays.asList(
-            new ItemEntry(1,5,"type 1"),
-            new ItemEntry(6, 8, "type 2"),
-            new ItemEntry(9, 10, "type 3"));
+//    private List<ItemEntry> bagOfHoldingCapacity = Arrays.asList(
+//            new ItemEntry(1,30,"250#"),
+//            new ItemEntry(31, 70, "500#"),
+//            new ItemEntry(71, 90, "1000#"),
+//            new ItemEntry(91, 100, "1500#"));
+//
+//    private List<ItemEntry> bagOfTricksTypes = Arrays.asList(
+//            new ItemEntry(1,5,"type 1"),
+//            new ItemEntry(6, 8, "type 2"),
+//            new ItemEntry(9, 10, "type 3"));
 
     MiscGenerator(MagicTreasureDB magicTreasureDB, Dice dice, SpellGenerator spellGenerator) {
         this.magicTreasureDB = magicTreasureDB;
@@ -83,11 +83,11 @@ public class MiscGenerator extends Generator {
     }
 
     private String getBagOfTricksType() {
-        return getSubtypeText(dice.rollD10(), bagOfTricksTypes);
+        return magicTreasureDB.getBagOfTricksType(dice.rollD10());
     }
 
     private String getBagOfHoldingCapacity() {
-        return getSubtypeText(dice.rollPercent(), bagOfHoldingCapacity);
+        return magicTreasureDB.getBagOfHoldingCapacity(dice.rollPercent());
     }
 
 

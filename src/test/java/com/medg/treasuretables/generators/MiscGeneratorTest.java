@@ -24,6 +24,7 @@ public class MiscGeneratorTest {
             int roll = bagTypeRolls.get(i);
             Dice dice = mock(Dice.class);
             MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+            when(magicTreasureDB.getBagOfHoldingCapacity(roll)).thenReturn(bagTypes.get(i));
             SpellGenerator spellGenerator = mock(SpellGenerator.class);
             when(dice.rollPercent()).thenReturn(roll);
             String expectedText = "Bag of Holding " + bagTypes.get(i) + " capacity";
@@ -41,6 +42,7 @@ public class MiscGeneratorTest {
             int roll = bagTypeRolls.get(i);
             Dice dice = mock(Dice.class);
             MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+            when(magicTreasureDB.getBagOfTricksType(roll)).thenReturn(bagTypes.get(i));
             SpellGenerator spellGenerator = mock(SpellGenerator.class);
             when(dice.rollD10()).thenReturn(roll);
             String expectedText = "Bag of Tricks " + bagTypes.get(i);

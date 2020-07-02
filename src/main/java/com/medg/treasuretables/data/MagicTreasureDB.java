@@ -4,6 +4,7 @@
 package com.medg.treasuretables.data;
 
 import com.medg.treasuretables.ItemEntry;
+import com.medg.treasuretables.MagicSwordAttributes;
 import com.medg.treasuretables.MagicTreasureType;
 import com.medg.treasuretables.SpellCasterClass;
 
@@ -20,6 +21,8 @@ public class MagicTreasureDB {
 	private Map<MagicTreasureType, List<ItemEntry>> magicTreasureTypeMap;
 	private SpellDB spellDB;
 
+	private Map<MagicSwordAttributes, List<ItemEntry>> magicSwordAttributes;
+
 	private List<ItemEntry> swordAlignment;
 	private List<ItemEntry> swordExtraordinary;
 	private List<ItemEntry> swordIntelligence;
@@ -27,6 +30,9 @@ public class MagicTreasureDB {
 	private List<ItemEntry> swordPrimary;
 	private List<ItemEntry> swordSpecialPurpose;
 	private List<ItemEntry> swordSpecialPurposePower;
+
+	private List<ItemEntry> bagOfHoldingCapacity;
+	private List<ItemEntry> bagOfTricksTypes;
 
 	public void initialize() {
 
@@ -50,15 +56,23 @@ public class MagicTreasureDB {
 		this.spellDB = new SpellDB();
 		this.spellDB.initialize();
 
-		swordAlignment = loadDataFile("add1/magicTreasureTables/swords/swordAlignment.csv");
-		swordExtraordinary = loadDataFile("add1/magicTreasureTables/swords/swordExtraordinary.csv");
-		swordIntelligence = loadDataFile("add1/magicTreasureTables/swords/swordIntelligence.csv");
-		swordLanguages = loadDataFile("add1/magicTreasureTables/swords/swordLanguages.csv");
-		swordPrimary = loadDataFile("add1/magicTreasureTables/swords/swordPrimary.csv");
-		swordSpecialPurpose = loadDataFile("add1/magicTreasureTables/swords/swordSpecialPurpose.csv");
-		swordSpecialPurposePower = loadDataFile("add1/magicTreasureTables/swords/swordSpecialPurposePower.csv");
+		magicSwordAttributes = new HashMap<>();
+		for(MagicSwordAttributes attribute : MagicSwordAttributes.values()) {
+			magicSwordAttributes.put(attribute, loadDataFile(attribute.getDatafile()));
+		}
+
+		bagOfHoldingCapacity = loadDataFile("add1/magicTreasureTables/miscItems/bagOfHoldingCapacity.csv");
+		bagOfTricksTypes = loadDataFile("add1/magicTreasureTables/miscItems/bagOfTricksTypes.csv");
+
 	}
 
+	public String getBagOfHoldingCapacity(int roll) {
+		return getDescription(roll, bagOfHoldingCapacity, "bag of holding capacity");
+	}
+
+	public String getBagOfTricksType(int roll) {
+		return getDescription(roll, bagOfTricksTypes, "bag of tricks type");
+	}
 
 	public ItemEntry getMagicItemFromDB(int roll, MagicTreasureType magicTreasureType) {
 		List<ItemEntry> magicItemList = magicTreasureTypeMap.get(magicTreasureType);
@@ -77,7 +91,35 @@ public class MagicTreasureDB {
 	}
 
 	public String getSwordAlignment(int roll) {
-		return getDescription(roll, swordAlignment, "sword alignment");
+		return getMagicSwordAttribute(roll, MagicSwordAttributes.ALIGNMENT);
+	}
+
+	public String getSwordExtraordinary(int roll) {
+		return getMagicSwordAttribute(roll, MagicSwordAttributes.EXTRAORDINARY);
+	}
+
+	public String getSwordIntelligence(int roll) {
+		return getMagicSwordAttribute(roll, MagicSwordAttributes.INTELLIGENCE);
+	}
+
+	public String getSwordLanguages(int roll) {
+		return getMagicSwordAttribute(roll, MagicSwordAttributes.LANGUAGES);
+	}
+
+	public String getSwordPrimary(int roll) {
+		return getMagicSwordAttribute(roll, MagicSwordAttributes.PRIMARY);
+	}
+
+	public String getSwordSpecialPurpose(int roll) {
+		return getMagicSwordAttribute(roll, MagicSwordAttributes.SPECIAL_PURPOSE);
+	}
+
+	public String getSwordSpecialPurposePower(int roll) {
+		return getMagicSwordAttribute(roll, MagicSwordAttributes.SPECIAL_PURPOSE_POWER);
+	}
+
+	private String getMagicSwordAttribute(int roll, MagicSwordAttributes attribute) {
+		return getDescription(roll, magicSwordAttributes.get(attribute), attribute.getName());
 	}
 
 	private String getDescription(int roll, List<ItemEntry> itemEntries, String name) {
@@ -87,30 +129,6 @@ public class MagicTreasureDB {
 			}
 		}
 		throw new RuntimeException("Can't get " + name + " for roll " + roll);
-	}
-
-	public String getSwordExtraordinary(int roll) {
-		return getDescription(roll, swordExtraordinary, "sword extraordinary");
-	}
-
-	public String getSwordIntelligence(int roll) {
-		return getDescription(roll, swordIntelligence, "sword intelligence");
-	}
-
-	public String getSwordLanguages(int roll) {
-		return getDescription(roll, swordLanguages, "sword language");
-	}
-
-	public String getSwordPrimary(int roll) {
-		return getDescription(roll, swordPrimary, "sword primary");
-	}
-
-	public String getSwordSpecialPurpose(int roll) {
-		return getDescription(roll, swordSpecialPurpose, "sword special purpose");
-	}
-
-	public String getSwordSpecialPurposePower(int roll) {
-		return getDescription(roll, swordSpecialPurposePower, "sword special purpose power");
 	}
 
 	private List<ItemEntry> loadDataFile(String filename) {
