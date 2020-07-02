@@ -22,7 +22,6 @@ public class MiscGenerator extends Generator {
     public String getMiscItemText(String text) {
         String rv = text;
 
-
         if(text.equalsIgnoreCase("bag of holding")) {
             String capacity = rollOnMiscItemTable(MiscItemTable.BAG_OF_HOLDING_CAPACITY);
             rv = text + " " + capacity + " capacity";
@@ -36,22 +35,49 @@ public class MiscGenerator extends Generator {
             rv = text + " containing " + rollOnMiscItemTable(MiscItemTable.BUCKNARDS_EVERFUL_PURSE_TYPE);
         } else if(text.equalsIgnoreCase("candle of invocation (C)")) {
             rv = text + " alignment " + getRandomAlignment();
+        } else if(text.equalsIgnoreCase("carpet of flying")) {
+            rv = text + " " + rollOnMiscItemTable(MiscItemTable.CARPET_OF_FLYING_SIZE);
+        } else if(text.equalsIgnoreCase("chime of opening")) {
+            int charges = 20 + dice.roll1D6() * 10;
+            rv = text + " " + charges + " charges";
+        } else if(text.equalsIgnoreCase("cloak of displacement")) {
+            String sizeStr = getCloakSize();
+            rv = text + " " + sizeStr;
+        } else if(text.equalsIgnoreCase("cloak of elvenkind")) {
+            int sizing = dice.rollD10();
+            String sizeStr = "human or elvenkind size";
+            if(sizing == 9) {
+                sizeStr = "dwarf, gnome, or halfling size";
+            }
+            rv = text + " " + sizeStr;
+        } else if(text.equalsIgnoreCase("cloak of protection")) {
+            String sizeStr = getCloakSize();
+            String protectionValue = rollOnMiscItemTable(MiscItemTable.CLOAK_OF_PROTECTION_VALUE);
+            rv = text + " " + protectionValue + " " + sizeStr;
+        } else if(text.equalsIgnoreCase("deck of many things")) {
+            String sizeStr = "13 cards";
+            int sizing = dice.roll1D4();
+            if(sizing == 4) {
+                sizeStr = "22 cards";
+            }
+            rv = text + " " + sizeStr;
+        } else if(text.equalsIgnoreCase("figurine of wondrous power")) {
+            String figurineType = rollOnMiscItemTable(MiscItemTable.FIGURINE_OF_WONDROUS_POWER_TYPE);
+            if(figurineType.equalsIgnoreCase("marble elephant")) {
+                String elephantType = rollOnMiscItemTable(MiscItemTable.MARBLE_ELEPHANT_TYPE);
+                figurineType = figurineType + " " + elephantType;
+            }
+            rv = text + ": " + figurineType;
+        } else if(text.equalsIgnoreCase("girdle of giant strength")) {
+            rv = "girdle of " + rollOnMiscItemTable(MiscItemTable.GIRDLE_OF_GIANT_STRENGTH_TYPE) + " giant strength";
+        } else if(text.equalsIgnoreCase("horn of valhalla")) {
+            rv = text + ": " + rollOnMiscItemTable(MiscItemTable.HORN_OF_VALHALLA_TYPE);
+        } else if(text.equalsIgnoreCase("incense of meditation") ||
+                  text.equalsIgnoreCase("incense of obsession")) {
+            int numPieces = dice.roll1D4() + dice.roll1D4();
+            rv = text + " " + numPieces + " pieces";
         }
-        // carpet of flying *
-        // chime of opening (charges)
-        // cloak of displacement (size) *
-        // cloak of elvenkind (size) *
-        // cloak of protection *
-        // crystal ball *
-        // deck of many things (size) *
-        // efreeti bottle *
-        // eyes of petrification
-        // figurines of wondrous power
-        // girdle of feminitiy/masculinity
-        // girdle of giant strength
-        // horn of valhalla
-        // incense of meditation
-        // incense of obsession
+
         // ioun stones
         // instrument of the bards
         // iron flask
@@ -73,6 +99,15 @@ public class MiscGenerator extends Generator {
 
 
         return rv;
+    }
+
+    private String getCloakSize() {
+        int sizing = dice.roll1D4();
+        String sizeStr = "human or elvenkind size";
+        if(sizing == 4) {
+            sizeStr = "dwarf, gnome, or halfling size";
+        }
+        return sizeStr;
     }
 
     private String getRandomAlignment() {

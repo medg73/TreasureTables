@@ -81,4 +81,34 @@ public class MiscGeneratorTest {
         assertEquals("candle of invocation (C) alignment CE", miscGenerator.getMiscItemText("candle of invocation (C)"));
     }
 
+    @Test
+    public void testGetMiscItemCloakOfProtection() {
+        PotionGenerator potionGenerator = mock(PotionGenerator.class);
+        Dice dice = mock(Dice.class);
+        SpellGenerator spellGenerator = mock(SpellGenerator.class);
+        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        when(dice.roll1D4()).thenReturn(4);
+        when(dice.getAmount("1d100", 1)).thenReturn(50);
+        when(magicTreasureDB.getMiscItemTableEntry(50, MiscItemTable.CLOAK_OF_PROTECTION_VALUE)).thenReturn("+2");
+
+        assertEquals("cloak of protection +2 dwarf, gnome, or halfling size", miscGenerator.getMiscItemText("cloak of protection"));
+
+    }
+
+    @Test
+    public void testGetMiscItemIncenseOfMeditation() {
+        PotionGenerator potionGenerator = mock(PotionGenerator.class);
+        Dice dice = mock(Dice.class);
+        SpellGenerator spellGenerator = mock(SpellGenerator.class);
+        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        when(dice.roll1D4()).thenReturn(4).thenReturn(2);
+
+        assertEquals("incense of meditation 6 pieces", miscGenerator.getMiscItemText("incense of meditation"));
+
+    }
+
 }

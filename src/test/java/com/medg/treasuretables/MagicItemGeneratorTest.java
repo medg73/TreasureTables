@@ -107,13 +107,13 @@ public class MagicItemGeneratorTest {
         when(dice.rollPercent()).thenReturn(firstRoll).thenReturn(secondRoll);
 
         ItemEntry anyEntry = new ItemEntry(1,100,"MISC2");
-        ItemEntry miscEntry = new ItemEntry(1,100,"cloak of protection");
+        ItemEntry miscEntry = new ItemEntry(1,100,"misc item");
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
         when(magicTreasureDB.getMagicItemFromDB(firstRoll, MagicTreasureType.ANY)).thenReturn(anyEntry);
         when(magicTreasureDB.getMagicItemFromDB(secondRoll, MagicTreasureType.MISC2)).thenReturn(miscEntry);
 
         MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice);
-        assertEquals("cloak of protection", magicItemGenerator.getMagicItemOfType(MagicTreasureType.MISC));
+        assertEquals("misc item", magicItemGenerator.getMagicItemOfType(MagicTreasureType.MISC));
     }
 
     @Test
