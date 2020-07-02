@@ -4,6 +4,14 @@ import com.medg.treasuretables.Alignment;
 import com.medg.treasuretables.Dice;
 import com.medg.treasuretables.MiscItemTable;
 import com.medg.treasuretables.data.MagicTreasureDB;
+import com.medg.treasuretables.generators.miscItems.BagOfHolding;
+import com.medg.treasuretables.generators.miscItems.IounStones;
+import com.medg.treasuretables.generators.miscItems.MiscItem;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MiscGenerator extends Generator {
 
@@ -12,20 +20,35 @@ public class MiscGenerator extends Generator {
     private SpellGenerator spellGenerator;
     private PotionGenerator potionGenerator;
 
+    private List<MiscItem> miscItems;
+
     MiscGenerator(MagicTreasureDB magicTreasureDB, Dice dice, SpellGenerator spellGenerator, PotionGenerator potionGenerator) {
         this.magicTreasureDB = magicTreasureDB;
         this.dice = dice;
         this.spellGenerator = spellGenerator;
         this.potionGenerator = potionGenerator;
+
+        miscItems = new ArrayList<>();
+        miscItems.add(new BagOfHolding(dice, magicTreasureDB));
+        miscItems.add(new IounStones(dice, magicTreasureDB));
     }
 
     public String getMiscItemText(String text) {
         String rv = text;
 
-        if(text.equalsIgnoreCase("bag of holding")) {
-            String capacity = rollOnMiscItemTable(MiscItemTable.BAG_OF_HOLDING_CAPACITY);
-            rv = text + " " + capacity + " capacity";
-        } else if(text.equalsIgnoreCase("bag of tricks")) {
+        for(MiscItem miscItem : miscItems) {
+            if(text.equalsIgnoreCase(miscItem.getItemText())) {
+                rv = miscItem.getItemDetails();
+                return rv;
+            }
+        }
+
+
+//        if(text.equalsIgnoreCase("bag of holding")) {
+//            rv = miscItems.get("bag of holding").getItemDetails();
+//            String capacity = rollOnMiscItemTable(MiscItemTable.BAG_OF_HOLDING_CAPACITY);
+//            rv = text + " " + capacity + " capacity";
+        if(text.equalsIgnoreCase("bag of tricks")) {
             rv = text + " " + rollOnMiscItemTable(MiscItemTable.BAG_OF_TRICKS_TYPE);
         } else if(text.equalsIgnoreCase("beaker of plentiful potions")) {
             rv = text + ": " + getBeakerOfMiscPotionsPotions();

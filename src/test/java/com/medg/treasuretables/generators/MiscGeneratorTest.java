@@ -111,4 +111,22 @@ public class MiscGeneratorTest {
 
     }
 
+    @Test
+    public void testGetMiscItemIounStones() {
+        PotionGenerator potionGenerator = mock(PotionGenerator.class);
+        Dice dice = mock(Dice.class);
+        SpellGenerator spellGenerator = mock(SpellGenerator.class);
+        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        when(dice.rollD10()).thenReturn(4);
+        when(dice.getAmount("1d20", 1)).thenReturn(1).thenReturn(2).thenReturn(1).thenReturn(20);
+        when(magicTreasureDB.getMiscItemTableEntry(1, MiscItemTable.IOUN_STONES_TYPE)).thenReturn("pale blue rhomboid");
+        when(magicTreasureDB.getMiscItemTableEntry(2, MiscItemTable.IOUN_STONES_TYPE)).thenReturn("scarlet and blue sphere");
+        when(magicTreasureDB.getMiscItemTableEntry(20, MiscItemTable.IOUN_STONES_TYPE)).thenReturn("dull gray ellipsoid");
+
+        assertEquals("4 IOUN Stones: pale blue rhomboid, scarlet and blue sphere, dull gray ellipsoid, dull gray ellipsoid", miscGenerator.getMiscItemText("Ioun Stones"));
+
+    }
+
 }

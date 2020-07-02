@@ -12,7 +12,8 @@ public enum MiscItemTable {
     FIGURINE_OF_WONDROUS_POWER_TYPE("figurine of wondrous power type", "figurineOfWondrousPowerType.csv", "1d100"),
     MARBLE_ELEPHANT_TYPE("marble elephant type", "marbleElephantType.csv", "1d100"),
     GIRDLE_OF_GIANT_STRENGTH_TYPE("girdle of giant strength type", "girdleOfGiantStrengthType.csv", "1d100"),
-    HORN_OF_VALHALLA_TYPE("horn of valhalla type", "hornOfValhallaType.csv", "1d20");
+    HORN_OF_VALHALLA_TYPE("horn of valhalla type", "hornOfValhallaType.csv", "1d20"),
+    IOUN_STONES_TYPE("ioun stones type", "iounStonesType.csv", "1d20");
 
 
     String filepath = "add1/magicTreasureTables/miscItems/";
