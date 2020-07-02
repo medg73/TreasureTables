@@ -4,9 +4,7 @@ import com.medg.treasuretables.Alignment;
 import com.medg.treasuretables.Dice;
 import com.medg.treasuretables.MiscItemTable;
 import com.medg.treasuretables.data.MagicTreasureDB;
-import com.medg.treasuretables.generators.miscItems.BagOfHolding;
-import com.medg.treasuretables.generators.miscItems.IounStones;
-import com.medg.treasuretables.generators.miscItems.MiscItem;
+import com.medg.treasuretables.generators.miscItems.*;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +29,13 @@ public class MiscGenerator extends Generator {
         miscItems = new ArrayList<>();
         miscItems.add(new BagOfHolding(dice, magicTreasureDB));
         miscItems.add(new IounStones(dice, magicTreasureDB));
+        miscItems.add(new InstrumentOfTheBards(dice, magicTreasureDB));
+        miscItems.add(new IronFlask(dice, magicTreasureDB));
+        miscItems.add(new ManualOfGolems(dice, magicTreasureDB));
+        miscItems.add(new MedallionOfESP(dice, magicTreasureDB));
+        miscItems.add(new NecklaceOfMissiles(dice, magicTreasureDB));
+        miscItems.add(new NecklaceOfPrayerBeads(dice, magicTreasureDB));
+        miscItems.add(new PearlOfPower(dice, magicTreasureDB));
     }
 
     public String getMiscItemText(String text) {
@@ -43,11 +48,6 @@ public class MiscGenerator extends Generator {
             }
         }
 
-
-//        if(text.equalsIgnoreCase("bag of holding")) {
-//            rv = miscItems.get("bag of holding").getItemDetails();
-//            String capacity = rollOnMiscItemTable(MiscItemTable.BAG_OF_HOLDING_CAPACITY);
-//            rv = text + " " + capacity + " capacity";
         if(text.equalsIgnoreCase("bag of tricks")) {
             rv = text + " " + rollOnMiscItemTable(MiscItemTable.BAG_OF_TRICKS_TYPE);
         } else if(text.equalsIgnoreCase("beaker of plentiful potions")) {
@@ -91,27 +91,31 @@ public class MiscGenerator extends Generator {
                 figurineType = figurineType + " " + elephantType;
             }
             rv = text + ": " + figurineType;
-        } else if(text.equalsIgnoreCase("girdle of giant strength")) {
+        } else if(text.equalsIgnoreCase("girdle of giant strength (CFT)")) {
             rv = "girdle of " + rollOnMiscItemTable(MiscItemTable.GIRDLE_OF_GIANT_STRENGTH_TYPE) + " giant strength";
         } else if(text.equalsIgnoreCase("horn of valhalla")) {
             rv = text + ": " + rollOnMiscItemTable(MiscItemTable.HORN_OF_VALHALLA_TYPE);
-        } else if(text.equalsIgnoreCase("incense of meditation") ||
-                  text.equalsIgnoreCase("incense of obsession")) {
+        } else if(text.equalsIgnoreCase("incense of meditation (C)") ||
+                  text.equalsIgnoreCase("incense of obsession (C)")) {
             int numPieces = dice.roll1D4() + dice.roll1D4();
             rv = text + " " + numPieces + " pieces";
+        } else if(text.equalsIgnoreCase("javelin of lightning (F)")) {
+            int numJavelins = dice.roll1D4() + 1;
+            rv = numJavelins + " javelins of lightning";
+        } else if(text.equalsIgnoreCase("javelin of piercing (F)")) {
+            int numJavelins = dice.roll1D4() + dice.roll1D4();
+            rv = numJavelins + " javelins of piercing";
+        } else if(text.equalsIgnoreCase("keoghtom's ointment")) {
+            int numJars = dice.getAmount("1d3", 1);
+            rv = text + " " + numJars + " jars";
+        } else if(text.equalsIgnoreCase("mirror of life trapping")) {
+            int numCompartments = dice.roll1D6() + 12;
+            rv = text + " " + numCompartments + " compartments";
+        } else if(text.equalsIgnoreCase("nolzur's marvelous pigments")) {
+            int numPigments = dice.roll1D4();
+            rv = text + " " + numPigments + " pots";
         }
 
-        // ioun stones
-        // instrument of the bards
-        // iron flask
-        // javelin of lightning
-        // javelin of piercing
-        // keoghtom's ointment
-        // manual of golems
-        // ESP medallion
-        // mirror of life trapping
-        // necklace of missiles
-        // necklace of prayer beads
         // pearl of power
         // pearl of wisdom
         // periapt of proof against poison

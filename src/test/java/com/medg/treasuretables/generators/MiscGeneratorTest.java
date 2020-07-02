@@ -129,4 +129,40 @@ public class MiscGeneratorTest {
 
     }
 
+    @Test
+    public void testGetMiscItemNecklaceOfPrayerBeads() {
+        PotionGenerator potionGenerator = mock(PotionGenerator.class);
+        Dice dice = mock(Dice.class);
+        SpellGenerator spellGenerator = mock(SpellGenerator.class);
+        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        when(dice.roll1D4()).thenReturn(1);
+        when(dice.getAmount("1d20", 1)).thenReturn(1).thenReturn(6).thenReturn(1);
+        when(magicTreasureDB.getMiscItemTableEntry(1, MiscItemTable.NECKLACE_OF_PRAYER_BEADS_TYPE)).thenReturn("bead 1");
+        when(magicTreasureDB.getMiscItemTableEntry(6, MiscItemTable.NECKLACE_OF_PRAYER_BEADS_TYPE)).thenReturn("bead 2");
+
+        assertEquals("Necklace of Prayer Beads (C) with beads of: bead 1, bead 2, bead 1",
+                miscGenerator.getMiscItemText("necklace of prayer beads (C)"));
+
+    }
+
+    @Test
+    public void testGetMiscItemPearlOfPower() {
+        PotionGenerator potionGenerator = mock(PotionGenerator.class);
+        Dice dice = mock(Dice.class);
+        SpellGenerator spellGenerator = mock(SpellGenerator.class);
+        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        when(dice.rollD20()).thenReturn(1);
+        when(dice.getAmount("1d100", 1)).thenReturn(100);
+        when(dice.roll1D6()).thenReturn(3).thenReturn(6);
+        when(magicTreasureDB.getMiscItemTableEntry(100, MiscItemTable.PEARL_OF_POWER_LEVEL)).thenReturn("2x");
+
+        assertEquals("Pearl of Power (M) level 3 and level 6",
+                miscGenerator.getMiscItemText("Pearl of Power (M)"));
+
+    }
+
 }

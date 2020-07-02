@@ -13,7 +13,14 @@ public enum MiscItemTable {
     MARBLE_ELEPHANT_TYPE("marble elephant type", "marbleElephantType.csv", "1d100"),
     GIRDLE_OF_GIANT_STRENGTH_TYPE("girdle of giant strength type", "girdleOfGiantStrengthType.csv", "1d100"),
     HORN_OF_VALHALLA_TYPE("horn of valhalla type", "hornOfValhallaType.csv", "1d20"),
-    IOUN_STONES_TYPE("ioun stones type", "iounStonesType.csv", "1d20");
+    IOUN_STONES_TYPE("ioun stones type", "iounStonesType.csv", "1d20"),
+    INSTRUMENT_OF_THE_BARDS_TYPE("instrument of the bards type", "instrumentOfTheBardsType.csv", "1d20"),
+    IRON_FLASK_TYPE("iron flask type", "ironFlaskType.csv", "1d100"),
+    MANUAL_OF_GOLEMS_TYPE("manual of golems type", "manualOfGolemsType.csv", "1d20"),
+    MEDALLION_OF_ESP_TYPE("medallion of ESP type", "medallionOfESPType.csv", "1d20"),
+    NECKLACE_OF_MISSILES_TYPE("necklace of missiles type", "necklaceOfMissilesType.csv", "1d20"),
+    NECKLACE_OF_PRAYER_BEADS_TYPE("necklace of prayer beads type", "necklaceOfPrayerBeadsType.csv", "1d20"),
+    PEARL_OF_POWER_LEVEL("pearl of power level", "pearlOfPowerLevel.csv", "1d100");
 
 
     String filepath = "add1/magicTreasureTables/miscItems/";
