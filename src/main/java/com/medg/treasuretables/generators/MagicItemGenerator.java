@@ -28,7 +28,7 @@ public class MagicItemGenerator {
         scrollGenerator = new ScrollGenerator(magicTreasureDB, dice, spellGenerator);
         ringGenerator = new RingGenerator(magicTreasureDB, dice, spellGenerator);
         rswGenerator = new RSWGenerator(magicTreasureDB, dice, spellGenerator);
-        miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator);
+        miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
         swordGenerator = new SwordGenerator(magicTreasureDB, dice);
 
     }

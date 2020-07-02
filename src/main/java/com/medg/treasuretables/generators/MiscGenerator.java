@@ -1,35 +1,22 @@
 package com.medg.treasuretables.generators;
 
+import com.medg.treasuretables.Alignment;
 import com.medg.treasuretables.Dice;
-import com.medg.treasuretables.ItemEntry;
-import com.medg.treasuretables.MagicTreasureType;
 import com.medg.treasuretables.MiscItemTable;
 import com.medg.treasuretables.data.MagicTreasureDB;
-
-import java.util.Arrays;
-import java.util.List;
 
 public class MiscGenerator extends Generator {
 
     private MagicTreasureDB magicTreasureDB;
     private Dice dice;
     private SpellGenerator spellGenerator;
+    private PotionGenerator potionGenerator;
 
-//    private List<ItemEntry> bagOfHoldingCapacity = Arrays.asList(
-//            new ItemEntry(1,30,"250#"),
-//            new ItemEntry(31, 70, "500#"),
-//            new ItemEntry(71, 90, "1000#"),
-//            new ItemEntry(91, 100, "1500#"));
-//
-//    private List<ItemEntry> bagOfTricksTypes = Arrays.asList(
-//            new ItemEntry(1,5,"type 1"),
-//            new ItemEntry(6, 8, "type 2"),
-//            new ItemEntry(9, 10, "type 3"));
-
-    MiscGenerator(MagicTreasureDB magicTreasureDB, Dice dice, SpellGenerator spellGenerator) {
+    MiscGenerator(MagicTreasureDB magicTreasureDB, Dice dice, SpellGenerator spellGenerator, PotionGenerator potionGenerator) {
         this.magicTreasureDB = magicTreasureDB;
         this.dice = dice;
         this.spellGenerator = spellGenerator;
+        this.potionGenerator = potionGenerator;
     }
 
     public String getMiscItemText(String text) {
@@ -41,11 +28,15 @@ public class MiscGenerator extends Generator {
             rv = text + " " + capacity + " capacity";
         } else if(text.equalsIgnoreCase("bag of tricks")) {
             rv = text + " " + rollOnMiscItemTable(MiscItemTable.BAG_OF_TRICKS_TYPE);
+        } else if(text.equalsIgnoreCase("beaker of plentiful potions")) {
+            rv = text + ": " + getBeakerOfMiscPotionsPotions();
+        } else if(text.equalsIgnoreCase("bracers of defense")) {
+            rv = text + " " + rollOnMiscItemTable(MiscItemTable.BRACERS_OF_DEFENSE_VALUE);
+        } else if(text.equalsIgnoreCase("bucknard's everful purse")) {
+            rv = text + " containing " + rollOnMiscItemTable(MiscItemTable.BUCKNARDS_EVERFUL_PURSE_TYPE);
+        } else if(text.equalsIgnoreCase("candle of invocation (C)")) {
+            rv = text + " alignment " + getRandomAlignment();
         }
-        // beaker of plentiful potions *
-        // bracers of defense *
-        // bucknard's everful purse *
-        // candle of invocation *
         // carpet of flying *
         // chime of opening (charges)
         // cloak of displacement (size) *
@@ -84,18 +75,31 @@ public class MiscGenerator extends Generator {
         return rv;
     }
 
+    private String getRandomAlignment() {
+        int index = dice.getAmount("1d9", 1) - 1;
+        Alignment alignment = Alignment.values()[index];
+        return alignment.toString();
+    }
+
+
+    private String getBeakerOfMiscPotionsPotions() {
+        int numPotions = dice.roll1D4() + 1;
+        StringBuilder sb = new StringBuilder();
+
+        for(int i = 0; i < numPotions; i++) {
+            sb.append(potionGenerator.getItemText());
+            if(i < numPotions - 1) {
+                sb.append(", ");
+            }
+        }
+
+        return sb.toString();
+    }
+
     private String rollOnMiscItemTable(MiscItemTable table) {
         int roll = dice.getAmount(table.getDiceType(), 1);
         return magicTreasureDB.getMiscItemTableEntry(roll, table);
     }
-
-//    private String getBagOfTricksType() {
-//        return magicTreasureDB.getBagOfTricksType(dice.getAmount(MiscItemTable.BAG_OF_TRICKS_TYPE.getDiceType(), 1));
-//    }
-//
-//    private String getBagOfHoldingCapacity() {
-//        return magicTreasureDB.getBagOfHoldingCapacity(dice.rollPercent());
-//    }
 
 
 }
