@@ -2,6 +2,8 @@ package com.medg.treasuretables.generators;
 
 import com.medg.treasuretables.Dice;
 import com.medg.treasuretables.ItemEntry;
+import com.medg.treasuretables.MagicTreasureType;
+import com.medg.treasuretables.MiscItemTable;
 import com.medg.treasuretables.data.MagicTreasureDB;
 
 import java.util.Arrays;
@@ -35,10 +37,10 @@ public class MiscGenerator extends Generator {
 
 
         if(text.equalsIgnoreCase("bag of holding")) {
-            String capacity = getBagOfHoldingCapacity();
+            String capacity = rollOnMiscItemTable(MiscItemTable.BAG_OF_HOLDING_CAPACITY);
             rv = text + " " + capacity + " capacity";
         } else if(text.equalsIgnoreCase("bag of tricks")) {
-            rv = text + " " + getBagOfTricksType();
+            rv = text + " " + rollOnMiscItemTable(MiscItemTable.BAG_OF_TRICKS_TYPE);
         }
         // beaker of plentiful potions *
         // bracers of defense *
@@ -82,13 +84,18 @@ public class MiscGenerator extends Generator {
         return rv;
     }
 
-    private String getBagOfTricksType() {
-        return magicTreasureDB.getBagOfTricksType(dice.rollD10());
+    private String rollOnMiscItemTable(MiscItemTable table) {
+        int roll = dice.getAmount(table.getDiceType(), 1);
+        return magicTreasureDB.getMiscItemTableEntry(roll, table);
     }
 
-    private String getBagOfHoldingCapacity() {
-        return magicTreasureDB.getBagOfHoldingCapacity(dice.rollPercent());
-    }
+//    private String getBagOfTricksType() {
+//        return magicTreasureDB.getBagOfTricksType(dice.getAmount(MiscItemTable.BAG_OF_TRICKS_TYPE.getDiceType(), 1));
+//    }
+//
+//    private String getBagOfHoldingCapacity() {
+//        return magicTreasureDB.getBagOfHoldingCapacity(dice.rollPercent());
+//    }
 
 
 }

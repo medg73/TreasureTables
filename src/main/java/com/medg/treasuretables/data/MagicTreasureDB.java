@@ -3,10 +3,7 @@
  */
 package com.medg.treasuretables.data;
 
-import com.medg.treasuretables.ItemEntry;
-import com.medg.treasuretables.MagicSwordAttributes;
-import com.medg.treasuretables.MagicTreasureType;
-import com.medg.treasuretables.SpellCasterClass;
+import com.medg.treasuretables.*;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -23,16 +20,7 @@ public class MagicTreasureDB {
 
 	private Map<MagicSwordAttributes, List<ItemEntry>> magicSwordAttributes;
 
-	private List<ItemEntry> swordAlignment;
-	private List<ItemEntry> swordExtraordinary;
-	private List<ItemEntry> swordIntelligence;
-	private List<ItemEntry> swordLanguages;
-	private List<ItemEntry> swordPrimary;
-	private List<ItemEntry> swordSpecialPurpose;
-	private List<ItemEntry> swordSpecialPurposePower;
-
-	private List<ItemEntry> bagOfHoldingCapacity;
-	private List<ItemEntry> bagOfTricksTypes;
+	private Map<MiscItemTable, List<ItemEntry>> miscItemTables;
 
 	public void initialize() {
 
@@ -61,17 +49,14 @@ public class MagicTreasureDB {
 			magicSwordAttributes.put(attribute, loadDataFile(attribute.getDatafile()));
 		}
 
-		bagOfHoldingCapacity = loadDataFile("add1/magicTreasureTables/miscItems/bagOfHoldingCapacity.csv");
-		bagOfTricksTypes = loadDataFile("add1/magicTreasureTables/miscItems/bagOfTricksTypes.csv");
-
+		miscItemTables = new HashMap<>();
+		for(MiscItemTable table: MiscItemTable.values()) {
+			miscItemTables.put(table, loadDataFile(table.getDatafile()));
+		}
 	}
 
-	public String getBagOfHoldingCapacity(int roll) {
-		return getDescription(roll, bagOfHoldingCapacity, "bag of holding capacity");
-	}
-
-	public String getBagOfTricksType(int roll) {
-		return getDescription(roll, bagOfTricksTypes, "bag of tricks type");
+	public String getMiscItemTableEntry(int roll, MiscItemTable table) {
+		return getDescription(roll, miscItemTables.get(table), table.getName());
 	}
 
 	public ItemEntry getMagicItemFromDB(int roll, MagicTreasureType magicTreasureType) {
@@ -117,6 +102,8 @@ public class MagicTreasureDB {
 	public String getSwordSpecialPurposePower(int roll) {
 		return getMagicSwordAttribute(roll, MagicSwordAttributes.SPECIAL_PURPOSE_POWER);
 	}
+
+
 
 	private String getMagicSwordAttribute(int roll, MagicSwordAttributes attribute) {
 		return getDescription(roll, magicSwordAttributes.get(attribute), attribute.getName());

@@ -51,7 +51,7 @@ public class TTFrame extends JFrame {
 		makeOutputPanel();
 
 		makeMagicItemPanel();
-		
+
 		add(treasureTypeSelectorPanel, BorderLayout.NORTH);
 		add(magicItemPanel, BorderLayout.CENTER);
 		add(outputPanel, BorderLayout.SOUTH);
