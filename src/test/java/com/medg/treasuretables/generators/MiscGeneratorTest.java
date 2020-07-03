@@ -107,7 +107,7 @@ public class MiscGeneratorTest {
         MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
         when(dice.roll1D4()).thenReturn(4).thenReturn(2);
 
-        assertEquals("incense of meditation 6 pieces", miscGenerator.getMiscItemText("incense of meditation"));
+        assertEquals("incense of meditation (C) 6 pieces", miscGenerator.getMiscItemText("incense of meditation (C)"));
 
     }
 
@@ -163,6 +163,21 @@ public class MiscGeneratorTest {
         assertEquals("Pearl of Power (M) level 3 and level 6",
                 miscGenerator.getMiscItemText("Pearl of Power (M)"));
 
+    }
+
+    @Test
+    public void testGetMiscItemCrystalBall() {
+        PotionGenerator potionGenerator = mock(PotionGenerator.class);
+        Dice dice = mock(Dice.class);
+        SpellGenerator spellGenerator = mock(SpellGenerator.class);
+        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        when(dice.getAmount("1d100", 1)).thenReturn(100);
+        when(magicTreasureDB.getMiscItemTableEntry(100, MiscItemTable.CRYSTAL_BALL_TYPE)).thenReturn("crystal ball with telepathy");
+
+        assertEquals("crystal ball with telepathy",
+                miscGenerator.getMiscItemText("Crystal Ball (M)"));
     }
 
 }

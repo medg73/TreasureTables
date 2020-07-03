@@ -28,6 +28,7 @@ public class MiscGenerator extends Generator {
 
         miscItems = new ArrayList<>();
         miscItems.add(new BagOfHolding(dice, magicTreasureDB));
+        miscItems.add(new CrystalBall(dice, magicTreasureDB));
         miscItems.add(new IounStones(dice, magicTreasureDB));
         miscItems.add(new InstrumentOfTheBards(dice, magicTreasureDB));
         miscItems.add(new IronFlask(dice, magicTreasureDB));
@@ -36,6 +37,7 @@ public class MiscGenerator extends Generator {
         miscItems.add(new NecklaceOfMissiles(dice, magicTreasureDB));
         miscItems.add(new NecklaceOfPrayerBeads(dice, magicTreasureDB));
         miscItems.add(new PearlOfPower(dice, magicTreasureDB));
+        miscItems.add(new PeriaptOfProofAgainstPoison(dice, magicTreasureDB));
     }
 
     public String getMiscItemText(String text) {
@@ -73,7 +75,11 @@ public class MiscGenerator extends Generator {
                 sizeStr = "dwarf, gnome, or halfling size";
             }
             rv = text + " " + sizeStr;
-        } else if(text.equalsIgnoreCase("cloak of protection")) {
+        } else if(text.equalsIgnoreCase("cloak of poisonousness")) {
+            String sizeStr = getCloakSize();
+            rv = text + " " + sizeStr;
+        }
+        else if(text.equalsIgnoreCase("cloak of protection")) {
             String sizeStr = getCloakSize();
             String protectionValue = rollOnMiscItemTable(MiscItemTable.CLOAK_OF_PROTECTION_VALUE);
             rv = text + " " + protectionValue + " " + sizeStr;
@@ -116,9 +122,6 @@ public class MiscGenerator extends Generator {
             rv = text + " " + numPigments + " pots";
         }
 
-        // pearl of power
-        // pearl of wisdom
-        // periapt of proof against poison
         // pipes of the sewers
         // quaal's feather token
         // robe of the archmagi

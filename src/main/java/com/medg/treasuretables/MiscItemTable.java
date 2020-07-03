@@ -20,7 +20,8 @@ public enum MiscItemTable {
     MEDALLION_OF_ESP_TYPE("medallion of ESP type", "medallionOfESPType.csv", "1d20"),
     NECKLACE_OF_MISSILES_TYPE("necklace of missiles type", "necklaceOfMissilesType.csv", "1d20"),
     NECKLACE_OF_PRAYER_BEADS_TYPE("necklace of prayer beads type", "necklaceOfPrayerBeadsType.csv", "1d20"),
-    PEARL_OF_POWER_LEVEL("pearl of power level", "pearlOfPowerLevel.csv", "1d100");
+    PEARL_OF_POWER_LEVEL("pearl of power level", "pearlOfPowerLevel.csv", "1d100"),
+    PERIAPT_OF_PROOF_AGAINST_POISON("periapt of proof against poison level", "periaptOfProofAgainstPoison.csv", "1d20");
 
 
     String filepath = "add1/magicTreasureTables/miscItems/";
