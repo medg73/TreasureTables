@@ -38,6 +38,9 @@ public class MiscGenerator extends Generator {
         miscItems.add(new NecklaceOfPrayerBeads(dice, magicTreasureDB));
         miscItems.add(new PearlOfPower(dice, magicTreasureDB));
         miscItems.add(new PeriaptOfProofAgainstPoison(dice, magicTreasureDB));
+        miscItems.add(new QuaalsFeatherToken(dice, magicTreasureDB));
+        miscItems.add(new RobeOfTheArchmagi(dice, magicTreasureDB));
+        miscItems.add(new RobeOfUsefulItems(dice, magicTreasureDB));
     }
 
     public String getMiscItemText(String text) {
@@ -120,13 +123,15 @@ public class MiscGenerator extends Generator {
         } else if(text.equalsIgnoreCase("nolzur's marvelous pigments")) {
             int numPigments = dice.roll1D4();
             rv = text + " " + numPigments + " pots";
+        } else if(text.equalsIgnoreCase("pipes of the sewers")) {
+            String rats = "giant rats";
+            int roll = dice.rollPercent();
+            if(roll <= 20) {
+                rats = "normal rats";
+            }
+            rv = text + " - " + rats;
         }
-
-        // pipes of the sewers
-        // quaal's feather token
-        // robe of the archmagi
-        // robe of useful items
-
+        
 
         return rv;
     }

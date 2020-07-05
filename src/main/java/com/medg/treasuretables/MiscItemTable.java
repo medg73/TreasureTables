@@ -21,7 +21,10 @@ public enum MiscItemTable {
     NECKLACE_OF_MISSILES_TYPE("necklace of missiles type", "necklaceOfMissilesType.csv", "1d20"),
     NECKLACE_OF_PRAYER_BEADS_TYPE("necklace of prayer beads type", "necklaceOfPrayerBeadsType.csv", "1d20"),
     PEARL_OF_POWER_LEVEL("pearl of power level", "pearlOfPowerLevel.csv", "1d100"),
-    PERIAPT_OF_PROOF_AGAINST_POISON("periapt of proof against poison level", "periaptOfProofAgainstPoison.csv", "1d20");
+    PERIAPT_OF_PROOF_AGAINST_POISON("periapt of proof against poison level", "periaptOfProofAgainstPoison.csv", "1d20"),
+    QUAALS_FEATHER_TOKEN("quaal's feather token", "quaalsFeatherToken.csv", "1d20"),
+    ROBE_OF_THE_ARCHMAGI_COLOR("robe of the archmagi color", "robeOfTheArchmagiColor.csv", "1d100"),
+    ROBE_OF_USEFUL_ITEMS_ITEMS("robe of useful items", "robeOfUsefulItemsItems.csv", "1d100");
 
 
     String filepath = "add1/magicTreasureTables/miscItems/";

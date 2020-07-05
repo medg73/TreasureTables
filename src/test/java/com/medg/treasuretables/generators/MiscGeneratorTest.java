@@ -1,8 +1,6 @@
 package com.medg.treasuretables.generators;
 
 import com.medg.treasuretables.Dice;
-import com.medg.treasuretables.ItemEntry;
-import com.medg.treasuretables.MagicTreasureType;
 import com.medg.treasuretables.MiscItemTable;
 import com.medg.treasuretables.data.MagicTreasureDB;
 import org.junit.Test;
@@ -178,6 +176,53 @@ public class MiscGeneratorTest {
 
         assertEquals("crystal ball with telepathy",
                 miscGenerator.getMiscItemText("Crystal Ball (M)"));
+    }
+
+    @Test
+    public void testGetMiscItemQuaalsFeatherToken() {
+        PotionGenerator potionGenerator = mock(PotionGenerator.class);
+        Dice dice = mock(Dice.class);
+        SpellGenerator spellGenerator = mock(SpellGenerator.class);
+        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        when(dice.getAmount("1d20", 1)).thenReturn(1);
+        when(magicTreasureDB.getMiscItemTableEntry(1, MiscItemTable.QUAALS_FEATHER_TOKEN)).thenReturn("anchor");
+
+        assertEquals("Quaal's Feather Token - anchor", miscGenerator.getMiscItemText("quaal's feather token"));
+
+    }
+
+    @Test
+    public void testGetMiscItemRobeOfTheArchmagi() {
+        PotionGenerator potionGenerator = mock(PotionGenerator.class);
+        Dice dice = mock(Dice.class);
+        SpellGenerator spellGenerator = mock(SpellGenerator.class);
+        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        when(dice.getAmount("1d100", 1)).thenReturn(1);
+        when(magicTreasureDB.getMiscItemTableEntry(1, MiscItemTable.ROBE_OF_THE_ARCHMAGI_COLOR)).thenReturn("white");
+
+        assertEquals("Robe of the Archmagi (M) - white (color not apparent)", miscGenerator.getMiscItemText("robe of the archmagi (M)"));
+    }
+
+    @Test
+    public void testGetMiscItemRobeOfUsefulItems() {
+        PotionGenerator potionGenerator = mock(PotionGenerator.class);
+        Dice dice = mock(Dice.class);
+        SpellGenerator spellGenerator = mock(SpellGenerator.class);
+        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        when(dice.roll1D4()).thenReturn(1).thenReturn(1).thenReturn(2).thenReturn(1);
+        when(dice.getAmount("1d100", 1)).thenReturn(1).thenReturn(2).thenReturn(3).thenReturn(1)
+                .thenReturn(2).thenReturn(2).thenReturn(1);
+        when(magicTreasureDB.getMiscItemTableEntry(1, MiscItemTable.ROBE_OF_USEFUL_ITEMS_ITEMS)).thenReturn("item 1");
+        when(magicTreasureDB.getMiscItemTableEntry(2, MiscItemTable.ROBE_OF_USEFUL_ITEMS_ITEMS)).thenReturn("item 2");
+        when(magicTreasureDB.getMiscItemTableEntry(3, MiscItemTable.ROBE_OF_USEFUL_ITEMS_ITEMS)).thenReturn("2x");
+
+        assertEquals("Robe of Useful Items with: item 1, item 2, item 1, item 2, item 2, item 1", miscGenerator.getMiscItemText("robe of useful items"));
     }
 
 }
