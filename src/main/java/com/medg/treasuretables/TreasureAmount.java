@@ -212,21 +212,5 @@ public class TreasureAmount {
 		}
 		return rv;
 	}
-	
-
-	
-//	private int rollD6() {
-//		double d1 = Math.random();
-//	
-//		if(d1 <= 0.0) {
-//			d1 = 0.1;
-//		}
-//	
-//		d1 *= 6.0;
-//	
-//		return((int)Math.ceil(d1));
-//		
-//	}
-//	
 
 }

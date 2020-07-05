@@ -3,6 +3,7 @@
  */
 package com.medg.treasuretables;
 import com.medg.treasuretables.data.MagicTreasureDB;
+import com.medg.treasuretables.data.TreasureTableLoader;
 import com.medg.treasuretables.generators.MagicItemGenerator;
 import com.medg.treasuretables.ui.TTFrame;
 
@@ -28,8 +29,9 @@ public class TreasureTables {
 		MagicTreasureDB magicTreasureDB = new MagicTreasureDB();
 		magicTreasureDB.initialize();
 		MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice);
+		TreasureTableLoader treasureTableLoader = new TreasureTableLoader();
 
-		TreasureTypeContainer treasureTypeContainer = new TreasureTypeContainer(magicItemGenerator, dice);
+		TreasureTypeContainer treasureTypeContainer = new TreasureTypeContainer(magicItemGenerator, dice, treasureTableLoader);
 		
 		TTFrame frame = new TTFrame(treasureTypeContainer);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

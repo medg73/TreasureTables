@@ -15,17 +15,21 @@ public class MagicItemGenerator {
     private RingGenerator ringGenerator;
     private RSWGenerator rswGenerator;
     private MiscGenerator miscGenerator;
+    private PotionColorGenerator potionColorGenerator;
+    private SwordGenerator swordGenerator;
 
 
     public MagicItemGenerator(MagicTreasureDB magicTreasureDB, Dice dice) {
         this.magicTreasureDB = magicTreasureDB;
         this.dice = dice;
-        potionGenerator = new PotionGenerator(magicTreasureDB, dice);
+        potionColorGenerator = new PotionColorGenerator(dice);
+        potionGenerator = new PotionGenerator(magicTreasureDB, dice, potionColorGenerator);
         spellGenerator = new SpellGenerator(magicTreasureDB, dice);
         scrollGenerator = new ScrollGenerator(magicTreasureDB, dice, spellGenerator);
         ringGenerator = new RingGenerator(magicTreasureDB, dice, spellGenerator);
         rswGenerator = new RSWGenerator(magicTreasureDB, dice, spellGenerator);
-        miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator);
+        miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        swordGenerator = new SwordGenerator(magicTreasureDB, dice);
 
     }
 
@@ -55,9 +59,7 @@ public class MagicItemGenerator {
                 }
                 break;
             case SWORD:
-                String swordType = getMagicSwordType();
-                String swordBonus = magicTreasureDB.getMagicItemFromDB(dice.rollPercent(), magicTreasureType).description;
-                rv = swordType + " " + swordBonus;
+                rv = swordGenerator.getMagicSword();
                 break;
 
             case RSW:
@@ -118,6 +120,10 @@ public class MagicItemGenerator {
         return rv;
     }
 
+    public PotionGenerator getPotionGenerator() {
+        return potionGenerator;
+    }
+
     private String getMagicArmorSize() {
         int roll = dice.rollPercent();
         if(roll <= 65) {
@@ -127,18 +133,5 @@ public class MagicItemGenerator {
         } else if(roll <= 95) {
             return "dwarf-sized";
         } else return "gnome or halfling sized";
-    }
-
-    private String getMagicSwordType() {
-        int roll = dice.rollPercent();
-        if(roll <= 70) {
-            return "longsword";
-        } else if(roll <= 90) {
-            return "broadsword";
-        } else if(roll <= 95) {
-            return "shortsword";
-        } else if(roll <= 99) {
-            return "bastard sword";
-        } else return "two-handed sword";
     }
 }

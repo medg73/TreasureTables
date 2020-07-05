@@ -1,0 +1,1050 @@
+{
+  "treasureTypes":
+    [
+      {
+        "type": "A",
+        "copper": {
+          "chance": 0.25,
+          "quantity": "1d6",
+          "multiplier": 1000
+        },
+        "silver": {
+          "chance": 0.30,
+          "quantity": "1d6",
+          "multiplier": 1000
+        },
+        "electrum": {
+          "chance": 0.35,
+          "quantity": "1d6",
+          "multiplier": 1000
+        },
+        "gold": {
+          "chance": 0.40,
+          "quantity": "1d10",
+          "multiplier": 1000
+        },
+        "platinum": {
+          "chance": 0.25,
+          "quantity": "1d4",
+          "multiplier": 100
+        },
+        "gems": {
+          "chance": 0.60,
+          "quantity": "4d10"
+        },
+        "jewelry": {
+          "chance": 0.50,
+          "quantity": "3d10"
+        },
+        "magic": {
+          "chance": 0.30,
+          "description": "ANY:3"
+        }
+      },
+      {
+        "type": "B",
+        "copper": {
+          "chance": 0.50,
+          "quantity": "1d8",
+          "multiplier": 1000
+        },
+        "silver": {
+          "chance": 0.25,
+          "quantity": "1d6",
+          "multiplier": 1000
+        },
+        "electrum": {
+          "chance": 0.25,
+          "quantity": "1d4",
+          "multiplier": 1000
+        },
+        "gold": {
+          "chance": 0.25,
+          "quantity": "1d3",
+          "multiplier": 1000
+        },
+        "platinum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gems": {
+          "chance": 0.30,
+          "quantity": "1d8"
+        },
+        "jewelry": {
+          "chance": 0.20,
+          "quantity": "1d4"
+        },
+        "magic": {
+          "chance": 0.10,
+          "description": "SWORD_ARMOR_OR_MISC_WEAPON:1"
+        }
+      },
+      {
+        "type": "C",
+        "copper": {
+          "chance": 0.20,
+          "quantity": "1d12",
+          "multiplier": 1000
+        },
+        "silver": {
+          "chance": 0.30,
+          "quantity": "1d6",
+          "multiplier": 1000
+        },
+        "electrum": {
+          "chance": 0.10,
+          "quantity": "1d4",
+          "multiplier": 1000
+        },
+        "gold": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "platinum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gems": {
+          "chance": 0.25,
+          "quantity": "1d6"
+        },
+        "jewelry": {
+          "chance": 0.20,
+          "quantity": "1d3"
+        },
+        "magic": {
+          "chance": 0.10,
+          "description": "ANY:2"
+        }
+      },
+      {
+        "type": "D",
+        "copper": {
+          "chance": 0.10,
+          "quantity": "1d8",
+          "multiplier": 1000
+        },
+        "silver": {
+          "chance": 0.15,
+          "quantity": "1d12",
+          "multiplier": 1000
+        },
+        "electrum": {
+          "chance": 0.15,
+          "quantity": "1d8",
+          "multiplier": 1000
+        },
+        "gold": {
+          "chance": 0.50,
+          "quantity": "1d6",
+          "multiplier": 1000
+        },
+        "platinum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gems": {
+          "chance": 0.30,
+          "quantity": "1d10"
+        },
+        "jewelry": {
+          "chance": 0.25,
+          "quantity": "1d6"
+        },
+        "magic": {
+          "chance": 0.15,
+          "description": "ANY:3:POTION:1"
+        }
+      },
+      {
+        "type": "E",
+        "copper": {
+          "chance": 0.05,
+          "quantity": "1d10",
+          "multiplier": 1000
+        },
+        "silver": {
+          "chance": 0.25,
+          "quantity": "1d12",
+          "multiplier": 1000
+        },
+        "electrum": {
+          "chance": 0.25,
+          "quantity": "1d6",
+          "multiplier": 1000
+        },
+        "gold": {
+          "chance": 0.25,
+          "quantity": "1d8",
+          "multiplier": 1000
+        },
+        "platinum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gems": {
+          "chance": 0.15,
+          "quantity": "1d12"
+        },
+        "jewelry": {
+          "chance": 0.10,
+          "quantity": "1d8"
+        },
+        "magic": {
+          "chance": 0.25,
+          "description": "ANY:3:SCROLL:1"
+        }
+      },
+      {
+        "type": "F",
+        "copper": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "silver": {
+          "chance": 0.10,
+          "quantity": "1d20",
+          "multiplier": 1000
+        },
+        "electrum": {
+          "chance": 0.15,
+          "quantity": "1d12",
+          "multiplier": 1000
+        },
+        "gold": {
+          "chance": 0.40,
+          "quantity": "1d10",
+          "multiplier": 1000
+        },
+        "platinum": {
+          "chance": 0.35,
+          "quantity": "1d8",
+          "multiplier": 100
+        },
+        "gems": {
+          "chance": 0.20,
+          "quantity": "3d10"
+        },
+        "jewelry": {
+          "chance": 0.10,
+          "quantity": "1d10"
+        },
+        "magic": {
+          "chance": 0.30,
+          "description": "ANY_NO_WEAPONS:3:POTION:1:SCROLL:1"
+        }
+      },
+      {
+        "type": "G",
+        "copper": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "silver": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "electrum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gold": {
+          "chance": 0.50,
+          "quantity": "10d4",
+          "multiplier": 1000
+        },
+        "platinum": {
+          "chance": 0.50,
+          "quantity": "1d20",
+          "multiplier": 100
+        },
+        "gems": {
+          "chance": 0.30,
+          "quantity": "5d4"
+        },
+        "jewelry": {
+          "chance": 0.25,
+          "quantity": "1d10"
+        },
+        "magic": {
+          "chance": 0.35,
+          "description": "ANY:4:SCROLL:1"
+        }
+      },
+      {
+        "type": "H",
+        "copper": {
+          "chance": 0.25,
+          "quantity": "5d6",
+          "multiplier": 1000
+        },
+        "silver": {
+          "chance": 0.40,
+          "quantity": "1d100",
+          "multiplier": 1000
+        },
+        "electrum": {
+          "chance": 0.40,
+          "quantity": "10d4",
+          "multiplier": 1000
+        },
+        "gold": {
+          "chance": 0.55,
+          "quantity": "10d6",
+          "multiplier": 1000
+        },
+        "platinum": {
+          "chance": 0.25,
+          "quantity": "5d10",
+          "multiplier": 100
+        },
+        "gems": {
+          "chance": 0.50,
+          "quantity": "1d100"
+        },
+        "jewelry": {
+          "chance": 0.50,
+          "quantity": "10d4"
+        },
+        "magic": {
+          "chance": 0.15,
+          "description": "ANY:4:POTION:1:SCROLL:1"
+        }
+      },
+      {
+        "type": "I",
+        "copper": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "silver": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "electrum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gold": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "platinum": {
+          "chance": 0.30,
+          "quantity": "3d6",
+          "multiplier": 100
+        },
+        "gems": {
+          "chance": 0.55,
+          "quantity": "2d10"
+        },
+        "jewelry": {
+          "chance": 0.50,
+          "quantity": "1d12"
+        },
+        "magic": {
+          "chance": 0.15,
+          "description": "ANY:1"
+        }
+      },
+      {
+        "type": "J",
+        "copper": {
+          "chance": 1.0,
+          "quantity": "3d8",
+          "multiplier": 1,
+          "description": "per individual"
+        },
+        "silver": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "electrum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gold": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "platinum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gems": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "jewelry": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "magic": {
+          "chance": 0.0,
+          "description": ""
+        }
+      },
+      {
+        "type": "K",
+        "copper": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "silver": {
+          "chance": 1.0,
+          "quantity": "3d6",
+          "multiplier": 1,
+          "description": "per individual"
+        },
+        "electrum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gold": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "platinum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gems": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "jewelry": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "magic": {
+          "chance": 0.0,
+          "description": ""
+        }
+      },
+      {
+        "type": "L",
+        "copper": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "silver": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "electrum": {
+          "chance": 1.0,
+          "quantity": "2d6",
+          "multiplier": 1,
+          "description": "per individual"
+        },
+        "gold": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "platinum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gems": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "jewelry": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "magic": {
+          "chance": 0.0,
+          "description": ""
+        }
+      },
+      {
+        "type": "M",
+        "copper": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "silver": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "electrum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gold": {
+          "chance": 1.0,
+          "quantity": "2d4",
+          "multiplier": 1,
+          "description": "per individual"
+        },
+        "platinum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gems": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "jewelry": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "magic": {
+          "chance": 0.0,
+          "description": ""
+        }
+      },
+      {
+        "type": "N",
+        "copper": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "silver": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "electrum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gold": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "platinum": {
+          "chance": 1.0,
+          "quantity": "1d6",
+          "multiplier": 1,
+          "description": "per individual"
+        },
+        "gems": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "jewelry": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "magic": {
+          "chance": 0.0,
+          "description": ""
+        }
+      },
+      {
+        "type": "O",
+        "copper": {
+          "chance": 0.25,
+          "quantity": "1d4",
+          "multiplier": 1000
+        },
+        "silver": {
+          "chance": 0.20,
+          "quantity": "1d3",
+          "multiplier": 1000
+        },
+        "electrum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gold": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "platinum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gems": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "jewelry": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "magic": {
+          "chance": 0.0,
+          "description": ""
+        }
+      },
+      {
+        "type": "P",
+        "copper": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "silver": {
+          "chance": 0.30,
+          "quantity": "1d6",
+          "multiplier": 1000
+        },
+        "electrum": {
+          "chance": 0.25,
+          "quantity": "1d2",
+          "multiplier": 1000
+        },
+        "gold": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "platinum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gems": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "jewelry": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "magic": {
+          "chance": 0.0,
+          "description": ""
+        }
+      },
+      {
+        "type": "Q",
+        "copper": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "silver": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "electrum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gold": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "platinum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gems": {
+          "chance": 0.50,
+          "quantity": "1d4"
+        },
+        "jewelry": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "magic": {
+          "chance": 0.0,
+          "description": ""
+        }
+      },
+      {
+        "type": "R",
+        "copper": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "silver": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "electrum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gold": {
+          "chance": 0.40,
+          "quantity": "2d4",
+          "multiplier": 1000
+        },
+        "platinum": {
+          "chance": 0.50,
+          "quantity": "10d6",
+          "multiplier": 100
+        },
+        "gems": {
+          "chance": 0.55,
+          "quantity": "4d8"
+        },
+        "jewelry": {
+          "chance": 0.45,
+          "quantity": "1d12"
+        },
+        "magic": {
+          "chance": 0.0,
+          "description": ""
+        }
+      },
+      {
+        "type": "S",
+        "copper": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "silver": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "electrum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gold": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "platinum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gems": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "jewelry": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "magic": {
+          "chance": 0.40,
+          "description": "POTION:2d4"
+        }
+      },
+      {
+        "type": "T",
+        "copper": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "silver": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "electrum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gold": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "platinum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gems": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "jewelry": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "magic": {
+          "chance": 0.50,
+          "description": "SCROLL:1d4"
+        }
+      },
+      {
+        "type": "U",
+        "copper": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "silver": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "electrum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gold": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "platinum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gems": {
+          "chance": 0.90,
+          "quantity": "10d8"
+        },
+        "jewelry": {
+          "chance": 0.80,
+          "quantity": "5d6"
+        },
+        "magic": {
+          "chance": 0.70,
+          "description": "RING:1:RSW:1:MISC:1:ARMOR:1:SWORD:1:MISC_WEAPON:1"
+        }
+      },
+      {
+        "type": "V",
+        "copper": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "silver": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "electrum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gold": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "platinum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gems": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "jewelry": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "magic": {
+          "chance": 0.85,
+          "description": "RING:2:RSW:2:MISC:2:ARMOR:2:SWORD:2:MISC_WEAPON:2"
+        }
+      },
+      {
+        "type": "W",
+        "copper": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "silver": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "electrum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gold": {
+          "chance": 0.60,
+          "quantity": "5d6",
+          "multiplier": 1000
+        },
+        "platinum": {
+          "chance": 0.15,
+          "quantity": "1d8",
+          "multiplier": 100
+        },
+        "gems": {
+          "chance": 0.60,
+          "quantity": "10d8"
+        },
+        "jewelry": {
+          "chance": 0.50,
+          "quantity": "5d8"
+        },
+        "magic": {
+          "chance": 0.55,
+          "description": "MAP:1"
+        }
+      },
+      {
+        "type": "X",
+        "copper": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "silver": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "electrum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gold": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "platinum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gems": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "jewelry": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "magic": {
+          "chance": 0.60,
+          "description": "MISC:1"
+        }
+      },
+      {
+        "type": "Y",
+        "copper": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "silver": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "electrum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gold": {
+          "chance": 0.70,
+          "quantity": "2d6",
+          "multiplier": 1000
+        },
+        "platinum": {
+          "chance": 0.0,
+          "quantity": "0",
+          "multiplier": 0
+        },
+        "gems": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "jewelry": {
+          "chance": 0.0,
+          "quantity": "0"
+        },
+        "magic": {
+          "chance": 0.0,
+          "description": ""
+        }
+      },
+      {
+        "type": "Z",
+        "copper": {
+          "chance": 0.20,
+          "quantity": "1d3",
+          "multiplier": 1000
+        },
+        "silver": {
+          "chance": 0.25,
+          "quantity": "1d4",
+          "multiplier": 1000
+        },
+        "electrum": {
+          "chance": 0.25,
+          "quantity": "1d4",
+          "multiplier": 1000
+        },
+        "gold": {
+          "chance": 0.30,
+          "quantity": "1d4",
+          "multiplier": 1000
+        },
+        "platinum": {
+          "chance": 0.30,
+          "quantity": "1d6",
+          "multiplier": 100
+        },
+        "gems": {
+          "chance": 0.55,
+          "quantity": "10d6"
+        },
+        "jewelry": {
+          "chance": 0.50,
+          "quantity": "5d6"
+        },
+        "magic": {
+          "chance": 0.50,
+          "description": "ANY:3"
+        }
+      }
+    ]
+}

@@ -12,6 +12,7 @@ public class PotionGenerator {
 
     private MagicTreasureDB magicTreasureDB;
     private Dice dice;
+    private PotionColorGenerator potionColorGenerator;
 
     private List<ItemEntry> giantStrengthTypes = Arrays.asList(
             new ItemEntry(1,6,"hill"),
@@ -74,9 +75,10 @@ public class PotionGenerator {
             new ItemEntry(18,19,"evil"),
             new ItemEntry(20,20,"good"));
 
-    PotionGenerator(MagicTreasureDB magicTreasureDB, Dice dice) {
+    PotionGenerator(MagicTreasureDB magicTreasureDB, Dice dice, PotionColorGenerator potionColorGenerator) {
         this.magicTreasureDB = magicTreasureDB;
         this.dice = dice;
+        this.potionColorGenerator = potionColorGenerator;
     }
 
     String getItemText() {
@@ -97,7 +99,13 @@ public class PotionGenerator {
             text = undeadControlText();
         }
 
-        return "potion of " + text;
+        String color = potionColorGenerator.getPotionColor();
+
+        return "potion of " + text + " (" + color + ")";
+    }
+
+    public void setPotionColorGenerator(PotionColorGenerator potionColorGenerator) {
+        this.potionColorGenerator = potionColorGenerator;
     }
 
     private String getSubtypeText(int roll, List<ItemEntry> types) {
