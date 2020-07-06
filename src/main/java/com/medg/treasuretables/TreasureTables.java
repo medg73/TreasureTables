@@ -4,8 +4,8 @@
 package com.medg.treasuretables;
 import com.medg.treasuretables.data.MagicTreasureDB;
 import com.medg.treasuretables.data.TreasureTableLoader;
-import com.medg.treasuretables.generators.ArmorTableRoller;
 import com.medg.treasuretables.generators.MagicItemGenerator;
+import com.medg.treasuretables.generators.MagicTableRoller;
 import com.medg.treasuretables.generators.miscItems.MiscItemTableRoller;
 import com.medg.treasuretables.ui.TTFrame;
 
@@ -31,9 +31,9 @@ public class TreasureTables {
 		MagicTreasureDB magicTreasureDB = new MagicTreasureDB();
 		magicTreasureDB.initialize();
 		MiscItemTableRoller miscItemTableRoller = new MiscItemTableRoller(dice, magicTreasureDB);
-		ArmorTableRoller armorTableRoller = new ArmorTableRoller(dice, magicTreasureDB);
+		MagicTableRoller magicTableRoller = new MagicTableRoller(dice, magicTreasureDB);
 		MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller,
-				armorTableRoller);
+				magicTableRoller);
 		TreasureTableLoader treasureTableLoader = new TreasureTableLoader();
 
 		TreasureTypeContainer treasureTypeContainer = new TreasureTypeContainer(magicItemGenerator, dice, treasureTableLoader);

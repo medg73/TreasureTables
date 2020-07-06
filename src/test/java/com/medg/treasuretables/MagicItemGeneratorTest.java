@@ -1,8 +1,8 @@
 package com.medg.treasuretables;
 
 import com.medg.treasuretables.data.MagicTreasureDB;
-import com.medg.treasuretables.generators.ArmorTableRoller;
 import com.medg.treasuretables.generators.MagicItemGenerator;
+import com.medg.treasuretables.generators.MagicTableRoller;
 import com.medg.treasuretables.generators.PotionColorGenerator;
 import com.medg.treasuretables.generators.miscItems.MiscItemTableRoller;
 import org.junit.Test;
@@ -24,8 +24,8 @@ public class MagicItemGeneratorTest {
         PotionColorGenerator potionColorGenerator = mock(PotionColorGenerator.class);
         when(potionColorGenerator.getPotionColor()).thenReturn("cloudy yellow");
         MiscItemTableRoller miscItemTableRoller = mock(MiscItemTableRoller.class);
-        ArmorTableRoller armorTableRoller = mock(ArmorTableRoller.class);
-        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, armorTableRoller);
+        MagicTableRoller magicTableRoller = mock(MagicTableRoller.class);
+        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, magicTableRoller);
         magicItemGenerator.getPotionGenerator().setPotionColorGenerator(potionColorGenerator);
         assertEquals("potion of healing (cloudy yellow)", magicItemGenerator.getMagicItemOfType(MagicTreasureType.POTION));
     }
@@ -37,9 +37,9 @@ public class MagicItemGeneratorTest {
         when(magicTreasureDB.getMagicItemFromDB(anyInt(), eq(MagicTreasureType.SCROLL))).thenReturn(itemEntry);
         Dice dice = new Dice(new RandomNumberGenerator());
         MiscItemTableRoller miscItemTableRoller = mock(MiscItemTableRoller.class);
-        ArmorTableRoller armorTableRoller = mock(ArmorTableRoller.class);
+        MagicTableRoller magicTableRoller = mock(MagicTableRoller.class);
 
-        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, armorTableRoller);
+        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, magicTableRoller);
         assertEquals("scroll of protection from evil", magicItemGenerator.getMagicItemOfType(MagicTreasureType.SCROLL));
     }
 
@@ -50,10 +50,10 @@ public class MagicItemGeneratorTest {
         when(magicTreasureDB.getMagicItemFromDB(anyInt(), eq(MagicTreasureType.RING))).thenReturn(itemEntry);
         Dice dice = new Dice(new RandomNumberGenerator());
         MiscItemTableRoller miscItemTableRoller = mock(MiscItemTableRoller.class);
-        ArmorTableRoller armorTableRoller = mock(ArmorTableRoller.class);
+        MagicTableRoller magicTableRoller = mock(MagicTableRoller.class);
 
 
-        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, armorTableRoller);
+        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, magicTableRoller);
         assertEquals("ring of invisibility", magicItemGenerator.getMagicItemOfType(MagicTreasureType.RING));
     }
 
@@ -66,10 +66,10 @@ public class MagicItemGeneratorTest {
         Dice dice = mock(Dice.class);
         when(dice.rollPercent()).thenReturn(50).thenReturn(99);
         MiscItemTableRoller miscItemTableRoller = mock(MiscItemTableRoller.class);
-        ArmorTableRoller armorTableRoller = mock(ArmorTableRoller.class);
+        MagicTableRoller magicTableRoller = mock(MagicTableRoller.class);
 
 
-        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, armorTableRoller);
+        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, magicTableRoller);
         assertEquals("longsword +1 (NSA)", magicItemGenerator.getMagicItemOfType(MagicTreasureType.SWORD));
     }
 
@@ -80,10 +80,10 @@ public class MagicItemGeneratorTest {
         Dice dice = mock(Dice.class);
         when(dice.rollPercent()).thenReturn(50).thenReturn(99);
         MiscItemTableRoller miscItemTableRoller = mock(MiscItemTableRoller.class);
-        ArmorTableRoller armorTableRoller = mock(ArmorTableRoller.class);
-        when(armorTableRoller.rollOnArmorTable()).thenReturn(itemEntry.description);
+        MagicTableRoller magicTableRoller = mock(MagicTableRoller.class);
+        when(magicTableRoller.rollOnTable(MagicTreasureType.ARMOR)).thenReturn(itemEntry.description);
 
-        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, armorTableRoller);
+        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, magicTableRoller);
         assertEquals("human-sized chain mail +1", magicItemGenerator.getMagicItemOfType(MagicTreasureType.ARMOR));
     }
 
@@ -94,10 +94,10 @@ public class MagicItemGeneratorTest {
         Dice dice = mock(Dice.class);
         when(dice.rollPercent()).thenReturn(50).thenReturn(99);
         MiscItemTableRoller miscItemTableRoller = mock(MiscItemTableRoller.class);
-        ArmorTableRoller armorTableRoller = mock(ArmorTableRoller.class);
-        when(armorTableRoller.rollOnArmorTable()).thenReturn(itemEntry.description);
+        MagicTableRoller magicTableRoller = mock(MagicTableRoller.class);
+        when(magicTableRoller.rollOnTable(MagicTreasureType.ARMOR)).thenReturn(itemEntry.description);
 
-        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, armorTableRoller);
+        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, magicTableRoller);
         assertEquals("Shield +1", magicItemGenerator.getMagicItemOfType(MagicTreasureType.ARMOR));
     }
 
@@ -116,10 +116,10 @@ public class MagicItemGeneratorTest {
         PotionColorGenerator potionColorGenerator = mock(PotionColorGenerator.class);
         when(potionColorGenerator.getPotionColor()).thenReturn("cloudy yellow");
         MiscItemTableRoller miscItemTableRoller = mock(MiscItemTableRoller.class);
-        ArmorTableRoller armorTableRoller = mock(ArmorTableRoller.class);
+        MagicTableRoller magicTableRoller = mock(MagicTableRoller.class);
 
 
-        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, armorTableRoller);
+        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, magicTableRoller);
         magicItemGenerator.getPotionGenerator().setPotionColorGenerator(potionColorGenerator);
         assertEquals("potion of healing (cloudy yellow)", magicItemGenerator.getMagicItemOfType(MagicTreasureType.ANY));
     }
@@ -137,10 +137,10 @@ public class MagicItemGeneratorTest {
         when(magicTreasureDB.getMagicItemFromDB(firstRoll, MagicTreasureType.ANY)).thenReturn(anyEntry);
         when(magicTreasureDB.getMagicItemFromDB(secondRoll, MagicTreasureType.MISC2)).thenReturn(miscEntry);
         MiscItemTableRoller miscItemTableRoller = mock(MiscItemTableRoller.class);
-        ArmorTableRoller armorTableRoller = mock(ArmorTableRoller.class);
+        MagicTableRoller magicTableRoller = mock(MagicTableRoller.class);
 
 
-        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, armorTableRoller);
+        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, magicTableRoller);
         assertEquals("misc item", magicItemGenerator.getMagicItemOfType(MagicTreasureType.MISC));
     }
 
@@ -162,10 +162,10 @@ public class MagicItemGeneratorTest {
         when(magicTreasureDB.getMagicItemFromDB(thirdRoll, MagicTreasureType.SWORD)).thenReturn(swordTableEntry);
         when(magicTreasureDB.getSwordIntelligence(anyInt())).thenReturn("none:none:none");
         MiscItemTableRoller miscItemTableRoller = mock(MiscItemTableRoller.class);
-        ArmorTableRoller armorTableRoller = mock(ArmorTableRoller.class);
+        MagicTableRoller magicTableRoller = mock(MagicTableRoller.class);
 
 
-        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, armorTableRoller);
+        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, magicTableRoller);
         assertEquals("bastard sword +1 (NSA)", magicItemGenerator.getMagicItemOfType(MagicTreasureType.SWORD_ARMOR_OR_MISC_WEAPON));
     }
 
@@ -188,10 +188,10 @@ public class MagicItemGeneratorTest {
         PotionColorGenerator potionColorGenerator = mock(PotionColorGenerator.class);
         when(potionColorGenerator.getPotionColor()).thenReturn("cloudy yellow");
         MiscItemTableRoller miscItemTableRoller = mock(MiscItemTableRoller.class);
-        ArmorTableRoller armorTableRoller = mock(ArmorTableRoller.class);
+        MagicTableRoller magicTableRoller = mock(MagicTableRoller.class);
 
 
-        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, armorTableRoller);
+        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, magicTableRoller);
         magicItemGenerator.getPotionGenerator().setPotionColorGenerator(potionColorGenerator);
         assertEquals("potion of healing (cloudy yellow)", magicItemGenerator.getMagicItemOfType(MagicTreasureType.ANY_NO_WEAPONS));
 

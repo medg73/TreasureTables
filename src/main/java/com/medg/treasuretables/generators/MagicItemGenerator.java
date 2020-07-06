@@ -22,7 +22,7 @@ public class MagicItemGenerator {
 
 
     public MagicItemGenerator(MagicTreasureDB magicTreasureDB, Dice dice, MiscItemTableRoller miscItemTableRoller,
-                              ArmorTableRoller armorTableRoller) {
+                              MagicTableRoller magicTableRoller) {
         this.magicTreasureDB = magicTreasureDB;
         this.dice = dice;
         potionColorGenerator = new PotionColorGenerator(dice);
@@ -33,7 +33,7 @@ public class MagicItemGenerator {
         rswGenerator = new RSWGenerator(magicTreasureDB, dice, spellGenerator);
         miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator, miscItemTableRoller);
         swordGenerator = new SwordGenerator(magicTreasureDB, dice);
-        armorGenerator = new ArmorGenerator(dice, armorTableRoller);
+        armorGenerator = new ArmorGenerator(dice, magicTableRoller);
 
     }
 
