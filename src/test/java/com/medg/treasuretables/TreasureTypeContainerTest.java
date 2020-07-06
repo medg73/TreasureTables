@@ -1,9 +1,11 @@
 package com.medg.treasuretables;
 
-import com.medg.treasuretables.data.SimpleTreasureTable;
-import com.medg.treasuretables.data.SimpleTreasureType;
-import com.medg.treasuretables.data.TreasureTableLoader;
-import com.medg.treasuretables.generators.MagicItemGenerator;
+import com.medg.treasuretables.add1.data.SimpleTreasureTable;
+import com.medg.treasuretables.add1.data.SimpleTreasureType;
+import com.medg.treasuretables.add1.data.TreasureTableLoader;
+import com.medg.treasuretables.add1.enums.MagicTreasureType;
+import com.medg.treasuretables.add1.generators.MagicItemGenerator;
+import com.medg.treasuretables.dice.Dice;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

@@ -3,7 +3,7 @@
  */
 package com.medg.treasuretables.ui;
 
-import com.medg.treasuretables.MagicTreasureType;
+import com.medg.treasuretables.add1.enums.MagicTreasureType;
 import com.medg.treasuretables.TreasureTypeContainer;
 
 import java.awt.BorderLayout;

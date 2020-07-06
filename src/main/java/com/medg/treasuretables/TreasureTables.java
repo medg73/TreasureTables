@@ -2,9 +2,13 @@
  * 
  */
 package com.medg.treasuretables;
-import com.medg.treasuretables.data.MagicTreasureDB;
-import com.medg.treasuretables.data.TreasureTableLoader;
-import com.medg.treasuretables.generators.MagicItemGenerator;
+import com.medg.treasuretables.add1.data.MagicTreasureDB;
+import com.medg.treasuretables.add1.data.TreasureTableLoader;
+import com.medg.treasuretables.add1.generators.MagicItemGenerator;
+import com.medg.treasuretables.add1.generators.MagicTableRoller;
+import com.medg.treasuretables.add1.miscItems.MiscItemTableRoller;
+import com.medg.treasuretables.dice.Dice;
+import com.medg.treasuretables.dice.RandomNumberGenerator;
 import com.medg.treasuretables.ui.TTFrame;
 
 import javax.swing.JFrame;
@@ -28,7 +32,10 @@ public class TreasureTables {
 		Dice dice = new Dice(randomNumberGenerator);
 		MagicTreasureDB magicTreasureDB = new MagicTreasureDB();
 		magicTreasureDB.initialize();
-		MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice);
+		MiscItemTableRoller miscItemTableRoller = new MiscItemTableRoller(dice, magicTreasureDB);
+		MagicTableRoller magicTableRoller = new MagicTableRoller(dice, magicTreasureDB);
+		MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller,
+				magicTableRoller);
 		TreasureTableLoader treasureTableLoader = new TreasureTableLoader();
 
 		TreasureTypeContainer treasureTypeContainer = new TreasureTypeContainer(magicItemGenerator, dice, treasureTableLoader);
