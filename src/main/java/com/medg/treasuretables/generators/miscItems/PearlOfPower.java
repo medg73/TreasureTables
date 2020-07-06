@@ -6,8 +6,9 @@ import com.medg.treasuretables.data.MagicTreasureDB;
 
 public class PearlOfPower extends MiscItem {
 
-    public PearlOfPower(Dice dice, MagicTreasureDB magicTreasureDB) {
-        super(dice, magicTreasureDB);
+    public PearlOfPower(Dice dice,
+                        MiscItemTableRoller miscItemTableRoller) {
+        super(dice, miscItemTableRoller);
         this.itemText = "Pearl of Power (M)";
         this.miscItemTable = MiscItemTable.PEARL_OF_POWER_LEVEL;
     }

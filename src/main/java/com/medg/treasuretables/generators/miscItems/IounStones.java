@@ -2,15 +2,15 @@ package com.medg.treasuretables.generators.miscItems;
 
 import com.medg.treasuretables.Dice;
 import com.medg.treasuretables.MiscItemTable;
-import com.medg.treasuretables.data.MagicTreasureDB;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class IounStones extends MiscItem {
 
-    public IounStones(Dice dice, MagicTreasureDB magicTreasureDB) {
-        super(dice, magicTreasureDB);
+    public IounStones(Dice dice,
+                      MiscItemTableRoller miscItemTableRoller) {
+        super(dice, miscItemTableRoller);
         this.itemText = "Ioun Stones";
         this.miscItemTable = MiscItemTable.IOUN_STONES_TYPE;
     }

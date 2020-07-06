@@ -6,56 +6,36 @@ import com.medg.treasuretables.MiscItemTable;
 import com.medg.treasuretables.data.MagicTreasureDB;
 import com.medg.treasuretables.generators.miscItems.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 public class MiscGenerator extends Generator {
 
     private MagicTreasureDB magicTreasureDB;
     private Dice dice;
     private SpellGenerator spellGenerator;
     private PotionGenerator potionGenerator;
+    private MiscItemTableRoller miscItemTableRoller;
+    private MiscItemFactory miscItemFactory;
 
-    private List<MiscItem> miscItems;
 
-    MiscGenerator(MagicTreasureDB magicTreasureDB, Dice dice, SpellGenerator spellGenerator, PotionGenerator potionGenerator) {
+    MiscGenerator(MagicTreasureDB magicTreasureDB, Dice dice, SpellGenerator spellGenerator,
+                  PotionGenerator potionGenerator, MiscItemTableRoller miscItemTableRoller) {
         this.magicTreasureDB = magicTreasureDB;
         this.dice = dice;
         this.spellGenerator = spellGenerator;
         this.potionGenerator = potionGenerator;
+        this.miscItemTableRoller = miscItemTableRoller;
+        miscItemFactory = new MiscItemFactory(dice, miscItemTableRoller);
 
-        miscItems = new ArrayList<>();
-        miscItems.add(new BagOfHolding(dice, magicTreasureDB));
-        miscItems.add(new CrystalBall(dice, magicTreasureDB));
-        miscItems.add(new IounStones(dice, magicTreasureDB));
-        miscItems.add(new InstrumentOfTheBards(dice, magicTreasureDB));
-        miscItems.add(new IronFlask(dice, magicTreasureDB));
-        miscItems.add(new ManualOfGolems(dice, magicTreasureDB));
-        miscItems.add(new MedallionOfESP(dice, magicTreasureDB));
-        miscItems.add(new NecklaceOfMissiles(dice, magicTreasureDB));
-        miscItems.add(new NecklaceOfPrayerBeads(dice, magicTreasureDB));
-        miscItems.add(new PearlOfPower(dice, magicTreasureDB));
-        miscItems.add(new PeriaptOfProofAgainstPoison(dice, magicTreasureDB));
-        miscItems.add(new QuaalsFeatherToken(dice, magicTreasureDB));
-        miscItems.add(new RobeOfTheArchmagi(dice, magicTreasureDB));
-        miscItems.add(new RobeOfUsefulItems(dice, magicTreasureDB));
     }
 
     public String getMiscItemText(String text) {
         String rv = text;
 
-        for(MiscItem miscItem : miscItems) {
-            if(text.equalsIgnoreCase(miscItem.getItemText())) {
-                rv = miscItem.getItemDetails();
-                return rv;
-            }
+        MiscItem miscItem = miscItemFactory.getMiscItemByItemText(text);
+        if(miscItem != null) {
+            return miscItem.getItemDetails();
         }
 
-        if(text.equalsIgnoreCase("bag of tricks")) {
-            rv = text + " " + rollOnMiscItemTable(MiscItemTable.BAG_OF_TRICKS_TYPE);
-        } else if(text.equalsIgnoreCase("beaker of plentiful potions")) {
+        if(text.equalsIgnoreCase("beaker of plentiful potions")) {
             rv = text + ": " + getBeakerOfMiscPotionsPotions();
         } else if(text.equalsIgnoreCase("bracers of defense")) {
             rv = text + " " + rollOnMiscItemTable(MiscItemTable.BRACERS_OF_DEFENSE_VALUE);
@@ -131,7 +111,7 @@ public class MiscGenerator extends Generator {
             }
             rv = text + " - " + rats;
         }
-        
+
 
         return rv;
     }

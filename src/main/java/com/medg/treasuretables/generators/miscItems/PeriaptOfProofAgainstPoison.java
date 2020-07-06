@@ -6,8 +6,9 @@ import com.medg.treasuretables.data.MagicTreasureDB;
 
 public class PeriaptOfProofAgainstPoison extends MiscItem {
 
-    public PeriaptOfProofAgainstPoison(Dice dice, MagicTreasureDB magicTreasureDB) {
-        super(dice, magicTreasureDB);
+    public PeriaptOfProofAgainstPoison(Dice dice,
+                                       MiscItemTableRoller miscItemTableRoller) {
+        super(dice, miscItemTableRoller);
         itemText = "Periapt of Proof Against Poison";
         miscItemTable = MiscItemTable.PERIAPT_OF_PROOF_AGAINST_POISON;
     }

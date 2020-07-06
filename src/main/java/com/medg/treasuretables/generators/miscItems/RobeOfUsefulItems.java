@@ -2,12 +2,12 @@ package com.medg.treasuretables.generators.miscItems;
 
 import com.medg.treasuretables.Dice;
 import com.medg.treasuretables.MiscItemTable;
-import com.medg.treasuretables.data.MagicTreasureDB;
 
 public class RobeOfUsefulItems extends MiscItem {
 
-    public RobeOfUsefulItems(Dice dice, MagicTreasureDB magicTreasureDB) {
-        super(dice, magicTreasureDB);
+    public RobeOfUsefulItems(Dice dice,
+                             MiscItemTableRoller miscItemTableRoller) {
+        super(dice, miscItemTableRoller);
         this.itemText = "Robe of Useful Items";
         this.miscItemTable = MiscItemTable.ROBE_OF_USEFUL_ITEMS_ITEMS;
     }

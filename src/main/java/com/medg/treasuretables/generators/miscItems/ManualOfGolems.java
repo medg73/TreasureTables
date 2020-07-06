@@ -6,8 +6,9 @@ import com.medg.treasuretables.data.MagicTreasureDB;
 
 public class ManualOfGolems extends MiscItem {
 
-    public ManualOfGolems(Dice dice, MagicTreasureDB magicTreasureDB) {
-        super(dice, magicTreasureDB);
+    public ManualOfGolems(Dice dice,
+                          MiscItemTableRoller miscItemTableRoller) {
+        super(dice, miscItemTableRoller);
         this.itemText = "Manual of Golems (CM)";
         this.miscItemTable = MiscItemTable.MANUAL_OF_GOLEMS_TYPE;
     }

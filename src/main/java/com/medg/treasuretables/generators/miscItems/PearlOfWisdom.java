@@ -5,8 +5,9 @@ import com.medg.treasuretables.data.MagicTreasureDB;
 
 public class PearlOfWisdom extends MiscItem {
 
-    public PearlOfWisdom(Dice dice, MagicTreasureDB magicTreasureDB) {
-        super(dice, magicTreasureDB);
+    public PearlOfWisdom(Dice dice,
+                         MiscItemTableRoller miscItemTableRoller) {
+        super(dice, miscItemTableRoller);
         itemText = "Pearl of Wisdom (C)";
     }
 

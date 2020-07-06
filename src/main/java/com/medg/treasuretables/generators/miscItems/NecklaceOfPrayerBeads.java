@@ -2,12 +2,12 @@ package com.medg.treasuretables.generators.miscItems;
 
 import com.medg.treasuretables.Dice;
 import com.medg.treasuretables.MiscItemTable;
-import com.medg.treasuretables.data.MagicTreasureDB;
 
 public class NecklaceOfPrayerBeads extends MiscItem {
 
-    public NecklaceOfPrayerBeads(Dice dice, MagicTreasureDB magicTreasureDB) {
-        super(dice, magicTreasureDB);
+    public NecklaceOfPrayerBeads(Dice dice,
+                                 MiscItemTableRoller miscItemTableRoller) {
+        super(dice, miscItemTableRoller);
         this.itemText = "Necklace of Prayer Beads (C)";
         this.miscItemTable = MiscItemTable.NECKLACE_OF_PRAYER_BEADS_TYPE;
     }

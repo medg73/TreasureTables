@@ -2,12 +2,12 @@ package com.medg.treasuretables.generators.miscItems;
 
 import com.medg.treasuretables.Dice;
 import com.medg.treasuretables.MiscItemTable;
-import com.medg.treasuretables.data.MagicTreasureDB;
 
 public class RobeOfTheArchmagi extends MiscItem {
 
-    public RobeOfTheArchmagi(Dice dice, MagicTreasureDB magicTreasureDB) {
-        super(dice, magicTreasureDB);
+    public RobeOfTheArchmagi(Dice dice,
+                             MiscItemTableRoller miscItemTableRoller) {
+        super(dice, miscItemTableRoller);
         this.itemText = "Robe of the Archmagi (M)";
         this.miscItemTable = MiscItemTable.ROBE_OF_THE_ARCHMAGI_COLOR;
     }

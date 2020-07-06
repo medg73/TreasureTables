@@ -2,12 +2,12 @@ package com.medg.treasuretables.generators.miscItems;
 
 import com.medg.treasuretables.Dice;
 import com.medg.treasuretables.MiscItemTable;
-import com.medg.treasuretables.data.MagicTreasureDB;
 
 public class NecklaceOfMissiles extends MiscItem {
 
-    public NecklaceOfMissiles(Dice dice, MagicTreasureDB magicTreasureDB) {
-        super(dice, magicTreasureDB);
+    public NecklaceOfMissiles(Dice dice,
+                              MiscItemTableRoller miscItemTableRoller) {
+        super(dice, miscItemTableRoller);
         this.itemText = "Necklace of Missiles";
         this.miscItemTable = MiscItemTable.NECKLACE_OF_MISSILES_TYPE;
     }

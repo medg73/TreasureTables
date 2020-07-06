@@ -4,6 +4,7 @@ import com.medg.treasuretables.Dice;
 import com.medg.treasuretables.ItemEntry;
 import com.medg.treasuretables.MagicTreasureType;
 import com.medg.treasuretables.data.MagicTreasureDB;
+import com.medg.treasuretables.generators.miscItems.MiscItemTableRoller;
 
 public class MagicItemGenerator {
 
@@ -17,9 +18,11 @@ public class MagicItemGenerator {
     private MiscGenerator miscGenerator;
     private PotionColorGenerator potionColorGenerator;
     private SwordGenerator swordGenerator;
+    private ArmorGenerator armorGenerator;
 
 
-    public MagicItemGenerator(MagicTreasureDB magicTreasureDB, Dice dice) {
+    public MagicItemGenerator(MagicTreasureDB magicTreasureDB, Dice dice, MiscItemTableRoller miscItemTableRoller,
+                              ArmorTableRoller armorTableRoller) {
         this.magicTreasureDB = magicTreasureDB;
         this.dice = dice;
         potionColorGenerator = new PotionColorGenerator(dice);
@@ -28,8 +31,9 @@ public class MagicItemGenerator {
         scrollGenerator = new ScrollGenerator(magicTreasureDB, dice, spellGenerator);
         ringGenerator = new RingGenerator(magicTreasureDB, dice, spellGenerator);
         rswGenerator = new RSWGenerator(magicTreasureDB, dice, spellGenerator);
-        miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator, miscItemTableRoller);
         swordGenerator = new SwordGenerator(magicTreasureDB, dice);
+        armorGenerator = new ArmorGenerator(dice, armorTableRoller);
 
     }
 
@@ -50,13 +54,7 @@ public class MagicItemGenerator {
                 rv = ringGenerator.getItemText();
                 break;
             case ARMOR:
-                String armorSize = getMagicArmorSize();
-                String armorText = magicTreasureDB.getMagicItemFromDB(dice.rollPercent(), magicTreasureType).description;
-                if(armorText.toLowerCase().contains("shield")) {
-                    rv = armorText;
-                } else {
-                    rv = armorSize + " " + armorText;
-                }
+                rv = armorGenerator.getMagicArmor();
                 break;
             case SWORD:
                 rv = swordGenerator.getMagicSword();
@@ -124,14 +122,4 @@ public class MagicItemGenerator {
         return potionGenerator;
     }
 
-    private String getMagicArmorSize() {
-        int roll = dice.rollPercent();
-        if(roll <= 65) {
-            return "human-sized";
-        } else if(roll <= 85) {
-            return "elf-sized";
-        } else if(roll <= 95) {
-            return "dwarf-sized";
-        } else return "gnome or halfling sized";
-    }
 }

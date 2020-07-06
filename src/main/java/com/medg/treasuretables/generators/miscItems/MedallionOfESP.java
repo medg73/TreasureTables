@@ -6,8 +6,9 @@ import com.medg.treasuretables.data.MagicTreasureDB;
 
 public class MedallionOfESP extends MiscItem {
 
-    public MedallionOfESP(Dice dice, MagicTreasureDB magicTreasureDB) {
-        super(dice, magicTreasureDB);
+    public MedallionOfESP(Dice dice,
+                          MiscItemTableRoller miscItemTableRoller) {
+        super(dice, miscItemTableRoller);
         this.itemText = "Medallion of ESP";
         this.miscItemTable = MiscItemTable.MEDALLION_OF_ESP_TYPE;
     }

@@ -3,6 +3,7 @@ package com.medg.treasuretables.generators;
 import com.medg.treasuretables.Dice;
 import com.medg.treasuretables.MiscItemTable;
 import com.medg.treasuretables.data.MagicTreasureDB;
+import com.medg.treasuretables.generators.miscItems.MiscItemTableRoller;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -29,7 +30,8 @@ public class MiscGeneratorTest {
             SpellGenerator spellGenerator = mock(SpellGenerator.class);
             when(dice.getAmount("1d100", 1)).thenReturn(roll);
             String expectedText = "Bag of Holding " + bagTypes.get(i) + " capacity";
-            MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+            MiscItemTableRoller miscItemTableRoller = new MiscItemTableRoller(dice, magicTreasureDB);
+            MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator, miscItemTableRoller);
             assertEquals(expectedText, miscGenerator.getMiscItemText("Bag of Holding"));
         }
     }
@@ -48,7 +50,8 @@ public class MiscGeneratorTest {
             SpellGenerator spellGenerator = mock(SpellGenerator.class);
             when(dice.getAmount("1d10", 1)).thenReturn(roll);
             String expectedText = "Bag of Tricks " + bagTypes.get(i);
-            MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+            MiscItemTableRoller miscItemTableRoller = new MiscItemTableRoller(dice, magicTreasureDB);
+            MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator, miscItemTableRoller);
             assertEquals(expectedText, miscGenerator.getMiscItemText("Bag of Tricks"));
         }
     }
@@ -62,7 +65,9 @@ public class MiscGeneratorTest {
         when(potionGenerator.getItemText()).thenReturn("potion 1").thenReturn("potion 2");
         SpellGenerator spellGenerator = mock(SpellGenerator.class);
 
-        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        MiscItemTableRoller miscItemTableRoller = new MiscItemTableRoller(dice, magicTreasureDB);
+
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator, miscItemTableRoller);
         assertEquals("beaker of plentiful potions: potion 1, potion 2", miscGenerator.getMiscItemText("beaker of plentiful potions"));
     }
 
@@ -73,7 +78,8 @@ public class MiscGeneratorTest {
         SpellGenerator spellGenerator = mock(SpellGenerator.class);
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
 
-        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        MiscItemTableRoller miscItemTableRoller = new MiscItemTableRoller(dice, magicTreasureDB);
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator, miscItemTableRoller);
         when(dice.getAmount("1d9", 1)).thenReturn(3);
 
         assertEquals("candle of invocation (C) alignment CE", miscGenerator.getMiscItemText("candle of invocation (C)"));
@@ -86,7 +92,9 @@ public class MiscGeneratorTest {
         SpellGenerator spellGenerator = mock(SpellGenerator.class);
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
 
-        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        MiscItemTableRoller miscItemTableRoller = new MiscItemTableRoller(dice, magicTreasureDB);
+
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator, miscItemTableRoller);
         when(dice.roll1D4()).thenReturn(4);
         when(dice.getAmount("1d100", 1)).thenReturn(50);
         when(magicTreasureDB.getMiscItemTableEntry(50, MiscItemTable.CLOAK_OF_PROTECTION_VALUE)).thenReturn("+2");
@@ -101,8 +109,9 @@ public class MiscGeneratorTest {
         Dice dice = mock(Dice.class);
         SpellGenerator spellGenerator = mock(SpellGenerator.class);
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+        MiscItemTableRoller miscItemTableRoller = new MiscItemTableRoller(dice, magicTreasureDB);
 
-        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator, miscItemTableRoller);
         when(dice.roll1D4()).thenReturn(4).thenReturn(2);
 
         assertEquals("incense of meditation (C) 6 pieces", miscGenerator.getMiscItemText("incense of meditation (C)"));
@@ -115,8 +124,9 @@ public class MiscGeneratorTest {
         Dice dice = mock(Dice.class);
         SpellGenerator spellGenerator = mock(SpellGenerator.class);
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+        MiscItemTableRoller miscItemTableRoller = new MiscItemTableRoller(dice, magicTreasureDB);
 
-        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator, miscItemTableRoller);
         when(dice.rollD10()).thenReturn(4);
         when(dice.getAmount("1d20", 1)).thenReturn(1).thenReturn(2).thenReturn(1).thenReturn(20);
         when(magicTreasureDB.getMiscItemTableEntry(1, MiscItemTable.IOUN_STONES_TYPE)).thenReturn("pale blue rhomboid");
@@ -133,8 +143,9 @@ public class MiscGeneratorTest {
         Dice dice = mock(Dice.class);
         SpellGenerator spellGenerator = mock(SpellGenerator.class);
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+        MiscItemTableRoller miscItemTableRoller = new MiscItemTableRoller(dice, magicTreasureDB);
 
-        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator, miscItemTableRoller);
         when(dice.roll1D4()).thenReturn(1);
         when(dice.getAmount("1d20", 1)).thenReturn(1).thenReturn(6).thenReturn(1);
         when(magicTreasureDB.getMiscItemTableEntry(1, MiscItemTable.NECKLACE_OF_PRAYER_BEADS_TYPE)).thenReturn("bead 1");
@@ -151,8 +162,9 @@ public class MiscGeneratorTest {
         Dice dice = mock(Dice.class);
         SpellGenerator spellGenerator = mock(SpellGenerator.class);
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+        MiscItemTableRoller miscItemTableRoller = new MiscItemTableRoller(dice, magicTreasureDB);
 
-        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator, miscItemTableRoller);
         when(dice.rollD20()).thenReturn(1);
         when(dice.getAmount("1d100", 1)).thenReturn(100);
         when(dice.roll1D6()).thenReturn(3).thenReturn(6);
@@ -170,7 +182,9 @@ public class MiscGeneratorTest {
         SpellGenerator spellGenerator = mock(SpellGenerator.class);
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
 
-        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        MiscItemTableRoller miscItemTableRoller = new MiscItemTableRoller(dice, magicTreasureDB);
+
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator, miscItemTableRoller);
         when(dice.getAmount("1d100", 1)).thenReturn(100);
         when(magicTreasureDB.getMiscItemTableEntry(100, MiscItemTable.CRYSTAL_BALL_TYPE)).thenReturn("crystal ball with telepathy");
 
@@ -185,7 +199,9 @@ public class MiscGeneratorTest {
         SpellGenerator spellGenerator = mock(SpellGenerator.class);
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
 
-        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        MiscItemTableRoller miscItemTableRoller = new MiscItemTableRoller(dice, magicTreasureDB);
+
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator, miscItemTableRoller);
         when(dice.getAmount("1d20", 1)).thenReturn(1);
         when(magicTreasureDB.getMiscItemTableEntry(1, MiscItemTable.QUAALS_FEATHER_TOKEN)).thenReturn("anchor");
 
@@ -200,7 +216,9 @@ public class MiscGeneratorTest {
         SpellGenerator spellGenerator = mock(SpellGenerator.class);
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
 
-        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        MiscItemTableRoller miscItemTableRoller = new MiscItemTableRoller(dice, magicTreasureDB);
+
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator, miscItemTableRoller);
         when(dice.getAmount("1d100", 1)).thenReturn(1);
         when(magicTreasureDB.getMiscItemTableEntry(1, MiscItemTable.ROBE_OF_THE_ARCHMAGI_COLOR)).thenReturn("white");
 
@@ -214,7 +232,9 @@ public class MiscGeneratorTest {
         SpellGenerator spellGenerator = mock(SpellGenerator.class);
         MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
 
-        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator);
+        MiscItemTableRoller miscItemTableRoller = new MiscItemTableRoller(dice, magicTreasureDB);
+
+        MiscGenerator miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator, miscItemTableRoller);
         when(dice.roll1D4()).thenReturn(1).thenReturn(1).thenReturn(2).thenReturn(1);
         when(dice.getAmount("1d100", 1)).thenReturn(1).thenReturn(2).thenReturn(3).thenReturn(1)
                 .thenReturn(2).thenReturn(2).thenReturn(1);
