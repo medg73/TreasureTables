@@ -55,6 +55,7 @@ public class MagicItemGeneratorTest {
         Dice dice = new Dice(new RandomNumberGenerator());
         MiscItemTableRoller miscItemTableRoller = mock(MiscItemTableRoller.class);
         MagicTableRoller magicTableRoller = mock(MagicTableRoller.class);
+        when(magicTableRoller.rollOnTable(MagicTreasureType.RING)).thenReturn("invisibility");
 
 
         MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, magicTableRoller);

@@ -29,7 +29,7 @@ public class MagicItemGenerator {
         potionGenerator = new PotionGenerator(magicTreasureDB, dice, potionColorGenerator);
         spellGenerator = new SpellGenerator(magicTreasureDB, dice);
         scrollGenerator = new ScrollGenerator(magicTreasureDB, dice, spellGenerator);
-        ringGenerator = new RingGenerator(magicTreasureDB, dice, spellGenerator);
+        ringGenerator = new RingGenerator(dice, magicTableRoller, spellGenerator);
         rswGenerator = new RSWGenerator(magicTreasureDB, dice, spellGenerator);
         miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator, miscItemTableRoller);
         swordGenerator = new SwordGenerator(magicTreasureDB, dice);

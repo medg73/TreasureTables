@@ -4,16 +4,15 @@ import com.medg.treasuretables.dice.Dice;
 import com.medg.treasuretables.ItemEntry;
 import com.medg.treasuretables.add1.enums.MagicTreasureType;
 import com.medg.treasuretables.add1.enums.SpellCasterClass;
-import com.medg.treasuretables.add1.data.MagicTreasureDB;
 
 import java.util.Arrays;
 import java.util.List;
 
 public class RingGenerator extends Generator {
 
-    private MagicTreasureDB magicTreasureDB;
     private Dice dice;
     private SpellGenerator spellGenerator;
+    private MagicTableRoller magicTableRoller;
 
     private List<ItemEntry> contrarinessTypes = Arrays.asList(
             new ItemEntry(1, 20, "Flying"),
@@ -49,16 +48,15 @@ public class RingGenerator extends Generator {
             new ItemEntry(96, 99, "1st through 3rd level spells"),
             new ItemEntry(100, 100, "4th and 5th level spells"));
 
-    public RingGenerator(MagicTreasureDB magicTreasureDB, Dice dice, SpellGenerator spellGenerator) {
-        this.magicTreasureDB = magicTreasureDB;
+    public RingGenerator(Dice dice, MagicTableRoller magicTableRoller, SpellGenerator spellGenerator) {
         this.dice = dice;
         this.spellGenerator = spellGenerator;
+        this.magicTableRoller = magicTableRoller;
     }
 
     String getItemText() {
-        ItemEntry itemEntry = magicTreasureDB.getMagicItemFromDB(dice.rollPercent(), MagicTreasureType.RING);
 
-        String text = itemEntry.description;
+        String text = magicTableRoller.rollOnTable(MagicTreasureType.RING);
 
         if(text.equalsIgnoreCase("contrariness")) {
             text = contrarinessText();
