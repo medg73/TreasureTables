@@ -2,11 +2,13 @@
  * 
  */
 package com.medg.treasuretables;
-import com.medg.treasuretables.data.MagicTreasureDB;
-import com.medg.treasuretables.data.TreasureTableLoader;
-import com.medg.treasuretables.generators.MagicItemGenerator;
-import com.medg.treasuretables.generators.MagicTableRoller;
-import com.medg.treasuretables.generators.miscItems.MiscItemTableRoller;
+import com.medg.treasuretables.add1.data.MagicTreasureDB;
+import com.medg.treasuretables.add1.data.TreasureTableLoader;
+import com.medg.treasuretables.add1.generators.MagicItemGenerator;
+import com.medg.treasuretables.add1.generators.MagicTableRoller;
+import com.medg.treasuretables.add1.miscItems.MiscItemTableRoller;
+import com.medg.treasuretables.dice.Dice;
+import com.medg.treasuretables.dice.RandomNumberGenerator;
 import com.medg.treasuretables.ui.TTFrame;
 
 import javax.swing.JFrame;

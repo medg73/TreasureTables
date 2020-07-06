@@ -3,7 +3,9 @@
  */
 package com.medg.treasuretables;
 
-import com.medg.treasuretables.generators.MagicItemGenerator;
+import com.medg.treasuretables.add1.enums.MagicTreasureType;
+import com.medg.treasuretables.add1.generators.MagicItemGenerator;
+import com.medg.treasuretables.dice.Dice;
 
 /**
  * @author Matthew Grossman

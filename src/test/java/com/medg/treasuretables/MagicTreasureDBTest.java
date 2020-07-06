@@ -1,6 +1,7 @@
 package com.medg.treasuretables;
 
-import com.medg.treasuretables.data.MagicTreasureDB;
+import com.medg.treasuretables.add1.data.MagicTreasureDB;
+import com.medg.treasuretables.add1.enums.MagicTreasureType;
 import org.junit.Before;
 import org.junit.Test;
 
