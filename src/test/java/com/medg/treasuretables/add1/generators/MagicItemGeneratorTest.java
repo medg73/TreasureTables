@@ -199,6 +199,44 @@ public class MagicItemGeneratorTest {
         MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice, miscItemTableRoller, magicTableRoller);
         magicItemGenerator.getPotionGenerator().setPotionColorGenerator(potionColorGenerator);
         assertEquals("potion of healing (cloudy yellow)", magicItemGenerator.getMagicItemOfType(MagicTreasureType.ANY_NO_WEAPONS));
+    }
+
+    @Test
+    public void testGetMagicItemOfTypeMiscWeapon() {
+        Dice dice = mock(Dice.class);
+        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+        MiscItemTableRoller miscItemTableRoller = mock(MiscItemTableRoller.class);
+        MagicTableRoller magicTableRoller = mock(MagicTableRoller.class);
+
+        when(magicTableRoller.rollOnTable(MagicTreasureType.MISC_WEAPON)).thenReturn("flail +1");
+        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice,miscItemTableRoller, magicTableRoller);
+        assertEquals("flail +1", magicItemGenerator.getMagicItemOfType(MagicTreasureType.MISC_WEAPON));
+
+    }
+
+    @Test
+    public void testGetMagicItemOfTypeMiscWeaponArrows() {
+        Dice dice = mock(Dice.class);
+        MagicTreasureDB magicTreasureDB = mock(MagicTreasureDB.class);
+        MiscItemTableRoller miscItemTableRoller = mock(MiscItemTableRoller.class);
+        MagicTableRoller magicTableRoller = mock(MagicTableRoller.class);
+
+        when(magicTableRoller.rollOnTable(MagicTreasureType.MISC_WEAPON)).thenReturn("Arrow +1 2-24 in number");
+        when(dice.roll1D12()).thenReturn(7).thenReturn(6);
+        MagicItemGenerator magicItemGenerator = new MagicItemGenerator(magicTreasureDB, dice,miscItemTableRoller, magicTableRoller);
+        assertEquals("Arrow +1, 13 in number", magicItemGenerator.getMagicItemOfType(MagicTreasureType.MISC_WEAPON));
+
+        when(magicTableRoller.rollOnTable(MagicTreasureType.MISC_WEAPON)).thenReturn("arrow +2 2-16 in number");
+        when(dice.roll1D8()).thenReturn(4).thenReturn(8);
+        assertEquals("Arrow +2, 12 in number", magicItemGenerator.getMagicItemOfType(MagicTreasureType.MISC_WEAPON));
+
+        when(magicTableRoller.rollOnTable(MagicTreasureType.MISC_WEAPON)).thenReturn("arrow +3 2-12 in number");
+        when(dice.roll1D6()).thenReturn(6).thenReturn(1);
+        assertEquals("Arrow +3, 7 in number", magicItemGenerator.getMagicItemOfType(MagicTreasureType.MISC_WEAPON));
+
+        when(magicTableRoller.rollOnTable(MagicTreasureType.MISC_WEAPON)).thenReturn("bolt +2 2-20 in number");
+        when(dice.rollD10()).thenReturn(5).thenReturn(4);
+        assertEquals("Bolt +2, 9 in number", magicItemGenerator.getMagicItemOfType(MagicTreasureType.MISC_WEAPON));
 
     }
 

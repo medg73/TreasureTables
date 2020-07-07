@@ -80,4 +80,8 @@ public class Dice {
 	public int roll1D8() {
 		return this.getAmount("1d8", 1);
 	}
+
+	public int roll1D12() {
+		return this.getAmount("1d12", 1);
+	}
 }
