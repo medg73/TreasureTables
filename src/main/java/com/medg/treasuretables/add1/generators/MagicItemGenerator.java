@@ -19,6 +19,7 @@ public class MagicItemGenerator {
     private PotionColorGenerator potionColorGenerator;
     private SwordGenerator swordGenerator;
     private ArmorGenerator armorGenerator;
+    private MiscWeaponGenerator miscWeaponGenerator;
 
 
     public MagicItemGenerator(MagicTreasureDB magicTreasureDB, Dice dice, MiscItemTableRoller miscItemTableRoller,
@@ -34,6 +35,7 @@ public class MagicItemGenerator {
         miscGenerator = new MiscGenerator(magicTreasureDB, dice, spellGenerator, potionGenerator, miscItemTableRoller);
         swordGenerator = new SwordGenerator(magicTreasureDB, dice);
         armorGenerator = new ArmorGenerator(dice, magicTableRoller);
+        miscWeaponGenerator = new MiscWeaponGenerator(dice, magicTableRoller);
 
     }
 
@@ -72,6 +74,8 @@ public class MagicItemGenerator {
                 rv = miscGenerator.getMiscItemText(text);
                 break;
             case MISC_WEAPON:
+                rv = miscWeaponGenerator.getMiscWeapon();
+                break;
             case MAP:
                 rv = magicTreasureDB.getMagicItemFromDB(dice.rollPercent(), magicTreasureType).description;
                 break;
